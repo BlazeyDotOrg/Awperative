@@ -1,0 +1,24 @@
+events system
+
+json parser
+
+cool lossless compressor to make my files look more complex 
+
+name save files something like ansf
+
+    //todo: spinny loady wheel, error graphic and make it so multiple scenes can be loaded and modularized, make it so behaviors can be enabled and disabled and merging scenes loading
+
+body tags, behavior and component tags search methods add a way to enforce one component between all scenes, behaviors and components upgrade base script
+
+show colliders option
+
+streamline asset registries
+
+make the grass go in blocks kinda
+and add a fading border to the edge of grass
+
+add multiple languages
+
+add collision layers and triggers
+
+add aabb change events

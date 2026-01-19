@@ -1,0 +1,12 @@
+/Users/averynorris/Programming/Test/Awperative/Awperative/bin/Debug/net8.0/Awperative.deps.json
+/Users/averynorris/Programming/Test/Awperative/Awperative/bin/Debug/net8.0/Awperative.dll
+/Users/averynorris/Programming/Test/Awperative/Awperative/bin/Debug/net8.0/Awperative.pdb
+/Users/averynorris/Programming/Test/Awperative/Awperative/obj/Debug/net8.0/Awperative.csproj.AssemblyReference.cache
+/Users/averynorris/Programming/Test/Awperative/Awperative/obj/Debug/net8.0/Awperative.GeneratedMSBuildEditorConfig.editorconfig
+/Users/averynorris/Programming/Test/Awperative/Awperative/obj/Debug/net8.0/Awperative.AssemblyInfoInputs.cache
+/Users/averynorris/Programming/Test/Awperative/Awperative/obj/Debug/net8.0/Awperative.AssemblyInfo.cs
+/Users/averynorris/Programming/Test/Awperative/Awperative/obj/Debug/net8.0/Awperative.csproj.CoreCompileInputs.cache
+/Users/averynorris/Programming/Test/Awperative/Awperative/obj/Debug/net8.0/Awperative.dll
+/Users/averynorris/Programming/Test/Awperative/Awperative/obj/Debug/net8.0/refint/Awperative.dll
+/Users/averynorris/Programming/Test/Awperative/Awperative/obj/Debug/net8.0/Awperative.pdb
+/Users/averynorris/Programming/Test/Awperative/Awperative/obj/Debug/net8.0/ref/Awperative.dll
