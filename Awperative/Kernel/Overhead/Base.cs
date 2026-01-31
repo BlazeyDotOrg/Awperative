@@ -20,8 +20,7 @@ public sealed class Base : Game
     }
     
     /// <summary>
-    /// Initialize() is called when the program starts. It can be confusing because Initialize() in hooks and events is actually LoadContent().
-    /// This is because Initialize() has little utility and there is no reason to 
+    /// Initialize() is called when the program starts. Goes before LoadContent(). And prepares the kernel for use.
     /// </summary>
     /// <remarks> It is recommended not to load content in Initialize()</remarks>
     protected override void Initialize() {
@@ -65,7 +64,7 @@ public sealed class Base : Game
     /// </summary>
     /// <remarks> This event may not trigger if the program is force closed.</remarks>
     protected override void EndRun() {
-        foreach (AwperativeHook hook in Awperative.EventHooks) hook.Terminate();
-        foreach (Scene scene in Awperative.LoadedScenes) scene.Terminate();
+        foreach (AwperativeHook hook in Awperative.EventHooks) hook.Unload();
+        foreach (Scene scene in Awperative.LoadedScenes) scene.Unload();
     }
 }

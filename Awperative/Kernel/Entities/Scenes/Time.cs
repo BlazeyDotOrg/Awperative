@@ -6,9 +6,9 @@ namespace Awperative;
 public sealed partial class Scene
 {
 
-    public void Terminate() {
-        foreach (Behavior behavior in behaviors) behavior.Terminate();
-        foreach (Body body in bodies) body.Terminate();
+    public void Unload() {
+        foreach (Behavior behavior in behaviors) behavior.Unload();
+        foreach (Body body in bodies) body.Unload();
     }
 
     public void Load() {

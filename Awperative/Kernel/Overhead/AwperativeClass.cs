@@ -13,5 +13,5 @@ public interface AwperativeHook
     /// <summary>
     /// Called when the program closes. 
     /// </summary>
-    public void Terminate() {}
+    public void Unload() {}
 }
