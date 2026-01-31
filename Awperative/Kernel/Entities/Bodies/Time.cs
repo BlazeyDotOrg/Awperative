@@ -6,7 +6,6 @@ namespace Awperative;
 
 public sealed partial class Body
 {
-    public void Initialize() { foreach (Component component in components) component.Initialize(); }
     public void Terminate() { foreach (Component component in components) component.Terminate(); }
     
     public void Load() { foreach (Component component in components) { component.Load(); } }

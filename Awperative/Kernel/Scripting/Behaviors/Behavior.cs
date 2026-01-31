@@ -37,7 +37,6 @@ public abstract class Behavior
     
     
     //GAME HAS JUST BEGUN/ended
-    public virtual void Initialize() {}
     public virtual void Terminate() {}
     
     //WE ARE LOADING STUFF

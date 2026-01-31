@@ -8,15 +8,10 @@ public interface AwperativeHook
     /// <summary>
     /// Called when the program starts; It is not recommended you load assets here.
     /// </summary>
-    public void Initialize() {}
+    public void Load() {}
     
     /// <summary>
     /// Called when the program closes. 
     /// </summary>
     public void Terminate() {}
-
-    /// <summary>
-    /// Called when Awperative loads content.
-    /// </summary>
-    public void Load() {}
 }

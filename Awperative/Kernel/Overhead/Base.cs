@@ -20,15 +20,14 @@ public sealed class Base : Game
     }
     
     /// <summary>
-    /// Initialize() is called when the program starts. Override Initialize() in scripting tools or use hooks to call from this event.
+    /// Initialize() is called when the program starts. It can be confusing because Initialize() in hooks and events is actually LoadContent().
+    /// This is because Initialize() has little utility and there is no reason to 
     /// </summary>
     /// <remarks> It is recommended not to load content in Initialize()</remarks>
     protected override void Initialize() {
         Awperative.ContentManager = Content;
         Awperative.SpriteBatch = new SpriteBatch(GraphicsDevice);
         
-        foreach (AwperativeHook hook in Awperative.EventHooks) hook.Initialize();
-        foreach(Scene scene in Awperative.LoadedScenes) scene.Initialize();
         base.Initialize();
     }
 
