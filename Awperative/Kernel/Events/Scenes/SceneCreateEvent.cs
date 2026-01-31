@@ -1,4 +1,4 @@
-namespace Gravity.Kernel;
+namespace Awperative;
 
 
 public sealed record SceneCreateEvent

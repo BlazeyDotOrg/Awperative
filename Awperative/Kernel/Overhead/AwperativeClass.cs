@@ -1,10 +1,22 @@
-namespace Gravity.Kernel;
+namespace Awperative;
 
+/// <summary>
+/// Awperative hooks are the source of entry for scripts using Awperative. Create a hook and send into Start() to be recognized by the engine.
+/// </summary>
 public interface AwperativeHook
 {
-    //DONT LOAD ASSETS HERE
+    /// <summary>
+    /// Called when the program starts; It is not recommended you load assets here.
+    /// </summary>
     public void Initialize() {}
+    
+    /// <summary>
+    /// Called when the program closes. 
+    /// </summary>
     public void Terminate() {}
 
+    /// <summary>
+    /// Called when Awperative loads content.
+    /// </summary>
     public void Load() {}
 }

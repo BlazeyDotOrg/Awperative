@@ -1,6 +1,6 @@
 
 
-namespace Gravity.Kernel;
+namespace Awperative;
 
 public sealed partial class Scene
 {

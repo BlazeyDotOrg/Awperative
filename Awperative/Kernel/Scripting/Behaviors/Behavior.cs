@@ -3,7 +3,7 @@
 using Microsoft.Xna.Framework;
 
 
-namespace Gravity.Kernel;
+namespace Awperative;
 
 public abstract class Behavior
 {

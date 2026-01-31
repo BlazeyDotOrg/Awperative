@@ -1,19 +1,35 @@
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 
-namespace Gravity.Kernel;
+namespace Awperative;
 
-
-public static class Core
+/// <summary>
+/// Initiating class of Awperative. Call Start() to start the kernel.
+/// </summary>
+public static class Awperative
 {
+    //Inherits MonoGame and carries events.
     public static Base Base;
-    public static List<Scene> LoadedScenes => Base.LoadedScenes;
+    public static List<Scene> LoadedScenes = [];
     
-    public static List<AwperativeHook> ScriptingHooks;
+    //Handles, graphic Settings, drawing, and loading content respectively.
+    public static GraphicsDeviceManager GraphicsDeviceManager { get; internal set; }
+    public static SpriteBatch SpriteBatch { get; internal set; }
+    public static ContentManager ContentManager { get; internal set; }
+    
+    //Entry points for code
+    internal static List<AwperativeHook> EventHooks { get; private set; }
 
-    //hooks are called in order
+    /// <summary>
+    /// Start() begins the game; and begins communication with all event hooks.
+    /// </summary>
+    /// <param name="__hooks"> List of all event hooks you wish to use. </param>
+    /// <remarks> You cannot add new hooks later; so make sure to register all of them in the Start() method.</remarks>
     public static void Start(List<AwperativeHook> __hooks) {
-        ScriptingHooks = __hooks;
+        EventHooks = __hooks;
         
         Base = new Base();
         Base.Run();

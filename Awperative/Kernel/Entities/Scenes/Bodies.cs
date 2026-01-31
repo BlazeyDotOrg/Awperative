@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Gravity.Kernel;
+namespace Awperative;
 
 
 public sealed partial class Scene

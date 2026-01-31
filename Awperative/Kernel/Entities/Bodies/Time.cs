@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 
 
-namespace Gravity.Kernel;
+namespace Awperative;
 
 
 public sealed partial class Body
