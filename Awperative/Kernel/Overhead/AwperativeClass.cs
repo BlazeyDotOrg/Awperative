@@ -3,6 +3,7 @@ namespace Awperative;
 /// <summary>
 /// Awperative hooks are the source of entry for scripts using Awperative. Create a hook and send into Start() to be recognized by the engine.
 /// </summary>
+/// <author> Avery Norris </author>
 public interface AwperativeHook
 {
     /// <summary>
@@ -10,8 +11,15 @@ public interface AwperativeHook
     /// </summary>
     public void Load() {}
     
+    
+    
+    
+    
     /// <summary>
     /// Called when the program closes. 
     /// </summary>
     public void Unload() {}
+    
+    
+    
 }

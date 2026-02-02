@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Linq;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 
@@ -8,6 +9,7 @@ namespace Awperative;
 /// <summary>
 /// Base class of Awperative. Carries events from MonoGame into scenes and hooks.
 /// </summary>
+/// <author> Avery Norris </author>
 public sealed class Base : Game
 {
 
@@ -19,6 +21,10 @@ public sealed class Base : Game
         Content.RootDirectory = "Content";
     }
     
+    
+    
+    
+    
     /// <summary>
     /// Initialize() is called when the program starts. Goes before LoadContent(). And prepares the kernel for use.
     /// </summary>
@@ -29,42 +35,60 @@ public sealed class Base : Game
         
         base.Initialize();
     }
+    
+    
+    
+    
 
     /// <summary>
     /// LoadContent() is called when the program starts; right after Initialize(). Override Load() in scripting tools or use hooks to call from this event.
     /// </summary>
     /// <remarks> It is recommended to load content during LoadContent()</remarks>
     protected override void LoadContent() {
-        foreach (AwperativeHook hook in Awperative.EventHooks) 
-            hook.Load();
-        foreach(Scene scene in Awperative.LoadedScenes)
-            scene.Load();
+        foreach (AwperativeHook hook in Awperative.EventHooks.ToList()) hook.Load();
+        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.Load();
     }
+    
+    
+    
+    
     
     /// <summary>
     /// Update() is called every frame; before Draw(). Override Update() in scripting tools to call from this event.
     /// </summary>
     /// <remarks> Hooks are unable to receive both Update() and Draw()</remarks>
     protected override void Update(GameTime __gameTime) {
-        foreach(Scene scene in Awperative.LoadedScenes) scene.Update(__gameTime);
+        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.Update(__gameTime);
         base.Update(__gameTime);
     }
 
+    
+    
+    
+    
     /// <summary>
     /// Draw() is called every frame; after Update(). Override Draw() in scripting tools to call from this event.
     /// </summary>
     /// <remarks> Hooks are unable to receive both Update() and Draw()</remarks>
     protected override void Draw(GameTime __gameTime) {
-        foreach(Scene scene in Awperative.LoadedScenes) scene.Draw(__gameTime);
+        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.Draw(__gameTime);
         base.Draw(__gameTime);
     }
+    
+    
+    
+    
 
     /// <summary>
     /// EndRun() is called if the program closes. Override Terminate() in scripting tools or use hooks to call from this event.
     /// </summary>
     /// <remarks> This event may not trigger if the program is force closed.</remarks>
     protected override void EndRun() {
-        foreach (AwperativeHook hook in Awperative.EventHooks) hook.Unload();
-        foreach (Scene scene in Awperative.LoadedScenes) scene.Unload();
+        foreach (AwperativeHook hook in Awperative.EventHooks.ToList()) hook.Unload();
+        foreach (Scene scene in Awperative.LoadedScenes.ToList()) scene.Unload();
     }
+    
+    
+    
+    
 }

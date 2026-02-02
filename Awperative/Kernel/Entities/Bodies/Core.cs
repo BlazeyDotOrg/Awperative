@@ -1,29 +1,83 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Awperative;
 
-public sealed partial class Body
+public sealed partial class Body 
 {
 
-    public readonly Scene scene;
-    public readonly Transform transform = new Transform();
-
-    public readonly List<string> tags = [];
     
-    public readonly List<Component> components = [];
+    /// <summary>
+    /// Current scene the body exists in
+    /// </summary>
+    public Scene Scene { get; internal set; }
     
+    
+    
+    
+    
+    /// <summary>
+    /// All components attached to the body
+    /// </summary>
+    public List<Component> Components => _components.ToList();
+    internal HashSet<Component> _components { get; private set; } = [];
+    
+    
+    
+    
+    
+    /// <summary>
+    /// All tags attached to the body
+    /// </summary>
+    public List<string> Tags => _tags.ToList();
+    internal HashSet<string> _tags { get; private set; }= [];
 
-    public Body(Scene __scene) {
-        scene = __scene;
+    
+    
+    
+    
+    /// <summary>
+    /// Position of the body
+    /// </summary>
+    public Transform transform { get; internal set; } = new();
+    
+    
+    
+    
+    
+    //Prevents outside construction
+    internal Body() {}
+    
+    
+    
+    
+    
+    /// <summary>
+    /// Creates a body in the given scene
+    /// </summary>
+    /// <param name="__scene"></param>
+    internal Body(Scene __scene) {
+        Scene = __scene;
     }
 
-    public Body(Scene __scene, Transform __transform) {
-        scene = __scene;
+    
+    
+    
+    
+    /// <summary>
+    /// Creates a body with a scene and transform
+    /// </summary>
+    /// <param name="__scene"></param>
+    /// <param name="__transform"></param>
+    internal Body(Scene __scene, Transform __transform) {
+        Scene = __scene;
         transform = __transform;
     }
     
-
-    //todo: make internal
+    
+    
+    
+    
 }
