@@ -11,9 +11,32 @@ public static partial class Debug
     /// Writes the current message to the log file.
     /// </summary>
     /// <param name="__message"> Message to debug</param>
+    public static void LogAction(string __message) => LogGeneric(__message, "ACT", [], []);
+    
+    /// <summary>
+    /// Writes the current message to the log file. With any given call sign.
+    /// </summary>
+    /// <param name="__message"> Message to debug</param>
+    /// <param name="__parameters"> Names of values to debug</param>
+    /// <param name="__values"> Values to debug</param>
+    public static void LogAction(string __message, string[] __parameters, string[] __values) => LogGeneric(__message, "ACT", __parameters, __values);
+    
+    /// <summary>
+    /// Writes the current message to the log file if the condition is true.
+    /// </summary>
+    /// <param name="__condition"> Condition to debug </param>
+    /// <param name="__message"> Message to debug</param>
+    public static void AssertAction(bool __condition, string __message) => AssertGeneric(__condition, __message, "ACT", [], []);
+    
+    
+    
+    
+    
+    /// <summary>
+    /// Writes the current message to the log file.
+    /// </summary>
+    /// <param name="__message"> Message to debug</param>
     public static void LogState(string __message) => LogGeneric(__message, "STA", [], []);
-    
-    
     
     /// <summary>
     /// Writes the current message to the log file. With any given call sign.
@@ -22,6 +45,13 @@ public static partial class Debug
     /// <param name="__parameters"> Names of values to debug</param>
     /// <param name="__values"> Values to debug</param>
     public static void LogState(string __message, string[] __parameters, string[] __values) => LogGeneric(__message, "STA", __parameters, __values);
+    
+    /// <summary>
+    /// Writes the current message to the log file if the condition is true.
+    /// </summary>
+    /// <param name="__condition"> Condition to debug </param>
+    /// <param name="__message"> Message to debug</param>
+    public static void AssertState(bool __condition, string __message) => AssertGeneric(__condition, __message, "STA", [], []);
 
     
     
@@ -33,8 +63,6 @@ public static partial class Debug
     /// <param name="__message"> Message to debug</param>
     public static void LogValue(string __message) => LogGeneric(__message, "VAL", [], []);
     
-    
-    
     /// <summary>
     /// Writes the current message to the log file. With any given call sign.
     /// </summary>
@@ -42,6 +70,13 @@ public static partial class Debug
     /// <param name="__parameters"> Names of values to debug</param>
     /// <param name="__values"> Values to debug</param>
     public static void LogValue(string __message, string[] __parameters, string[] __values) => LogGeneric(__message, "VAL", __parameters, __values);
+    
+    /// <summary>
+    /// Writes the current message to the log file if the condition is true.
+    /// </summary>
+    /// <param name="__condition"> Condition to debug </param>
+    /// <param name="__message"> Message to debug</param>
+    public static void AssertValue(bool __condition, string __message) => AssertGeneric(__condition, __message, "VAL", [], []);
 
     
     
@@ -53,8 +88,6 @@ public static partial class Debug
     /// <param name="__message"> Message to debug</param>
     public static void LogWarning(string __message) => LogGeneric(__message, "WAR", [], []);
     
-    
-    
     /// <summary>
     /// Writes the current message to the log file. With any given call sign.
     /// </summary>
@@ -62,6 +95,13 @@ public static partial class Debug
     /// <param name="__parameters"> Names of values to debug</param>
     /// <param name="__values"> Values to debug</param>
     public static void LogWarning(string __message, string[] __parameters, string[] __values) => LogGeneric(__message, "WAR", __parameters, __values);
+    
+    /// <summary>
+    /// Writes the current message to the log file if the condition is true.
+    /// </summary>
+    /// <param name="__condition"> Condition to debug </param>
+    /// <param name="__message"> Message to debug</param>
+    public static void AssertWarning(bool __condition, string __message) => AssertGeneric(__condition, __message, "WAR", [], []);
     
     
     
@@ -73,8 +113,6 @@ public static partial class Debug
     /// <param name="__message"> Message to debug</param>
     public static void LogError(string __message) => LogGeneric(__message, "ERR", [], []);
     
-    
-    
     /// <summary>
     /// Writes the current message to the log file. With any given call sign.
     /// </summary>
@@ -83,15 +121,12 @@ public static partial class Debug
     /// <param name="__values"> Values to debug</param>
     public static void LogError(string __message, string[] __parameters, string[] __values) => LogGeneric(__message, "ERR", __parameters, __values);
     
-    
-    
     /// <summary>
-    /// Writes the current message to the log file.
+    /// Writes the current message to the log file if the condition is true.
     /// </summary>
-    /// <param name="__message"> Message to debug</param>
     /// <param name="__condition"> Condition to debug </param>
+    /// <param name="__message"> Message to debug</param>
     public static void AssertError(bool __condition, string __message) => AssertGeneric(__condition, __message, "ERR", [], []);
-//todo: add more asserts and overrides
 
     
     
@@ -114,6 +149,17 @@ public static partial class Debug
     }
     
     
+    
+    
+    
+    /// <summary>
+    /// Writes the current message to the log file if the condition is true. With any given call sign.
+    /// </summary>
+    /// <param name="__condition"> Condition to debug </param>
+    /// <param name="__message"> Message to debug</param>
+    /// <param name="__callSign"> Message identifier</param>
+    /// <param name="__parameters"> Names of values to debug</param>
+    /// <param name="__values"> Values to debug</param>
     public static void AssertGeneric(bool __condition, string  __message, string __callSign, string[] __parameters, string[] __values) {
         if (!__condition) return;
         
@@ -124,5 +170,4 @@ public static partial class Debug
         
         File.AppendAllText(LogFilePath, output);
     }
-        
 }

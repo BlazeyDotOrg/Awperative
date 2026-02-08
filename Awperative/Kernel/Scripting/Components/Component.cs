@@ -15,7 +15,7 @@ public abstract class Component
     //todo: add optional parameter for priority at creation
     public int Priority {
         get => _priority; 
-        set { _priority = value; body.RecompileComponentOrder(); }
+        set { _priority = value; }
     } private int _priority = 0;
     
     
@@ -42,11 +42,11 @@ public abstract class Component
     
     
     
-    public Generic AddComponent<Generic>() where Generic : Component => body.AddComponent<Generic>();
-    public Generic AddComponent<Generic>(object[] __args) where Generic : Component => body.AddComponent<Generic>(__args);
+    public Component AddComponent<Generic>() where Generic : Component => body.AddComponent<Generic>();
+    public Component AddComponent<Generic>(object[] __args) where Generic : Component => body.AddComponent<Generic>(__args);
     
-    public Generic GetComponent<Generic>() where Generic : Component => body.GetComponent<Generic>();
-    public Generic[] GetComponents<Generic>() where Generic : Component => body.GetComponents<Generic>();
+    public Component GetComponent<Generic>() where Generic : Component => body.GetComponent<Generic>();
+    public Component[] GetComponents<Generic>() where Generic : Component => body.GetComponents<Generic>();
     
     public void RemoveComponent<Generic>() where Generic : Component => body.RemoveComponent<Generic>();
     
@@ -70,7 +70,7 @@ public abstract class Component
     internal void Initiate(Body __body)
     {
         body = __body;
-        scene = __body.scene;
+        scene = __body.Scene;
         Create();
     }
 
