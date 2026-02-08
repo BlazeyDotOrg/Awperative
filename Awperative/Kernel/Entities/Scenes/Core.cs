@@ -2,7 +2,7 @@
 
 namespace Awperative;
 
-public sealed partial class Scene
+public sealed partial class Scene : DockerEntity
 {
     
    

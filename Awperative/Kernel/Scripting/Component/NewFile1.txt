@@ -5,6 +5,11 @@ namespace Awperative;
 
 public abstract class Component
 {
+    
+    
+    
+    
+    
     public Scene scene;
     public Body body;
     
@@ -51,20 +56,6 @@ public abstract class Component
     public void RemoveComponent<Generic>() where Generic : Component => body.RemoveComponent<Generic>();
     
     
-    
-    //GAME HAS JUST BEGUN/ended
-    public virtual void Unload() {}
-    
-    //WE ARE LOADING STUFF
-    public virtual void Load() {}
-    
-    //You know what these do
-    public virtual void Update(GameTime __gameTime) {}
-    public virtual void Draw(GameTime __gameTime) {}
-    
-    //component/body/scene is being created or destroyed
-    public virtual void Create() {}
-    public virtual void Destroy() {}
 
     //creation logic
     internal void Initiate(Body __body)

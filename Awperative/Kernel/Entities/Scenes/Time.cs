@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 
 namespace Awperative;
 
-public sealed partial class Scene
+public sealed partial class Scene : DockerEntity
 {
 
     public void Unload() {

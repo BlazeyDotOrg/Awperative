@@ -4,7 +4,7 @@ using System;
 namespace Awperative;
 
 
-public sealed partial class Scene
+public sealed partial class Scene : DockerEntity
 {
     public event EventHandler<BehaviorCreateEvent> BehaviorCreatedEvent;
     public event EventHandler<BehaviorDestroyEvent> BehaviorDestroyedEvent;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Awperative;
 
 
-public sealed partial class Scene
+public sealed partial class Scene : DockerEntity
 {
     public List<Body> bodies { get; private set; } = [];
     
