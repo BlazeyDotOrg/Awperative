@@ -7,13 +7,16 @@ namespace Awperative;
 
 public sealed partial class Body
 {
-    public void Unload() { foreach (Component component in components.ToList()) component.Unload(); }
-    
-    public void Load() { foreach (Component component in components.ToList()) { component.Load(); } }
+    internal void Unload() { foreach (Component component in _components) component.Unload(); }
+    internal void Load() { foreach (Component component in _components) { component.Load(); } }
 
-    public void Update(GameTime __gameTime) { foreach (Component component in components.ToList()) { component.Update(__gameTime); } }
-    public void Draw(GameTime __gameTime) { foreach (Component component in components.ToList()) { component.Draw(__gameTime); } }
     
-    public void Destroy() { foreach(Component component in components.ToList()) component.Destroy(); }
-    public void Create() { foreach (Component component in components.ToList()) component.Create(); }
+    
+    internal void Update(GameTime __gameTime) { foreach (Component component in _components) { component.Update(__gameTime); } }
+    internal void Draw(GameTime __gameTime) { foreach (Component component in _components) { component.Draw(__gameTime); } }
+    
+    
+    
+    internal void Destroy() { foreach(Component component in _components) component.Destroy(); }
+    internal void Create() { foreach (Component component in _components) component.Create(); }
 }

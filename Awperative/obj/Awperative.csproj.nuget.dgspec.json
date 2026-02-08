@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/avery/Programming/Awperative/Awperative/Awperative.csproj": {}
+    "/Users/averynorris/RiderProjects/Awperative/Awperative/Awperative.csproj": {}
   },
   "projects": {
-    "/home/avery/Programming/Awperative/Awperative/Awperative.csproj": {
+    "/Users/averynorris/RiderProjects/Awperative/Awperative/Awperative.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/avery/Programming/Awperative/Awperative/Awperative.csproj",
+        "projectUniqueName": "/Users/averynorris/RiderProjects/Awperative/Awperative/Awperative.csproj",
         "projectName": "Awperative",
-        "projectPath": "/home/avery/Programming/Awperative/Awperative/Awperative.csproj",
-        "packagesPath": "/home/avery/.nuget/packages/",
-        "outputPath": "/home/avery/Programming/Awperative/Awperative/obj/",
+        "projectPath": "/Users/averynorris/RiderProjects/Awperative/Awperative/Awperative.csproj",
+        "packagesPath": "/Users/averynorris/.nuget/packages/",
+        "outputPath": "/Users/averynorris/RiderProjects/Awperative/Awperative/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/avery/.nuget/NuGet/NuGet.Config"
+          "/Users/averynorris/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,7 +32,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -55,12 +61,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.20, 8.0.20]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.20, 8.0.20]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.123/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

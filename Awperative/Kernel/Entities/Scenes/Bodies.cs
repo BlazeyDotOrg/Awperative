@@ -33,7 +33,7 @@ public sealed partial class Scene
         List<Body> _bodies = new List<Body>();
         
         foreach (Body body in bodies) 
-            if (body.tags.Contains(tag))
+            if (body._tags.Contains(tag))
                 _bodies.Add(body);
         
         
@@ -45,7 +45,7 @@ public sealed partial class Scene
 
     public Body GetBody(string tag) {
         foreach (Body body in bodies)
-            if (body.tags.Contains(tag))
+            if (body._tags.Contains(tag))
                 return body;
         
         throw new Exception("No Body found with the tag " + tag);

@@ -82,6 +82,16 @@ public static partial class Debug
     /// <param name="__parameters"> Names of values to debug</param>
     /// <param name="__values"> Values to debug</param>
     public static void LogError(string __message, string[] __parameters, string[] __values) => LogGeneric(__message, "ERR", __parameters, __values);
+    
+    
+    
+    /// <summary>
+    /// Writes the current message to the log file.
+    /// </summary>
+    /// <param name="__message"> Message to debug</param>
+    /// <param name="__condition"> Condition to debug </param>
+    public static void AssertError(bool __condition, string __message) => AssertGeneric(__condition, __message, "ERR", [], []);
+//todo: add more asserts and overrides
 
     
     
@@ -102,4 +112,17 @@ public static partial class Debug
         
         File.AppendAllText(LogFilePath, output);
     }
+    
+    
+    public static void AssertGeneric(bool __condition, string  __message, string __callSign, string[] __parameters, string[] __values) {
+        if (!__condition) return;
+        
+        string output = "\n\n" + __callSign + "- \"" + __message + "\"\n         STK-" + new StackTrace();
+
+        for (int i = 0; i < __parameters.Length || i < __values.Length; i++)
+            output += "\n         " + __parameters[i] + "- " + __values[i];
+        
+        File.AppendAllText(LogFilePath, output);
+    }
+        
 }
