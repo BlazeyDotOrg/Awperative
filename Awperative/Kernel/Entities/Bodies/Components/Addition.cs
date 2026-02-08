@@ -12,15 +12,12 @@ public sealed partial class Body
         if(typeof(Generic).GetConstructor((Type[]) __args) == null) { Debug.LogError("Component does not contain a valid constructor"); return null; };
 
         try {
-            
             Component component = (Generic)Activator.CreateInstance(typeof(Generic), __args);
             
-            if(component == null) { Debug.LogError("Failed to create component"); return null; };
-
+            if(component == null) { Debug.LogError("Failed to create component"); return null; }
+            
             _components.Add(component);
             component.Initiate(this);
-            ComponentCreatedEvent?.Invoke(this, new ComponentCreateEvent(component, this, Scene));
-
             return component;
             
         }catch { Debug.LogError("Failed to create component"); return null; }

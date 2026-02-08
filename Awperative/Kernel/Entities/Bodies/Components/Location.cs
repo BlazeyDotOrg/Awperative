@@ -17,16 +17,17 @@ public sealed partial class Body
         return returnValue.ToArray();
     }
     
-    public Generic FindSingleton<Generic>() where Generic : Component
-    {
+    public Component FindSingleton<Generic>() where Generic : Component {
         foreach (Component component in _components)
             if (component.GetType() == typeof(Generic))
                 if(component.EnforceSingleton)
-                    return (Generic) component;
-                else
-                    throw new Exception("Component is not a singleton");
-        
-        throw new Exception("Component not found");
+                    return component;
+                else {
+                    Debug.LogError("Component is not a singleton");
+                    return null;
+                }
+
+        Debug.LogError("Scene does not contain a component of this type");
         return null;
     }
     

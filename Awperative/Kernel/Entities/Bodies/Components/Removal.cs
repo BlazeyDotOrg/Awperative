@@ -17,7 +17,6 @@ public sealed partial class Body
 
             foundComponent.End();
             _components.Remove(foundComponent);
-            ComponentDestroyedEvent?.Invoke(this, new ComponentDestroyEvent(foundComponent, this, Scene));
         }catch { Debug.LogError("Removal failed"); }
     }
     
@@ -26,7 +25,6 @@ public sealed partial class Body
             foreach (Component component in GetComponents<Generic>()) {
                 component.End();
                 _components.Remove(component);
-                ComponentDestroyedEvent?.Invoke(this, new ComponentDestroyEvent(component, this, Scene));
             }
         }catch { Debug.LogError("Removal failed"); }
     }
