@@ -8,7 +8,7 @@ using Awperative.Kernel.Communication.Config;
 namespace Awperative;
 
 
-public static partial class Debugger
+public static partial class Debug
 {
 
     

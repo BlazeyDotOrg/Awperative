@@ -8,19 +8,16 @@ public sealed partial class Body
 {
     
     public Generic AddComponent<Generic>(object[] args) where Generic : Component {
+        if (SingletonExists<Generic>()) { Debug.LogError("Cannot add component when singleton exists!"); return null; }
 
-        if (SingletonExists<Generic>())
-            throw new Exception("Cannot add component when singleton exists!");
-        
         Generic component = (Generic) Activator.CreateInstance(typeof(Generic), args);
-        
-        if(component == null)
-            throw new Exception("Failed to create component!");
-        
-        components.Add(component);
+
+        if (component == null) { Debug.LogError("Failed to create component!"); return null; }
+
+        _components.Add(component);
         component.Initiate(this);
         
-        ComponentCreatedEvent?.Invoke(this, new ComponentCreateEvent(component, this, scene));
+        ComponentCreatedEvent?.Invoke(this, new ComponentCreateEvent(component, this, Scene));
         
         return component;
     }
