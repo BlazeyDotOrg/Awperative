@@ -42,5 +42,6 @@
       "_enableSearch": true,
       "pdf": true
     }
-  }
+  },
+  "BasePath": "/Awperative"
 }
