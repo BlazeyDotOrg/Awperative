@@ -1,0 +1,107 @@
+### YamlMime:ManagedReference
+items:
+- uid: Awperative.AwperativeHook
+  commentId: T:Awperative.AwperativeHook
+  id: AwperativeHook
+  parent: Awperative
+  children:
+  - Awperative.AwperativeHook.Load
+  - Awperative.AwperativeHook.Unload
+  langs:
+  - csharp
+  - vb
+  name: AwperativeHook
+  nameWithType: AwperativeHook
+  fullName: Awperative.AwperativeHook
+  type: Interface
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/AwperativeClass.cs
+      branch: main
+      repo: https://github.com/BlazeyDotOrg/Awperative.git
+    id: AwperativeHook
+    path: Awperative/Kernel/Overhead/AwperativeClass.cs
+    startLine: 6
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Awperative hooks are the source of entry for scripts using Awperative. Create a hook and send into Start() to be recognized by the engine.
+  example: []
+  syntax:
+    content: public interface AwperativeHook
+    content.vb: Public Interface AwperativeHook
+- uid: Awperative.AwperativeHook.Load
+  commentId: M:Awperative.AwperativeHook.Load
+  id: Load
+  parent: Awperative.AwperativeHook
+  langs:
+  - csharp
+  - vb
+  name: Load()
+  nameWithType: AwperativeHook.Load()
+  fullName: Awperative.AwperativeHook.Load()
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/AwperativeClass.cs
+      branch: main
+      repo: https://github.com/BlazeyDotOrg/Awperative.git
+    id: Load
+    path: Awperative/Kernel/Overhead/AwperativeClass.cs
+    startLine: 11
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Called when the program starts; It is not recommended you load assets here.
+  example: []
+  syntax:
+    content: void Load()
+    content.vb: Sub Load()
+  overload: Awperative.AwperativeHook.Load*
+- uid: Awperative.AwperativeHook.Unload
+  commentId: M:Awperative.AwperativeHook.Unload
+  id: Unload
+  parent: Awperative.AwperativeHook
+  langs:
+  - csharp
+  - vb
+  name: Unload()
+  nameWithType: AwperativeHook.Unload()
+  fullName: Awperative.AwperativeHook.Unload()
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/AwperativeClass.cs
+      branch: main
+      repo: https://github.com/BlazeyDotOrg/Awperative.git
+    id: Unload
+    path: Awperative/Kernel/Overhead/AwperativeClass.cs
+    startLine: 20
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Called when the program closes.
+  example: []
+  syntax:
+    content: void Unload()
+    content.vb: Sub Unload()
+  overload: Awperative.AwperativeHook.Unload*
+references:
+- uid: Awperative
+  commentId: N:Awperative
+  href: Awperative.html
+  name: Awperative
+  nameWithType: Awperative
+  fullName: Awperative
+- uid: Awperative.AwperativeHook.Load*
+  commentId: Overload:Awperative.AwperativeHook.Load
+  href: Awperative.AwperativeHook.html#Awperative_AwperativeHook_Load
+  name: Load
+  nameWithType: AwperativeHook.Load
+  fullName: Awperative.AwperativeHook.Load
+- uid: Awperative.AwperativeHook.Unload*
+  commentId: Overload:Awperative.AwperativeHook.Unload
+  href: Awperative.AwperativeHook.html#Awperative_AwperativeHook_Unload
+  name: Unload
+  nameWithType: AwperativeHook.Unload
+  fullName: Awperative.AwperativeHook.Unload

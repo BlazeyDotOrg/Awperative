@@ -1,0 +1,425 @@
+### YamlMime:ManagedReference
+items:
+- uid: Awperative.ComponentCreateEvent
+  commentId: T:Awperative.ComponentCreateEvent
+  id: ComponentCreateEvent
+  parent: Awperative
+  children:
+  - Awperative.ComponentCreateEvent.body
+  - Awperative.ComponentCreateEvent.component
+  - Awperative.ComponentCreateEvent.scene
+  langs:
+  - csharp
+  - vb
+  name: ComponentCreateEvent
+  nameWithType: ComponentCreateEvent
+  fullName: Awperative.ComponentCreateEvent
+  type: Class
+  source:
+    remote:
+      path: Awperative/Kernel/Events/Components/ComponentCreateEvent.cs
+      branch: main
+      repo: https://github.com/BlazeyDotOrg/Awperative.git
+    id: ComponentCreateEvent
+    path: Awperative/Kernel/Events/Components/ComponentCreateEvent.cs
+    startLine: 2
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: 'public sealed record ComponentCreateEvent : IEquatable<ComponentCreateEvent>'
+    content.vb: Public NotInheritable Class ComponentCreateEvent Implements IEquatable(Of ComponentCreateEvent)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{Awperative.ComponentCreateEvent}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Awperative.ComponentCreateEvent.component
+  commentId: F:Awperative.ComponentCreateEvent.component
+  id: component
+  parent: Awperative.ComponentCreateEvent
+  langs:
+  - csharp
+  - vb
+  name: component
+  nameWithType: ComponentCreateEvent.component
+  fullName: Awperative.ComponentCreateEvent.component
+  type: Field
+  source:
+    remote:
+      path: Awperative/Kernel/Events/Components/ComponentCreateEvent.cs
+      branch: main
+      repo: https://github.com/BlazeyDotOrg/Awperative.git
+    id: component
+    path: Awperative/Kernel/Events/Components/ComponentCreateEvent.cs
+    startLine: 4
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public readonly Component component
+    return:
+      type: Awperative.Component
+    content.vb: Public ReadOnly component As Component
+- uid: Awperative.ComponentCreateEvent.body
+  commentId: F:Awperative.ComponentCreateEvent.body
+  id: body
+  parent: Awperative.ComponentCreateEvent
+  langs:
+  - csharp
+  - vb
+  name: body
+  nameWithType: ComponentCreateEvent.body
+  fullName: Awperative.ComponentCreateEvent.body
+  type: Field
+  source:
+    remote:
+      path: Awperative/Kernel/Events/Components/ComponentCreateEvent.cs
+      branch: main
+      repo: https://github.com/BlazeyDotOrg/Awperative.git
+    id: body
+    path: Awperative/Kernel/Events/Components/ComponentCreateEvent.cs
+    startLine: 5
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public readonly Body body
+    return:
+      type: Awperative.Body
+    content.vb: Public ReadOnly body As Body
+- uid: Awperative.ComponentCreateEvent.scene
+  commentId: F:Awperative.ComponentCreateEvent.scene
+  id: scene
+  parent: Awperative.ComponentCreateEvent
+  langs:
+  - csharp
+  - vb
+  name: scene
+  nameWithType: ComponentCreateEvent.scene
+  fullName: Awperative.ComponentCreateEvent.scene
+  type: Field
+  source:
+    remote:
+      path: Awperative/Kernel/Events/Components/ComponentCreateEvent.cs
+      branch: main
+      repo: https://github.com/BlazeyDotOrg/Awperative.git
+    id: scene
+    path: Awperative/Kernel/Events/Components/ComponentCreateEvent.cs
+    startLine: 6
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public readonly Scene scene
+    return:
+      type: Awperative.Scene
+    content.vb: Public ReadOnly scene As Scene
+references:
+- uid: Awperative
+  commentId: N:Awperative
+  href: Awperative.html
+  name: Awperative
+  nameWithType: Awperative
+  fullName: Awperative
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{Awperative.ComponentCreateEvent}
+  commentId: T:System.IEquatable{Awperative.ComponentCreateEvent}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<ComponentCreateEvent>
+  nameWithType: IEquatable<ComponentCreateEvent>
+  fullName: System.IEquatable<Awperative.ComponentCreateEvent>
+  nameWithType.vb: IEquatable(Of ComponentCreateEvent)
+  fullName.vb: System.IEquatable(Of Awperative.ComponentCreateEvent)
+  name.vb: IEquatable(Of ComponentCreateEvent)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: Awperative.ComponentCreateEvent
+    name: ComponentCreateEvent
+    href: Awperative.ComponentCreateEvent.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Awperative.ComponentCreateEvent
+    name: ComponentCreateEvent
+    href: Awperative.ComponentCreateEvent.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Awperative.Component
+  commentId: T:Awperative.Component
+  parent: Awperative
+  href: Awperative.Component.html
+  name: Component
+  nameWithType: Component
+  fullName: Awperative.Component
+- uid: Awperative.Body
+  commentId: T:Awperative.Body
+  parent: Awperative
+  href: Awperative.Body.html
+  name: Body
+  nameWithType: Body
+  fullName: Awperative.Body
+- uid: Awperative.Scene
+  commentId: T:Awperative.Scene
+  parent: Awperative
+  href: Awperative.Scene.html
+  name: Scene
+  nameWithType: Scene
+  fullName: Awperative.Scene
