@@ -36,6 +36,7 @@
       "default",
       "modern"
     ],
+    "relativePath" : true,
     "globalMetadata": {
       "_appName": "Awperative",
       "_appTitle": "Awperative",
