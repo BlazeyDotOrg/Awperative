@@ -1,0 +1,382 @@
+{
+  "source_base_path": "/Users/averynorris/RiderProjects/Awperative",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "Docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "Docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "Docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.Awperative.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.Awperative.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.Awperative",
+      "Summary": "<p sourcefile=\"api/Awperative.Awperative.yml\" sourcestartlinenumber=\"1\">Initiating class of Awperative. Call Start() to start the kernel.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.AwperativeHook.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.AwperativeHook.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.AwperativeHook",
+      "Summary": "<p sourcefile=\"api/Awperative.AwperativeHook.yml\" sourcestartlinenumber=\"1\">Awperative hooks are the source of entry for scripts using Awperative. Create a hook and send into Start() to be recognized by the engine.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.Base.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.Base.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.Base",
+      "Summary": "<p sourcefile=\"api/Awperative.Base.yml\" sourcestartlinenumber=\"1\">Base class of Awperative. Carries events from MonoGame into scenes and hooks.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.Body.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.Body.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.Body",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.BodyComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.BodyComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.BodyComponent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.BodyCreateEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.BodyCreateEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.BodyCreateEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.BodyDestroyEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.BodyDestroyEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.BodyDestroyEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.Component.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.Component.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.Component",
+      "Summary": "<p sourcefile=\"api/Awperative.Component.yml\" sourcestartlinenumber=\"1\">The lowest level scripting class in Awperative. Components are scene level and provide access to all scene level methods, can be applied to any docker and inherited\nSadly component does not have excessive access to specific types.\nAnything that inherits Component is built to work in any DockerEntity, which leads to generic\nAssumptions. If you want to make a body specific or scene specific component both classes are available.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.ComponentCreateEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.ComponentCreateEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.ComponentCreateEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.ComponentDestroyEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.ComponentDestroyEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.ComponentDestroyEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.Debug.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.Debug.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.Debug",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.DockerEntity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.DockerEntity.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.DockerEntity",
+      "Summary": "<p sourcefile=\"api/Awperative.DockerEntity.yml\" sourcestartlinenumber=\"1\">Base class for all Awperative entities, manages components as a requirement because that is the job of all entities.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.Kernel.Communication.Config.Config.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.Kernel.Communication.Config.Config.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.Kernel.Communication.Config.Config",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.Kernel.Communication.Config.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.Kernel.Communication.Config.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.Kernel.Communication.Config",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.Scene.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.Scene.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.Scene",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.SceneComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.SceneComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.SceneComponent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.SceneCreateEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.SceneCreateEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.SceneCreateEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.SceneDestroyEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.SceneDestroyEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.SceneDestroyEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.Transform.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.Transform.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.Transform",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.TransformModifyEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.TransformModifyEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative.TransformModifyEvent",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Awperative.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Awperative.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Awperative",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
