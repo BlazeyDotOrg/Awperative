@@ -4,7 +4,7 @@
     {
       "src": [
         {
-          "src": "../Awperative",
+          "src": "../Awperative/",
           "files": [
             "**/*.csproj"
           ]
@@ -31,18 +31,16 @@
         ]
       }
     ],
-    "output": "docs/_site",
+    "output": "_site",
     "template": [
       "default",
       "modern"
     ],
-    "relativePath" : true,
     "globalMetadata": {
       "_appName": "Awperative",
       "_appTitle": "Awperative",
       "_enableSearch": true,
       "pdf": true
     }
-  },
-  "BasePath": "/Awperative"
+  }
 }
