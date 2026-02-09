@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -72,6 +74,7 @@ public static class Awperative
     /// <param name="__hooks"> List of all event hooks you wish to use. </param>
     /// <remarks> You cannot add new hooks later; so make sure to register all of them in the Start() method.</remarks>
     public static void Start(List<AwperativeHook> __hooks) {
+        
         _eventHooks = new HashSet<AwperativeHook>(__hooks);
         
         Base = new Base();
