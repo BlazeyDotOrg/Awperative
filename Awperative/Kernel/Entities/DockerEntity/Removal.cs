@@ -1,6 +1,6 @@
 namespace Awperative;
 
-public sealed partial class Body
+public abstract partial class DockerEntity
 {
     public void RemoveComponent(Component __component) {
         

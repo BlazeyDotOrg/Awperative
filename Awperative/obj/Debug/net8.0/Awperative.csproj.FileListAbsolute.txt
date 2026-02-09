@@ -23,3 +23,16 @@
 /home/avery/Programming/Awperative/Awperative/obj/Debug/net8.0/refint/Awperative.dll
 /home/avery/Programming/Awperative/Awperative/obj/Debug/net8.0/Awperative.pdb
 /home/avery/Programming/Awperative/Awperative/obj/Debug/net8.0/ref/Awperative.dll
+/Users/averynorris/RiderProjects/Awperative/Awperative/bin/Debug/net8.0/Awperative.deps.json
+/Users/averynorris/RiderProjects/Awperative/Awperative/bin/Debug/net8.0/Awperative.dll
+/Users/averynorris/RiderProjects/Awperative/Awperative/bin/Debug/net8.0/Awperative.pdb
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/Awperative.csproj.AssemblyReference.cache
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/Awperative.GeneratedMSBuildEditorConfig.editorconfig
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/Awperative.AssemblyInfoInputs.cache
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/Awperative.AssemblyInfo.cs
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/Awperative.csproj.CoreCompileInputs.cache
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/Awperative.sourcelink.json
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/Awperative.dll
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/refint/Awperative.dll
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/Awperative.pdb
+/Users/averynorris/RiderProjects/Awperative/Awperative/obj/Debug/net8.0/ref/Awperative.dll

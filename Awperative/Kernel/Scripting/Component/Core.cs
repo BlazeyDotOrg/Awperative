@@ -7,23 +7,27 @@ namespace Awperative;
 
 /// <summary>
 /// The lowest level scripting class in Awperative. Components are scene level and provide access to all scene level methods, can be applied to any docker and inherited
+/// Sadly component does not have excessive access to specific types.
+/// Anything that inherits Component is built to work in any DockerEntity, which leads to generic
+/// Assumptions. If you want to make a body specific or scene specific component both classes are available.
 /// </summary>
-public abstract class Component
+public abstract partial class Component
 {
-    internal DockerEntity Parent;
+    public Scene Scene { get; set; }
+    internal DockerEntity Docker;
     
     
     
     
     
-    internal void Initiate(DockerEntity __parent) {
-        Parent = __parent;
+    internal virtual void Initiate(DockerEntity __docker) {
+        Docker = __docker;
         Create();
     }
 
     
     
-    internal void End() {
+    internal virtual void End() {
         Destroy();
     }
     

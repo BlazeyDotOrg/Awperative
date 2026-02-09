@@ -7,8 +7,6 @@ namespace Awperative;
 
 public sealed partial class Scene : DockerEntity
 {
-    public List<Body> bodies { get; private set; } = [];
-    
     public Body AddBody(Transform __transform) {
         Body body = new Body(this, __transform);
         bodies.Add(body);
