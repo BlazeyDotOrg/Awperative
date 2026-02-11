@@ -1,6 +1,6 @@
 # What Is Awperative?
 
-Awperative is a passion fueled **Game Development Platform**; created by me, **Avery Norris**. With the goal of low level, customizable and event driven game design.
+Awperative is a passion fueled **Game Development Platform** in **C#**; created by me, **Avery Norris**. With the goal of low level, customizable and event driven game design.
 It is completely **free** and **open source** and modifying it is actually encouraged!
 
 Awperative could also be considered a Game Library but the definition is rather loose. 
@@ -15,20 +15,19 @@ much **"Development Bias"** from Awperative as possible.
 
 [**Unity**](https://unity.com/) has a very good example of this bias. If you have worked in Unity **2D** you are
 almost certainly familiar with the fact that all *Vectors* for 2D Game Objects, are actually **3D** despite
-the 2D environment. This is becuase Unity was built as a 3D Game Engine. When they went
-to make 2D they chose to bandaid this solution by pretending the Z axis did not exist.
+the 2D environment. This is becuase Unity was originally built as a 3D Game Engine. After initial success they decided
+to make a 2D version. And when they did, rather than completely modify Unity internals, They sanely chose to bandaid this original 3D environment by pretending the Z axis did not exist.
 
 In other words, what I call "Developmental Bias" is when Development Tools implement ideas with specific
 assumptions or panderings to a certain type of Game; It is not detrimental to development. However it can certainly muddy the waters.
 
 Modern Game engines have hundreds if not thousands of small bias' plaguing their **Renderers**, **Physics**, **Lighting**, etc. While
 Awperative does not claim to be a 100% bias
-free system. I believe it is quite close, and certainly more effective than any Game Engine by many
-many times.
+free system. I believe it is quite close, and certainly more effective than any Game Engine by many times.
 
 ## Design
 
-So then how does one purge bias from a **System**? I would say there's two schools
+So then how does one purge bias from a **System**? There's two schools
 of thought.
 
 1. Make a system that works in any circumstance imaginable.
@@ -44,14 +43,14 @@ Following our previous rule of bias elimination, we should make it work in as ma
 example we will pretend the only factor that can change how transform works in the world. For instance 2d or 3d, Quaternions or Euler Angles, etc.
 
 Making a player controller that could work from 0-∞ dimensions is nothing short of computer magic. 
-And even if we did find a way to make that, we are still restricted to one type. Because our goal is to be able to use structs provided by developers.
+And even if we did find a way to make that, we are still restricted to one type. Because our goal is to be able to use structs provided by developers,
 Lest we modify the source code, our only option is to implement an interface or abstract class so that we can actually use the transformation struct.
 
-Even if we get past all of these problems, making a system that works for every design philosiphy is still impossible. You can only build systems with so much foresight. We
+Even if we get past all of these problems, making a system that works for every design philosophy is still impossible. You can only build systems with so much foresight. We
 can't make a system that uses Quaternions AND Euler Angles without manually coding them both in. Our availablility and customization relies solely on what our foresight predicted.
 
-We have no way of knowing if someone will ever make another Quaternion type of Angle. If they do and want to
-use those. Our library cannot magically support it unfortunately.
+We have no way of knowing if someone will ever make another Quaternion type of Angle. And if someone happens to, and wants to
+use it in the game, our library cannot magically support it unfortunately.
 
 ### Idea 2
 
@@ -81,13 +80,13 @@ core design principles
 
 ### Generalization
 
-Starting with Generalization; I've worked very hard to reduce redundancy and speficifcation in
+Starting with Generalization; I've worked very hard to reduce redundancy and specification in
 some scenarios. A good example of Generalizaiton is **Doors** and **Windows**. To us humans they are
 different things, but in General, they are both just passages that open.
 
 Awperative takes a doors and windows approach with multiple core systems; Most times we can generalize this scenario by
 having both doors and windows inherit an interface called something along the lines of "ThingsThatOpen". The same can
-be done with abstract classes and sometimes even better, we can compress both systems into one class, for instance bowls and cups can be
+be done with abstract classes or sometimes even better, we can compress both systems into one class, for instance: bowls and cups can be
 combined into one joined **receptical** class.
 
 ### Reduction And Modulation
