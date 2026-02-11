@@ -1,0 +1,68 @@
+### YamlMime:TableOfContent
+items:
+- uid: Awperative
+  name: Awperative
+  type: Namespace
+  items:
+  - uid: Awperative.Awperative
+    name: Awperative
+    type: Class
+  - uid: Awperative.AwperativeHook
+    name: AwperativeHook
+    type: Interface
+  - uid: Awperative.Base
+    name: Base
+    type: Class
+  - uid: Awperative.Body
+    name: Body
+    type: Class
+  - uid: Awperative.BodyComponent
+    name: BodyComponent
+    type: Class
+  - uid: Awperative.BodyCreateEvent
+    name: BodyCreateEvent
+    type: Class
+  - uid: Awperative.BodyDestroyEvent
+    name: BodyDestroyEvent
+    type: Class
+  - uid: Awperative.Component
+    name: Component
+    type: Class
+  - uid: Awperative.ComponentCreateEvent
+    name: ComponentCreateEvent
+    type: Class
+  - uid: Awperative.ComponentDestroyEvent
+    name: ComponentDestroyEvent
+    type: Class
+  - uid: Awperative.Debug
+    name: Debug
+    type: Class
+  - uid: Awperative.DockerEntity
+    name: DockerEntity
+    type: Class
+  - uid: Awperative.Scene
+    name: Scene
+    type: Class
+  - uid: Awperative.SceneComponent
+    name: SceneComponent
+    type: Class
+  - uid: Awperative.SceneCreateEvent
+    name: SceneCreateEvent
+    type: Class
+  - uid: Awperative.SceneDestroyEvent
+    name: SceneDestroyEvent
+    type: Class
+  - uid: Awperative.Transform
+    name: Transform
+    type: Class
+  - uid: Awperative.TransformModifyEvent
+    name: TransformModifyEvent
+    type: Class
+- uid: Awperative.Kernel.Communication.Config
+  name: Awperative.Kernel.Communication.Config
+  type: Namespace
+  items:
+  - uid: Awperative.Kernel.Communication.Config.Config
+    name: Config
+    type: Class
+memberLayout: SamePage

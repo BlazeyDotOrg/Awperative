@@ -1,0 +1,820 @@
+### YamlMime:ManagedReference
+items:
+- uid: Awperative.Awperative
+  commentId: T:Awperative.Awperative
+  id: Awperative
+  parent: Awperative
+  children:
+  - Awperative.Awperative.Base
+  - Awperative.Awperative.ContentManager
+  - Awperative.Awperative.EventHooks
+  - Awperative.Awperative.GraphicsDeviceManager
+  - Awperative.Awperative.LoadedScenes
+  - Awperative.Awperative.SpriteBatch
+  - Awperative.Awperative.Start(System.Collections.Generic.List{Awperative.AwperativeHook})
+  langs:
+  - csharp
+  - vb
+  name: Awperative
+  nameWithType: Awperative
+  fullName: Awperative.Awperative
+  type: Class
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/Core.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Awperative
+    path: Awperative/Kernel/Overhead/Core.cs
+    startLine: 15
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Initiating class of Awperative. Call Start() to start the kernel.
+  example: []
+  syntax:
+    content: public static class Awperative
+    content.vb: Public Module Awperative
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Awperative.Awperative.Base
+  commentId: P:Awperative.Awperative.Base
+  id: Base
+  parent: Awperative.Awperative
+  langs:
+  - csharp
+  - vb
+  name: Base
+  nameWithType: Awperative.Base
+  fullName: Awperative.Awperative.Base
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/Core.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Base
+    path: Awperative/Kernel/Overhead/Core.cs
+    startLine: 23
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Bottom class of Awperative. Contains the MonoGame instance.
+  example: []
+  syntax:
+    content: public static Base Base { get; }
+    parameters: []
+    return:
+      type: Awperative.Base
+    content.vb: Public Shared Property Base As Base
+  overload: Awperative.Awperative.Base*
+- uid: Awperative.Awperative.GraphicsDeviceManager
+  commentId: P:Awperative.Awperative.GraphicsDeviceManager
+  id: GraphicsDeviceManager
+  parent: Awperative.Awperative
+  langs:
+  - csharp
+  - vb
+  name: GraphicsDeviceManager
+  nameWithType: Awperative.GraphicsDeviceManager
+  fullName: Awperative.Awperative.GraphicsDeviceManager
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/Core.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: GraphicsDeviceManager
+    path: Awperative/Kernel/Overhead/Core.cs
+    startLine: 32
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Handles graphics settings through MonoGame.
+  example: []
+  syntax:
+    content: public static GraphicsDeviceManager GraphicsDeviceManager { get; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.GraphicsDeviceManager
+    content.vb: Public Shared Property GraphicsDeviceManager As GraphicsDeviceManager
+  overload: Awperative.Awperative.GraphicsDeviceManager*
+- uid: Awperative.Awperative.SpriteBatch
+  commentId: P:Awperative.Awperative.SpriteBatch
+  id: SpriteBatch
+  parent: Awperative.Awperative
+  langs:
+  - csharp
+  - vb
+  name: SpriteBatch
+  nameWithType: Awperative.SpriteBatch
+  fullName: Awperative.Awperative.SpriteBatch
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/Core.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: SpriteBatch
+    path: Awperative/Kernel/Overhead/Core.cs
+    startLine: 39
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Handles drawing sprites to the screen through MonoGame.
+  example: []
+  syntax:
+    content: public static SpriteBatch SpriteBatch { get; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Graphics.SpriteBatch
+    content.vb: Public Shared Property SpriteBatch As SpriteBatch
+  overload: Awperative.Awperative.SpriteBatch*
+- uid: Awperative.Awperative.ContentManager
+  commentId: P:Awperative.Awperative.ContentManager
+  id: ContentManager
+  parent: Awperative.Awperative
+  langs:
+  - csharp
+  - vb
+  name: ContentManager
+  nameWithType: Awperative.ContentManager
+  fullName: Awperative.Awperative.ContentManager
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/Core.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: ContentManager
+    path: Awperative/Kernel/Overhead/Core.cs
+    startLine: 46
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Handles loading content through MonoGame.
+  example: []
+  syntax:
+    content: public static ContentManager ContentManager { get; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Content.ContentManager
+    content.vb: Public Shared Property ContentManager As ContentManager
+  overload: Awperative.Awperative.ContentManager*
+- uid: Awperative.Awperative.LoadedScenes
+  commentId: P:Awperative.Awperative.LoadedScenes
+  id: LoadedScenes
+  parent: Awperative.Awperative
+  langs:
+  - csharp
+  - vb
+  name: LoadedScenes
+  nameWithType: Awperative.LoadedScenes
+  fullName: Awperative.Awperative.LoadedScenes
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/Core.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LoadedScenes
+    path: Awperative/Kernel/Overhead/Core.cs
+    startLine: 55
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: List of all scenes currently loaded in the kernel.
+  example: []
+  syntax:
+    content: public static List<Scene> LoadedScenes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Awperative.Scene}
+    content.vb: Public Shared ReadOnly Property LoadedScenes As List(Of Scene)
+  overload: Awperative.Awperative.LoadedScenes*
+- uid: Awperative.Awperative.EventHooks
+  commentId: P:Awperative.Awperative.EventHooks
+  id: EventHooks
+  parent: Awperative.Awperative
+  langs:
+  - csharp
+  - vb
+  name: EventHooks
+  nameWithType: Awperative.EventHooks
+  fullName: Awperative.Awperative.EventHooks
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/Core.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: EventHooks
+    path: Awperative/Kernel/Overhead/Core.cs
+    startLine: 63
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: List of all event hooks currently loaded in the kernel.
+  example: []
+  syntax:
+    content: public static List<AwperativeHook> EventHooks { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{Awperative.AwperativeHook}
+    content.vb: Public Shared ReadOnly Property EventHooks As List(Of AwperativeHook)
+  overload: Awperative.Awperative.EventHooks*
+- uid: Awperative.Awperative.Start(System.Collections.Generic.List{Awperative.AwperativeHook})
+  commentId: M:Awperative.Awperative.Start(System.Collections.Generic.List{Awperative.AwperativeHook})
+  id: Start(System.Collections.Generic.List{Awperative.AwperativeHook})
+  parent: Awperative.Awperative
+  langs:
+  - csharp
+  - vb
+  name: Start(List<AwperativeHook>)
+  nameWithType: Awperative.Start(List<AwperativeHook>)
+  fullName: Awperative.Awperative.Start(System.Collections.Generic.List<Awperative.AwperativeHook>)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Overhead/Core.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Start
+    path: Awperative/Kernel/Overhead/Core.cs
+    startLine: 75
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Start() begins the game; and begins communication with all event hooks.
+  remarks: You cannot add new hooks later; so make sure to register all of them in the Start() method.
+  example: []
+  syntax:
+    content: public static void Start(List<AwperativeHook> __hooks)
+    parameters:
+    - id: __hooks
+      type: System.Collections.Generic.List{Awperative.AwperativeHook}
+      description: List of all event hooks you wish to use.
+    content.vb: Public Shared Sub Start(__hooks As List(Of AwperativeHook))
+  overload: Awperative.Awperative.Start*
+  nameWithType.vb: Awperative.Start(List(Of AwperativeHook))
+  fullName.vb: Awperative.Awperative.Start(System.Collections.Generic.List(Of Awperative.AwperativeHook))
+  name.vb: Start(List(Of AwperativeHook))
+references:
+- uid: Awperative
+  commentId: N:Awperative
+  href: Awperative.html
+  name: Awperative
+  nameWithType: Awperative
+  fullName: Awperative
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Awperative.Awperative.Base*
+  commentId: Overload:Awperative.Awperative.Base
+  href: Awperative.Awperative.html#Awperative_Awperative_Base
+  name: Base
+  nameWithType: Awperative.Base
+  fullName: Awperative.Awperative.Base
+- uid: Awperative.Base
+  commentId: T:Awperative.Base
+  parent: Awperative
+  href: Awperative.Base.html
+  name: Base
+  nameWithType: Base
+  fullName: Awperative.Base
+- uid: Awperative.Awperative.GraphicsDeviceManager*
+  commentId: Overload:Awperative.Awperative.GraphicsDeviceManager
+  href: Awperative.Awperative.html#Awperative_Awperative_GraphicsDeviceManager
+  name: GraphicsDeviceManager
+  nameWithType: Awperative.GraphicsDeviceManager
+  fullName: Awperative.Awperative.GraphicsDeviceManager
+- uid: Microsoft.Xna.Framework.GraphicsDeviceManager
+  commentId: T:Microsoft.Xna.Framework.GraphicsDeviceManager
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: GraphicsDeviceManager
+  nameWithType: GraphicsDeviceManager
+  fullName: Microsoft.Xna.Framework.GraphicsDeviceManager
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: Awperative.Awperative.SpriteBatch*
+  commentId: Overload:Awperative.Awperative.SpriteBatch
+  href: Awperative.Awperative.html#Awperative_Awperative_SpriteBatch
+  name: SpriteBatch
+  nameWithType: Awperative.SpriteBatch
+  fullName: Awperative.Awperative.SpriteBatch
+- uid: Microsoft.Xna.Framework.Graphics.SpriteBatch
+  commentId: T:Microsoft.Xna.Framework.Graphics.SpriteBatch
+  parent: Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: SpriteBatch
+  nameWithType: SpriteBatch
+  fullName: Microsoft.Xna.Framework.Graphics.SpriteBatch
+- uid: Microsoft.Xna.Framework.Graphics
+  commentId: N:Microsoft.Xna.Framework.Graphics
+  isExternal: true
+  name: Microsoft.Xna.Framework.Graphics
+  nameWithType: Microsoft.Xna.Framework.Graphics
+  fullName: Microsoft.Xna.Framework.Graphics
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Graphics
+    name: Graphics
+    isExternal: true
+- uid: Awperative.Awperative.ContentManager*
+  commentId: Overload:Awperative.Awperative.ContentManager
+  href: Awperative.Awperative.html#Awperative_Awperative_ContentManager
+  name: ContentManager
+  nameWithType: Awperative.ContentManager
+  fullName: Awperative.Awperative.ContentManager
+- uid: Microsoft.Xna.Framework.Content.ContentManager
+  commentId: T:Microsoft.Xna.Framework.Content.ContentManager
+  parent: Microsoft.Xna.Framework.Content
+  isExternal: true
+  name: ContentManager
+  nameWithType: ContentManager
+  fullName: Microsoft.Xna.Framework.Content.ContentManager
+- uid: Microsoft.Xna.Framework.Content
+  commentId: N:Microsoft.Xna.Framework.Content
+  isExternal: true
+  name: Microsoft.Xna.Framework.Content
+  nameWithType: Microsoft.Xna.Framework.Content
+  fullName: Microsoft.Xna.Framework.Content
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Content
+    name: Content
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework.Content
+    name: Content
+    isExternal: true
+- uid: Awperative.Awperative.LoadedScenes*
+  commentId: Overload:Awperative.Awperative.LoadedScenes
+  href: Awperative.Awperative.html#Awperative_Awperative_LoadedScenes
+  name: LoadedScenes
+  nameWithType: Awperative.LoadedScenes
+  fullName: Awperative.Awperative.LoadedScenes
+- uid: System.Collections.Generic.List{Awperative.Scene}
+  commentId: T:System.Collections.Generic.List{Awperative.Scene}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<Scene>
+  nameWithType: List<Scene>
+  fullName: System.Collections.Generic.List<Awperative.Scene>
+  nameWithType.vb: List(Of Scene)
+  fullName.vb: System.Collections.Generic.List(Of Awperative.Scene)
+  name.vb: List(Of Scene)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Awperative.Scene
+    name: Scene
+    href: Awperative.Scene.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Awperative.Scene
+    name: Scene
+    href: Awperative.Scene.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Awperative.Awperative.EventHooks*
+  commentId: Overload:Awperative.Awperative.EventHooks
+  href: Awperative.Awperative.html#Awperative_Awperative_EventHooks
+  name: EventHooks
+  nameWithType: Awperative.EventHooks
+  fullName: Awperative.Awperative.EventHooks
+- uid: System.Collections.Generic.List{Awperative.AwperativeHook}
+  commentId: T:System.Collections.Generic.List{Awperative.AwperativeHook}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<AwperativeHook>
+  nameWithType: List<AwperativeHook>
+  fullName: System.Collections.Generic.List<Awperative.AwperativeHook>
+  nameWithType.vb: List(Of AwperativeHook)
+  fullName.vb: System.Collections.Generic.List(Of Awperative.AwperativeHook)
+  name.vb: List(Of AwperativeHook)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Awperative.AwperativeHook
+    name: AwperativeHook
+    href: Awperative.AwperativeHook.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Awperative.AwperativeHook
+    name: AwperativeHook
+    href: Awperative.AwperativeHook.html
+  - name: )
+- uid: Awperative.Awperative.Start*
+  commentId: Overload:Awperative.Awperative.Start
+  href: Awperative.Awperative.html#Awperative_Awperative_Start_System_Collections_Generic_List_Awperative_AwperativeHook__
+  name: Start
+  nameWithType: Awperative.Start
+  fullName: Awperative.Awperative.Start

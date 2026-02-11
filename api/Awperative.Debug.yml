@@ -1,0 +1,1115 @@
+### YamlMime:ManagedReference
+items:
+- uid: Awperative.Debug
+  commentId: T:Awperative.Debug
+  id: Debug
+  parent: Awperative
+  children:
+  - Awperative.Debug.AssertAction(System.Boolean,System.String)
+  - Awperative.Debug.AssertError(System.Boolean,System.String)
+  - Awperative.Debug.AssertGeneric(System.Boolean,System.String,System.String,System.String[],System.String[])
+  - Awperative.Debug.AssertState(System.Boolean,System.String)
+  - Awperative.Debug.AssertValue(System.Boolean,System.String)
+  - Awperative.Debug.AssertWarning(System.Boolean,System.String)
+  - Awperative.Debug.LogAction(System.String)
+  - Awperative.Debug.LogAction(System.String,System.String[],System.String[])
+  - Awperative.Debug.LogError(System.String)
+  - Awperative.Debug.LogError(System.String,System.String[],System.String[])
+  - Awperative.Debug.LogFilePath
+  - Awperative.Debug.LogGeneric(System.String,System.String,System.String[],System.String[])
+  - Awperative.Debug.LogState(System.String)
+  - Awperative.Debug.LogState(System.String,System.String[],System.String[])
+  - Awperative.Debug.LogValue(System.String)
+  - Awperative.Debug.LogValue(System.String,System.String[],System.String[])
+  - Awperative.Debug.LogWarning(System.String)
+  - Awperative.Debug.LogWarning(System.String,System.String[],System.String[])
+  langs:
+  - csharp
+  - vb
+  name: Debug
+  nameWithType: Debug
+  fullName: Awperative.Debug
+  type: Class
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Debug
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 7
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public static class Debug
+    content.vb: Public Module Debug
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Awperative.Debug.LogFilePath
+  commentId: P:Awperative.Debug.LogFilePath
+  id: LogFilePath
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogFilePath
+  nameWithType: Debug.LogFilePath
+  fullName: Awperative.Debug.LogFilePath
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Core.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogFilePath
+    path: Awperative/Kernel/Communication/Debug/Core.cs
+    startLine: 20
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: True path of the log file Awperative dumps to.
+  example: []
+  syntax:
+    content: public static string LogFilePath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared Property LogFilePath As String
+  overload: Awperative.Debug.LogFilePath*
+- uid: Awperative.Debug.LogAction(System.String)
+  commentId: M:Awperative.Debug.LogAction(System.String)
+  id: LogAction(System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogAction(string)
+  nameWithType: Debug.LogAction(string)
+  fullName: Awperative.Debug.LogAction(string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogAction
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 13
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file.
+  example: []
+  syntax:
+    content: public static void LogAction(string __message)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub LogAction(__message As String)
+  overload: Awperative.Debug.LogAction*
+  nameWithType.vb: Debug.LogAction(String)
+  fullName.vb: Awperative.Debug.LogAction(String)
+  name.vb: LogAction(String)
+- uid: Awperative.Debug.LogAction(System.String,System.String[],System.String[])
+  commentId: M:Awperative.Debug.LogAction(System.String,System.String[],System.String[])
+  id: LogAction(System.String,System.String[],System.String[])
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogAction(string, string[], string[])
+  nameWithType: Debug.LogAction(string, string[], string[])
+  fullName: Awperative.Debug.LogAction(string, string[], string[])
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogAction
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 21
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file. With any given call sign.
+  example: []
+  syntax:
+    content: public static void LogAction(string __message, string[] __parameters, string[] __values)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    - id: __parameters
+      type: System.String[]
+      description: Names of values to debug
+    - id: __values
+      type: System.String[]
+      description: Values to debug
+    content.vb: Public Shared Sub LogAction(__message As String, __parameters As String(), __values As String())
+  overload: Awperative.Debug.LogAction*
+  nameWithType.vb: Debug.LogAction(String, String(), String())
+  fullName.vb: Awperative.Debug.LogAction(String, String(), String())
+  name.vb: LogAction(String, String(), String())
+- uid: Awperative.Debug.AssertAction(System.Boolean,System.String)
+  commentId: M:Awperative.Debug.AssertAction(System.Boolean,System.String)
+  id: AssertAction(System.Boolean,System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: AssertAction(bool, string)
+  nameWithType: Debug.AssertAction(bool, string)
+  fullName: Awperative.Debug.AssertAction(bool, string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: AssertAction
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 28
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file if the condition is true.
+  example: []
+  syntax:
+    content: public static void AssertAction(bool __condition, string __message)
+    parameters:
+    - id: __condition
+      type: System.Boolean
+      description: Condition to debug
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub AssertAction(__condition As Boolean, __message As String)
+  overload: Awperative.Debug.AssertAction*
+  nameWithType.vb: Debug.AssertAction(Boolean, String)
+  fullName.vb: Awperative.Debug.AssertAction(Boolean, String)
+  name.vb: AssertAction(Boolean, String)
+- uid: Awperative.Debug.LogState(System.String)
+  commentId: M:Awperative.Debug.LogState(System.String)
+  id: LogState(System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogState(string)
+  nameWithType: Debug.LogState(string)
+  fullName: Awperative.Debug.LogState(string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogState
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 38
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file.
+  example: []
+  syntax:
+    content: public static void LogState(string __message)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub LogState(__message As String)
+  overload: Awperative.Debug.LogState*
+  nameWithType.vb: Debug.LogState(String)
+  fullName.vb: Awperative.Debug.LogState(String)
+  name.vb: LogState(String)
+- uid: Awperative.Debug.LogState(System.String,System.String[],System.String[])
+  commentId: M:Awperative.Debug.LogState(System.String,System.String[],System.String[])
+  id: LogState(System.String,System.String[],System.String[])
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogState(string, string[], string[])
+  nameWithType: Debug.LogState(string, string[], string[])
+  fullName: Awperative.Debug.LogState(string, string[], string[])
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogState
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 46
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file. With any given call sign.
+  example: []
+  syntax:
+    content: public static void LogState(string __message, string[] __parameters, string[] __values)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    - id: __parameters
+      type: System.String[]
+      description: Names of values to debug
+    - id: __values
+      type: System.String[]
+      description: Values to debug
+    content.vb: Public Shared Sub LogState(__message As String, __parameters As String(), __values As String())
+  overload: Awperative.Debug.LogState*
+  nameWithType.vb: Debug.LogState(String, String(), String())
+  fullName.vb: Awperative.Debug.LogState(String, String(), String())
+  name.vb: LogState(String, String(), String())
+- uid: Awperative.Debug.AssertState(System.Boolean,System.String)
+  commentId: M:Awperative.Debug.AssertState(System.Boolean,System.String)
+  id: AssertState(System.Boolean,System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: AssertState(bool, string)
+  nameWithType: Debug.AssertState(bool, string)
+  fullName: Awperative.Debug.AssertState(bool, string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: AssertState
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 53
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file if the condition is true.
+  example: []
+  syntax:
+    content: public static void AssertState(bool __condition, string __message)
+    parameters:
+    - id: __condition
+      type: System.Boolean
+      description: Condition to debug
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub AssertState(__condition As Boolean, __message As String)
+  overload: Awperative.Debug.AssertState*
+  nameWithType.vb: Debug.AssertState(Boolean, String)
+  fullName.vb: Awperative.Debug.AssertState(Boolean, String)
+  name.vb: AssertState(Boolean, String)
+- uid: Awperative.Debug.LogValue(System.String)
+  commentId: M:Awperative.Debug.LogValue(System.String)
+  id: LogValue(System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogValue(string)
+  nameWithType: Debug.LogValue(string)
+  fullName: Awperative.Debug.LogValue(string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogValue
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 63
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file.
+  example: []
+  syntax:
+    content: public static void LogValue(string __message)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub LogValue(__message As String)
+  overload: Awperative.Debug.LogValue*
+  nameWithType.vb: Debug.LogValue(String)
+  fullName.vb: Awperative.Debug.LogValue(String)
+  name.vb: LogValue(String)
+- uid: Awperative.Debug.LogValue(System.String,System.String[],System.String[])
+  commentId: M:Awperative.Debug.LogValue(System.String,System.String[],System.String[])
+  id: LogValue(System.String,System.String[],System.String[])
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogValue(string, string[], string[])
+  nameWithType: Debug.LogValue(string, string[], string[])
+  fullName: Awperative.Debug.LogValue(string, string[], string[])
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogValue
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 71
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file. With any given call sign.
+  example: []
+  syntax:
+    content: public static void LogValue(string __message, string[] __parameters, string[] __values)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    - id: __parameters
+      type: System.String[]
+      description: Names of values to debug
+    - id: __values
+      type: System.String[]
+      description: Values to debug
+    content.vb: Public Shared Sub LogValue(__message As String, __parameters As String(), __values As String())
+  overload: Awperative.Debug.LogValue*
+  nameWithType.vb: Debug.LogValue(String, String(), String())
+  fullName.vb: Awperative.Debug.LogValue(String, String(), String())
+  name.vb: LogValue(String, String(), String())
+- uid: Awperative.Debug.AssertValue(System.Boolean,System.String)
+  commentId: M:Awperative.Debug.AssertValue(System.Boolean,System.String)
+  id: AssertValue(System.Boolean,System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: AssertValue(bool, string)
+  nameWithType: Debug.AssertValue(bool, string)
+  fullName: Awperative.Debug.AssertValue(bool, string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: AssertValue
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 78
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file if the condition is true.
+  example: []
+  syntax:
+    content: public static void AssertValue(bool __condition, string __message)
+    parameters:
+    - id: __condition
+      type: System.Boolean
+      description: Condition to debug
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub AssertValue(__condition As Boolean, __message As String)
+  overload: Awperative.Debug.AssertValue*
+  nameWithType.vb: Debug.AssertValue(Boolean, String)
+  fullName.vb: Awperative.Debug.AssertValue(Boolean, String)
+  name.vb: AssertValue(Boolean, String)
+- uid: Awperative.Debug.LogWarning(System.String)
+  commentId: M:Awperative.Debug.LogWarning(System.String)
+  id: LogWarning(System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogWarning(string)
+  nameWithType: Debug.LogWarning(string)
+  fullName: Awperative.Debug.LogWarning(string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogWarning
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 88
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file.
+  example: []
+  syntax:
+    content: public static void LogWarning(string __message)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub LogWarning(__message As String)
+  overload: Awperative.Debug.LogWarning*
+  nameWithType.vb: Debug.LogWarning(String)
+  fullName.vb: Awperative.Debug.LogWarning(String)
+  name.vb: LogWarning(String)
+- uid: Awperative.Debug.LogWarning(System.String,System.String[],System.String[])
+  commentId: M:Awperative.Debug.LogWarning(System.String,System.String[],System.String[])
+  id: LogWarning(System.String,System.String[],System.String[])
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogWarning(string, string[], string[])
+  nameWithType: Debug.LogWarning(string, string[], string[])
+  fullName: Awperative.Debug.LogWarning(string, string[], string[])
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogWarning
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 96
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file. With any given call sign.
+  example: []
+  syntax:
+    content: public static void LogWarning(string __message, string[] __parameters, string[] __values)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    - id: __parameters
+      type: System.String[]
+      description: Names of values to debug
+    - id: __values
+      type: System.String[]
+      description: Values to debug
+    content.vb: Public Shared Sub LogWarning(__message As String, __parameters As String(), __values As String())
+  overload: Awperative.Debug.LogWarning*
+  nameWithType.vb: Debug.LogWarning(String, String(), String())
+  fullName.vb: Awperative.Debug.LogWarning(String, String(), String())
+  name.vb: LogWarning(String, String(), String())
+- uid: Awperative.Debug.AssertWarning(System.Boolean,System.String)
+  commentId: M:Awperative.Debug.AssertWarning(System.Boolean,System.String)
+  id: AssertWarning(System.Boolean,System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: AssertWarning(bool, string)
+  nameWithType: Debug.AssertWarning(bool, string)
+  fullName: Awperative.Debug.AssertWarning(bool, string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: AssertWarning
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 103
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file if the condition is true.
+  example: []
+  syntax:
+    content: public static void AssertWarning(bool __condition, string __message)
+    parameters:
+    - id: __condition
+      type: System.Boolean
+      description: Condition to debug
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub AssertWarning(__condition As Boolean, __message As String)
+  overload: Awperative.Debug.AssertWarning*
+  nameWithType.vb: Debug.AssertWarning(Boolean, String)
+  fullName.vb: Awperative.Debug.AssertWarning(Boolean, String)
+  name.vb: AssertWarning(Boolean, String)
+- uid: Awperative.Debug.LogError(System.String)
+  commentId: M:Awperative.Debug.LogError(System.String)
+  id: LogError(System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogError(string)
+  nameWithType: Debug.LogError(string)
+  fullName: Awperative.Debug.LogError(string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogError
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 113
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file.
+  example: []
+  syntax:
+    content: public static void LogError(string __message)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub LogError(__message As String)
+  overload: Awperative.Debug.LogError*
+  nameWithType.vb: Debug.LogError(String)
+  fullName.vb: Awperative.Debug.LogError(String)
+  name.vb: LogError(String)
+- uid: Awperative.Debug.LogError(System.String,System.String[],System.String[])
+  commentId: M:Awperative.Debug.LogError(System.String,System.String[],System.String[])
+  id: LogError(System.String,System.String[],System.String[])
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogError(string, string[], string[])
+  nameWithType: Debug.LogError(string, string[], string[])
+  fullName: Awperative.Debug.LogError(string, string[], string[])
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogError
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 121
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file. With any given call sign.
+  example: []
+  syntax:
+    content: public static void LogError(string __message, string[] __parameters, string[] __values)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    - id: __parameters
+      type: System.String[]
+      description: Names of values to debug
+    - id: __values
+      type: System.String[]
+      description: Values to debug
+    content.vb: Public Shared Sub LogError(__message As String, __parameters As String(), __values As String())
+  overload: Awperative.Debug.LogError*
+  nameWithType.vb: Debug.LogError(String, String(), String())
+  fullName.vb: Awperative.Debug.LogError(String, String(), String())
+  name.vb: LogError(String, String(), String())
+- uid: Awperative.Debug.AssertError(System.Boolean,System.String)
+  commentId: M:Awperative.Debug.AssertError(System.Boolean,System.String)
+  id: AssertError(System.Boolean,System.String)
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: AssertError(bool, string)
+  nameWithType: Debug.AssertError(bool, string)
+  fullName: Awperative.Debug.AssertError(bool, string)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: AssertError
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 128
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file if the condition is true.
+  example: []
+  syntax:
+    content: public static void AssertError(bool __condition, string __message)
+    parameters:
+    - id: __condition
+      type: System.Boolean
+      description: Condition to debug
+    - id: __message
+      type: System.String
+      description: Message to debug
+    content.vb: Public Shared Sub AssertError(__condition As Boolean, __message As String)
+  overload: Awperative.Debug.AssertError*
+  nameWithType.vb: Debug.AssertError(Boolean, String)
+  fullName.vb: Awperative.Debug.AssertError(Boolean, String)
+  name.vb: AssertError(Boolean, String)
+- uid: Awperative.Debug.LogGeneric(System.String,System.String,System.String[],System.String[])
+  commentId: M:Awperative.Debug.LogGeneric(System.String,System.String,System.String[],System.String[])
+  id: LogGeneric(System.String,System.String,System.String[],System.String[])
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: LogGeneric(string, string, string[], string[])
+  nameWithType: Debug.LogGeneric(string, string, string[], string[])
+  fullName: Awperative.Debug.LogGeneric(string, string, string[], string[])
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: LogGeneric
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 141
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file. With any given call sign.
+  example: []
+  syntax:
+    content: public static void LogGeneric(string __message, string __callSign, string[] __parameters, string[] __values)
+    parameters:
+    - id: __message
+      type: System.String
+      description: Message to debug
+    - id: __callSign
+      type: System.String
+      description: Message identifier
+    - id: __parameters
+      type: System.String[]
+      description: Names of values to debug
+    - id: __values
+      type: System.String[]
+      description: Values to debug
+    content.vb: Public Shared Sub LogGeneric(__message As String, __callSign As String, __parameters As String(), __values As String())
+  overload: Awperative.Debug.LogGeneric*
+  nameWithType.vb: Debug.LogGeneric(String, String, String(), String())
+  fullName.vb: Awperative.Debug.LogGeneric(String, String, String(), String())
+  name.vb: LogGeneric(String, String, String(), String())
+- uid: Awperative.Debug.AssertGeneric(System.Boolean,System.String,System.String,System.String[],System.String[])
+  commentId: M:Awperative.Debug.AssertGeneric(System.Boolean,System.String,System.String,System.String[],System.String[])
+  id: AssertGeneric(System.Boolean,System.String,System.String,System.String[],System.String[])
+  parent: Awperative.Debug
+  langs:
+  - csharp
+  - vb
+  name: AssertGeneric(bool, string, string, string[], string[])
+  nameWithType: Debug.AssertGeneric(bool, string, string, string[], string[])
+  fullName: Awperative.Debug.AssertGeneric(bool, string, string, string[], string[])
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Communication/Debug/Writer.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: AssertGeneric
+    path: Awperative/Kernel/Communication/Debug/Writer.cs
+    startLine: 162
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  summary: Writes the current message to the log file if the condition is true. With any given call sign.
+  example: []
+  syntax:
+    content: public static void AssertGeneric(bool __condition, string __message, string __callSign, string[] __parameters, string[] __values)
+    parameters:
+    - id: __condition
+      type: System.Boolean
+      description: Condition to debug
+    - id: __message
+      type: System.String
+      description: Message to debug
+    - id: __callSign
+      type: System.String
+      description: Message identifier
+    - id: __parameters
+      type: System.String[]
+      description: Names of values to debug
+    - id: __values
+      type: System.String[]
+      description: Values to debug
+    content.vb: Public Shared Sub AssertGeneric(__condition As Boolean, __message As String, __callSign As String, __parameters As String(), __values As String())
+  overload: Awperative.Debug.AssertGeneric*
+  nameWithType.vb: Debug.AssertGeneric(Boolean, String, String, String(), String())
+  fullName.vb: Awperative.Debug.AssertGeneric(Boolean, String, String, String(), String())
+  name.vb: AssertGeneric(Boolean, String, String, String(), String())
+references:
+- uid: Awperative
+  commentId: N:Awperative
+  href: Awperative.html
+  name: Awperative
+  nameWithType: Awperative
+  fullName: Awperative
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Awperative.Debug.LogFilePath*
+  commentId: Overload:Awperative.Debug.LogFilePath
+  href: Awperative.Debug.html#Awperative_Debug_LogFilePath
+  name: LogFilePath
+  nameWithType: Debug.LogFilePath
+  fullName: Awperative.Debug.LogFilePath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Awperative.Debug.LogAction*
+  commentId: Overload:Awperative.Debug.LogAction
+  href: Awperative.Debug.html#Awperative_Debug_LogAction_System_String_
+  name: LogAction
+  nameWithType: Debug.LogAction
+  fullName: Awperative.Debug.LogAction
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: Awperative.Debug.AssertAction*
+  commentId: Overload:Awperative.Debug.AssertAction
+  href: Awperative.Debug.html#Awperative_Debug_AssertAction_System_Boolean_System_String_
+  name: AssertAction
+  nameWithType: Debug.AssertAction
+  fullName: Awperative.Debug.AssertAction
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Awperative.Debug.LogState*
+  commentId: Overload:Awperative.Debug.LogState
+  href: Awperative.Debug.html#Awperative_Debug_LogState_System_String_
+  name: LogState
+  nameWithType: Debug.LogState
+  fullName: Awperative.Debug.LogState
+- uid: Awperative.Debug.AssertState*
+  commentId: Overload:Awperative.Debug.AssertState
+  href: Awperative.Debug.html#Awperative_Debug_AssertState_System_Boolean_System_String_
+  name: AssertState
+  nameWithType: Debug.AssertState
+  fullName: Awperative.Debug.AssertState
+- uid: Awperative.Debug.LogValue*
+  commentId: Overload:Awperative.Debug.LogValue
+  href: Awperative.Debug.html#Awperative_Debug_LogValue_System_String_
+  name: LogValue
+  nameWithType: Debug.LogValue
+  fullName: Awperative.Debug.LogValue
+- uid: Awperative.Debug.AssertValue*
+  commentId: Overload:Awperative.Debug.AssertValue
+  href: Awperative.Debug.html#Awperative_Debug_AssertValue_System_Boolean_System_String_
+  name: AssertValue
+  nameWithType: Debug.AssertValue
+  fullName: Awperative.Debug.AssertValue
+- uid: Awperative.Debug.LogWarning*
+  commentId: Overload:Awperative.Debug.LogWarning
+  href: Awperative.Debug.html#Awperative_Debug_LogWarning_System_String_
+  name: LogWarning
+  nameWithType: Debug.LogWarning
+  fullName: Awperative.Debug.LogWarning
+- uid: Awperative.Debug.AssertWarning*
+  commentId: Overload:Awperative.Debug.AssertWarning
+  href: Awperative.Debug.html#Awperative_Debug_AssertWarning_System_Boolean_System_String_
+  name: AssertWarning
+  nameWithType: Debug.AssertWarning
+  fullName: Awperative.Debug.AssertWarning
+- uid: Awperative.Debug.LogError*
+  commentId: Overload:Awperative.Debug.LogError
+  href: Awperative.Debug.html#Awperative_Debug_LogError_System_String_
+  name: LogError
+  nameWithType: Debug.LogError
+  fullName: Awperative.Debug.LogError
+- uid: Awperative.Debug.AssertError*
+  commentId: Overload:Awperative.Debug.AssertError
+  href: Awperative.Debug.html#Awperative_Debug_AssertError_System_Boolean_System_String_
+  name: AssertError
+  nameWithType: Debug.AssertError
+  fullName: Awperative.Debug.AssertError
+- uid: Awperative.Debug.LogGeneric*
+  commentId: Overload:Awperative.Debug.LogGeneric
+  href: Awperative.Debug.html#Awperative_Debug_LogGeneric_System_String_System_String_System_String___System_String___
+  name: LogGeneric
+  nameWithType: Debug.LogGeneric
+  fullName: Awperative.Debug.LogGeneric
+- uid: Awperative.Debug.AssertGeneric*
+  commentId: Overload:Awperative.Debug.AssertGeneric
+  href: Awperative.Debug.html#Awperative_Debug_AssertGeneric_System_Boolean_System_String_System_String_System_String___System_String___
+  name: AssertGeneric
+  nameWithType: Debug.AssertGeneric
+  fullName: Awperative.Debug.AssertGeneric

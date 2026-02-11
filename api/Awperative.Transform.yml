@@ -1,0 +1,785 @@
+### YamlMime:ManagedReference
+items:
+- uid: Awperative.Transform
+  commentId: T:Awperative.Transform
+  id: Transform
+  parent: Awperative
+  children:
+  - Awperative.Transform.#ctor
+  - Awperative.Transform.#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Vector2)
+  - Awperative.Transform.Clone
+  - Awperative.Transform.Depth
+  - Awperative.Transform.OnTransformChangedEvent
+  - Awperative.Transform.Origin
+  - Awperative.Transform.Position
+  - Awperative.Transform.Rotation
+  - Awperative.Transform.Scale
+  - Awperative.Transform.Set(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Vector2)
+  - Awperative.Transform.ToMatrix
+  langs:
+  - csharp
+  - vb
+  name: Transform
+  nameWithType: Transform
+  fullName: Awperative.Transform
+  type: Class
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Transform
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 6
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public sealed class Transform
+    content.vb: Public NotInheritable Class Transform
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Awperative.Transform.OnTransformChangedEvent
+  commentId: E:Awperative.Transform.OnTransformChangedEvent
+  id: OnTransformChangedEvent
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: OnTransformChangedEvent
+  nameWithType: Transform.OnTransformChangedEvent
+  fullName: Awperative.Transform.OnTransformChangedEvent
+  type: Event
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: OnTransformChangedEvent
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 9
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public event EventHandler<TransformModifyEvent> OnTransformChangedEvent
+    return:
+      type: System.EventHandler{Awperative.TransformModifyEvent}
+    content.vb: Public Event OnTransformChangedEvent As EventHandler(Of TransformModifyEvent)
+- uid: Awperative.Transform.Origin
+  commentId: P:Awperative.Transform.Origin
+  id: Origin
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: Origin
+  nameWithType: Transform.Origin
+  fullName: Awperative.Transform.Origin
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Origin
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 12
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public Vector2 Origin { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property Origin As Vector2
+  overload: Awperative.Transform.Origin*
+- uid: Awperative.Transform.Position
+  commentId: P:Awperative.Transform.Position
+  id: Position
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: Position
+  nameWithType: Transform.Position
+  fullName: Awperative.Transform.Position
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Position
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 20
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public Vector2 Position { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property Position As Vector2
+  overload: Awperative.Transform.Position*
+- uid: Awperative.Transform.Depth
+  commentId: P:Awperative.Transform.Depth
+  id: Depth
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: Depth
+  nameWithType: Transform.Depth
+  fullName: Awperative.Transform.Depth
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Depth
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 28
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public float Depth { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Depth As Single
+  overload: Awperative.Transform.Depth*
+- uid: Awperative.Transform.Rotation
+  commentId: P:Awperative.Transform.Rotation
+  id: Rotation
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: Rotation
+  nameWithType: Transform.Rotation
+  fullName: Awperative.Transform.Rotation
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Rotation
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 36
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public float Rotation { get; set; }
+    parameters: []
+    return:
+      type: System.Single
+    content.vb: Public Property Rotation As Single
+  overload: Awperative.Transform.Rotation*
+- uid: Awperative.Transform.Scale
+  commentId: P:Awperative.Transform.Scale
+  id: Scale
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: Scale
+  nameWithType: Transform.Scale
+  fullName: Awperative.Transform.Scale
+  type: Property
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Scale
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 44
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public Vector2 Scale { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Property Scale As Vector2
+  overload: Awperative.Transform.Scale*
+- uid: Awperative.Transform.Set(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Vector2)
+  commentId: M:Awperative.Transform.Set(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Vector2)
+  id: Set(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Vector2)
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: Set(Vector2, Vector2, float, float, Vector2)
+  nameWithType: Transform.Set(Vector2, Vector2, float, float, Vector2)
+  fullName: Awperative.Transform.Set(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, float, float, Microsoft.Xna.Framework.Vector2)
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Set
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 52
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public void Set(Vector2 __origin, Vector2 __position, float __depth, float __rotation, Vector2 __scale)
+    parameters:
+    - id: __origin
+      type: Microsoft.Xna.Framework.Vector2
+    - id: __position
+      type: Microsoft.Xna.Framework.Vector2
+    - id: __depth
+      type: System.Single
+    - id: __rotation
+      type: System.Single
+    - id: __scale
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Sub [Set](__origin As Vector2, __position As Vector2, __depth As Single, __rotation As Single, __scale As Vector2)
+  overload: Awperative.Transform.Set*
+  nameWithType.vb: Transform.Set(Vector2, Vector2, Single, Single, Vector2)
+  fullName.vb: Awperative.Transform.Set(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Single, Single, Microsoft.Xna.Framework.Vector2)
+  name.vb: Set(Vector2, Vector2, Single, Single, Vector2)
+- uid: Awperative.Transform.#ctor
+  commentId: M:Awperative.Transform.#ctor
+  id: '#ctor'
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: Transform()
+  nameWithType: Transform.Transform()
+  fullName: Awperative.Transform.Transform()
+  type: Constructor
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: .ctor
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 68
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public Transform()
+    content.vb: Public Sub New()
+  overload: Awperative.Transform.#ctor*
+  nameWithType.vb: Transform.New()
+  fullName.vb: Awperative.Transform.New()
+  name.vb: New()
+- uid: Awperative.Transform.#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Vector2)
+  commentId: M:Awperative.Transform.#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Vector2)
+  id: '#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Single,Microsoft.Xna.Framework.Vector2)'
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: Transform(Vector2, Vector2, float, float, Vector2)
+  nameWithType: Transform.Transform(Vector2, Vector2, float, float, Vector2)
+  fullName: Awperative.Transform.Transform(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, float, float, Microsoft.Xna.Framework.Vector2)
+  type: Constructor
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: .ctor
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 70
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public Transform(Vector2 __origin, Vector2 __position, float __depth, float __rotation, Vector2 __scale)
+    parameters:
+    - id: __origin
+      type: Microsoft.Xna.Framework.Vector2
+    - id: __position
+      type: Microsoft.Xna.Framework.Vector2
+    - id: __depth
+      type: System.Single
+    - id: __rotation
+      type: System.Single
+    - id: __scale
+      type: Microsoft.Xna.Framework.Vector2
+    content.vb: Public Sub New(__origin As Vector2, __position As Vector2, __depth As Single, __rotation As Single, __scale As Vector2)
+  overload: Awperative.Transform.#ctor*
+  nameWithType.vb: Transform.New(Vector2, Vector2, Single, Single, Vector2)
+  fullName.vb: Awperative.Transform.New(Microsoft.Xna.Framework.Vector2, Microsoft.Xna.Framework.Vector2, Single, Single, Microsoft.Xna.Framework.Vector2)
+  name.vb: New(Vector2, Vector2, Single, Single, Vector2)
+- uid: Awperative.Transform.Clone
+  commentId: M:Awperative.Transform.Clone
+  id: Clone
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: Clone()
+  nameWithType: Transform.Clone()
+  fullName: Awperative.Transform.Clone()
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: Clone
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 77
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public Transform Clone()
+    return:
+      type: Awperative.Transform
+    content.vb: Public Function Clone() As Transform
+  overload: Awperative.Transform.Clone*
+- uid: Awperative.Transform.ToMatrix
+  commentId: M:Awperative.Transform.ToMatrix
+  id: ToMatrix
+  parent: Awperative.Transform
+  langs:
+  - csharp
+  - vb
+  name: ToMatrix()
+  nameWithType: Transform.ToMatrix()
+  fullName: Awperative.Transform.ToMatrix()
+  type: Method
+  source:
+    remote:
+      path: Awperative/Kernel/Types/Transform/Transform.cs
+      branch: main
+      repo: http://aeroglory.duckdns.org:3000/AveryNorris/Awperative.git
+    id: ToMatrix
+    path: Awperative/Kernel/Types/Transform/Transform.cs
+    startLine: 82
+  assemblies:
+  - Awperative
+  namespace: Awperative
+  syntax:
+    content: public Matrix ToMatrix()
+    return:
+      type: Microsoft.Xna.Framework.Matrix
+    content.vb: Public Function ToMatrix() As Matrix
+  overload: Awperative.Transform.ToMatrix*
+references:
+- uid: Awperative
+  commentId: N:Awperative
+  href: Awperative.html
+  name: Awperative
+  nameWithType: Awperative
+  fullName: Awperative
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.EventHandler{Awperative.TransformModifyEvent}
+  commentId: T:System.EventHandler{Awperative.TransformModifyEvent}
+  parent: System
+  definition: System.EventHandler`1
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TransformModifyEvent>
+  nameWithType: EventHandler<TransformModifyEvent>
+  fullName: System.EventHandler<Awperative.TransformModifyEvent>
+  nameWithType.vb: EventHandler(Of TransformModifyEvent)
+  fullName.vb: System.EventHandler(Of Awperative.TransformModifyEvent)
+  name.vb: EventHandler(Of TransformModifyEvent)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - uid: Awperative.TransformModifyEvent
+    name: TransformModifyEvent
+    href: Awperative.TransformModifyEvent.html
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Awperative.TransformModifyEvent
+    name: TransformModifyEvent
+    href: Awperative.TransformModifyEvent.html
+  - name: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: <
+  - name: TEventArgs
+  - name: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.eventhandler-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEventArgs
+  - name: )
+- uid: Awperative.Transform.Origin*
+  commentId: Overload:Awperative.Transform.Origin
+  href: Awperative.Transform.html#Awperative_Transform_Origin
+  name: Origin
+  nameWithType: Transform.Origin
+  fullName: Awperative.Transform.Origin
+- uid: Microsoft.Xna.Framework.Vector2
+  commentId: T:Microsoft.Xna.Framework.Vector2
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Vector2
+  nameWithType: Vector2
+  fullName: Microsoft.Xna.Framework.Vector2
+- uid: Microsoft.Xna.Framework
+  commentId: N:Microsoft.Xna.Framework
+  isExternal: true
+  name: Microsoft.Xna.Framework
+  nameWithType: Microsoft.Xna.Framework
+  fullName: Microsoft.Xna.Framework
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna
+    name: Xna
+    isExternal: true
+  - name: .
+  - uid: Microsoft.Xna.Framework
+    name: Framework
+    isExternal: true
+- uid: Awperative.Transform.Position*
+  commentId: Overload:Awperative.Transform.Position
+  href: Awperative.Transform.html#Awperative_Transform_Position
+  name: Position
+  nameWithType: Transform.Position
+  fullName: Awperative.Transform.Position
+- uid: Awperative.Transform.Depth*
+  commentId: Overload:Awperative.Transform.Depth
+  href: Awperative.Transform.html#Awperative_Transform_Depth
+  name: Depth
+  nameWithType: Transform.Depth
+  fullName: Awperative.Transform.Depth
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: Awperative.Transform.Rotation*
+  commentId: Overload:Awperative.Transform.Rotation
+  href: Awperative.Transform.html#Awperative_Transform_Rotation
+  name: Rotation
+  nameWithType: Transform.Rotation
+  fullName: Awperative.Transform.Rotation
+- uid: Awperative.Transform.Scale*
+  commentId: Overload:Awperative.Transform.Scale
+  href: Awperative.Transform.html#Awperative_Transform_Scale
+  name: Scale
+  nameWithType: Transform.Scale
+  fullName: Awperative.Transform.Scale
+- uid: Awperative.Transform.Set*
+  commentId: Overload:Awperative.Transform.Set
+  href: Awperative.Transform.html#Awperative_Transform_Set_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Vector2_System_Single_System_Single_Microsoft_Xna_Framework_Vector2_
+  name: Set
+  nameWithType: Transform.Set
+  fullName: Awperative.Transform.Set
+- uid: Awperative.Transform.#ctor*
+  commentId: Overload:Awperative.Transform.#ctor
+  href: Awperative.Transform.html#Awperative_Transform__ctor
+  name: Transform
+  nameWithType: Transform.Transform
+  fullName: Awperative.Transform.Transform
+  nameWithType.vb: Transform.New
+  fullName.vb: Awperative.Transform.New
+  name.vb: New
+- uid: Awperative.Transform.Clone*
+  commentId: Overload:Awperative.Transform.Clone
+  href: Awperative.Transform.html#Awperative_Transform_Clone
+  name: Clone
+  nameWithType: Transform.Clone
+  fullName: Awperative.Transform.Clone
+- uid: Awperative.Transform
+  commentId: T:Awperative.Transform
+  parent: Awperative
+  href: Awperative.Transform.html
+  name: Transform
+  nameWithType: Transform
+  fullName: Awperative.Transform
+- uid: Awperative.Transform.ToMatrix*
+  commentId: Overload:Awperative.Transform.ToMatrix
+  href: Awperative.Transform.html#Awperative_Transform_ToMatrix
+  name: ToMatrix
+  nameWithType: Transform.ToMatrix
+  fullName: Awperative.Transform.ToMatrix
+- uid: Microsoft.Xna.Framework.Matrix
+  commentId: T:Microsoft.Xna.Framework.Matrix
+  parent: Microsoft.Xna.Framework
+  isExternal: true
+  name: Matrix
+  nameWithType: Matrix
+  fullName: Microsoft.Xna.Framework.Matrix

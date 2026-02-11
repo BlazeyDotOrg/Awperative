@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: Awperative.Kernel.Communication.Config
+  commentId: N:Awperative.Kernel.Communication.Config
+  id: Awperative.Kernel.Communication.Config
+  children:
+  - Awperative.Kernel.Communication.Config.Config
+  langs:
+  - csharp
+  - vb
+  name: Awperative.Kernel.Communication.Config
+  nameWithType: Awperative.Kernel.Communication.Config
+  fullName: Awperative.Kernel.Communication.Config
+  type: Namespace
+  assemblies:
+  - Awperative
+references:
+- uid: Awperative.Kernel.Communication.Config.Config
+  commentId: T:Awperative.Kernel.Communication.Config.Config
+  href: Awperative.Kernel.Communication.Config.Config.html
+  name: Config
+  nameWithType: Config
+  fullName: Awperative.Kernel.Communication.Config.Config
