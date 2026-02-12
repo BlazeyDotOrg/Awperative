@@ -8,9 +8,7 @@ namespace Awperative;
 /// <summary>
 /// Base class for all Awperative entities, manages components as a requirement because that is the job of all entities. 
 /// </summary>
-public abstract partial class DockerEntity
+public abstract partial class Docker
 {
-    public Scene Scene;
-    
-    internal HashSet<Component> _components;
+    internal HashSet<Behavior> _components;
 }

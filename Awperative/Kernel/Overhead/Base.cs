@@ -46,7 +46,7 @@ public sealed class Base : Game
     /// <remarks> It is recommended to load content during LoadContent()</remarks>
     protected override void LoadContent() {
         foreach (AwperativeHook hook in Awperative.EventHooks.ToList()) hook.Load();
-        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.Load();
+        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainLoad();
     }
     
     
@@ -58,7 +58,7 @@ public sealed class Base : Game
     /// </summary>
     /// <remarks> Hooks are unable to receive both Update() and Draw()</remarks>
     protected override void Update(GameTime __gameTime) {
-        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.Update(__gameTime);
+        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainUpdate(__gameTime);
         base.Update(__gameTime);
     }
 
@@ -71,7 +71,7 @@ public sealed class Base : Game
     /// </summary>
     /// <remarks> Hooks are unable to receive both Update() and Draw()</remarks>
     protected override void Draw(GameTime __gameTime) {
-        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.Draw(__gameTime);
+        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainDraw(__gameTime);
         base.Draw(__gameTime);
     }
     
@@ -85,7 +85,7 @@ public sealed class Base : Game
     /// <remarks> This event may not trigger if the program is force closed.</remarks>
     protected override void EndRun() {
         foreach (AwperativeHook hook in Awperative.EventHooks.ToList()) hook.Unload();
-        foreach (Scene scene in Awperative.LoadedScenes.ToList()) scene.Unload();
+        foreach (Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainUnload();
     }
     
     

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
 
@@ -11,16 +12,19 @@ namespace Awperative;
 /// Anything that inherits Component is built to work in any DockerEntity, which leads to generic
 /// Assumptions. If you want to make a body specific or scene specific component both classes are available.
 /// </summary>
-public abstract partial class Component : DockerEntity
+public abstract partial class Behavior : Docker
 {
-    internal DockerEntity Docker;
+    internal Docker Docker;
+    
+    public Scene Scene;
+    public List<Behavior> Parents { get; private set; }
+    
+    //todo tags order and singleton
     
     
     
-    
-    
-    internal virtual void Initiate(DockerEntity __docker) {
-        Docker = __docker;
+    internal virtual void Initiate(Docker docker) {
+        Docker = docker;
         Create();
     }
 
