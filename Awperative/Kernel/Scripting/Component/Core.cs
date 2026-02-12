@@ -11,9 +11,8 @@ namespace Awperative;
 /// Anything that inherits Component is built to work in any DockerEntity, which leads to generic
 /// Assumptions. If you want to make a body specific or scene specific component both classes are available.
 /// </summary>
-public abstract partial class Component
+public abstract partial class Component : DockerEntity
 {
-    public Scene Scene { get; set; }
     internal DockerEntity Docker;
     
     
