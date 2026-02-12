@@ -12,20 +12,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Docs/getting-started.md",
+      "source_relative_path": "Docs/chapter1.md",
       "output": {
         ".html": {
-          "relative_path": "Docs/getting-started.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "Docs/introduction.md",
-      "output": {
-        ".html": {
-          "relative_path": "Docs/introduction.html"
+          "relative_path": "Docs/chapter1.html"
         }
       },
       "version": ""
@@ -39,6 +29,26 @@
         },
         ".json": {
           "relative_path": "Docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Docs/whatis.md",
+      "output": {
+        ".html": {
+          "relative_path": "Docs/whatis.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Docs/whyuse.md",
+      "output": {
+        ".html": {
+          "relative_path": "Docs/whyuse.html"
         }
       },
       "version": ""
