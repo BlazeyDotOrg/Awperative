@@ -14,23 +14,25 @@ namespace Awperative;
 /// </summary>
 public abstract partial class Behavior : Docker
 {
-    internal Docker Docker;
-    
+
     public Scene Scene;
-    public List<Behavior> Parents { get; private set; }
-    
-    //todo tags order and singleton
+    public Behavior Parent = null;
     
     
+    //todo tags and order
     
-    internal virtual void Initiate(Docker docker) {
-        Docker = docker;
+    
+    
+    internal void Initiate(Scene __scene, Docker __parent) {
+        Scene = __scene;
+        if (__parent is Behavior behavior) Parent = behavior;
+        
         Create();
     }
 
     
     
-    internal virtual void End() {
+    internal void End() {
         Destroy();
     }
     
@@ -38,17 +40,17 @@ public abstract partial class Behavior : Docker
     
     
     
-    //GAME HAS JUST BEGUN/ended
-    public virtual void Unload() {}
+    protected internal virtual void Unload() {}
+    protected internal virtual void Load() {}
     
-    //WE ARE LOADING STUFF
-    public virtual void Load() {}
+    
     
     //You know what these do
-    public virtual void Update(GameTime __gameTime) {}
-    public virtual void Draw(GameTime __gameTime) {}
+    protected internal virtual void Update(GameTime __gameTime) {}
+    protected internal virtual void Draw(GameTime __gameTime) {}
+    
     
     //component/body/scene is being created or destroyed
-    public virtual void Create() {}
-    public virtual void Destroy() {}
+    protected internal virtual void Create() {}
+    protected internal virtual void Destroy() {}
 }

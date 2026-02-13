@@ -10,5 +10,6 @@ namespace Awperative;
 /// </summary>
 public abstract partial class Docker
 {
-    internal HashSet<Behavior> _components;
+    internal Scene DockerScene;    
+    public List<Behavior> Behaviors => _behaviors.ToList();
 }
