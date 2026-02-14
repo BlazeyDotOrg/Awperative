@@ -9,8 +9,8 @@ public abstract partial class Docker
 
     
     
-    internal virtual void ChainUpdate(GameTime __gameTime) { foreach (Behavior component in _behaviors) { component.Update(__gameTime); } }
-    internal virtual void ChainDraw(GameTime __gameTime) { foreach (Behavior component in _behaviors) { component.Draw(__gameTime); } }
+    internal virtual void ChainUpdate() { foreach (Behavior component in _behaviors) { component.Update(); } }
+    internal virtual void ChainDraw() { foreach (Behavior component in _behaviors) { component.Draw(); } }
     
     
     

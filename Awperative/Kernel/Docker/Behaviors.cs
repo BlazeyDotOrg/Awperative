@@ -19,7 +19,7 @@ public abstract partial class Docker
             if(behavior == null) { Debug.LogError("Failed to create component"); return null; }
             
             _behaviors.Add(behavior);
-            behavior.Initiate(DockerScene, this);
+            behavior.Initiate(this);
             return behavior;
             
         }catch { Debug.LogError("Failed to create component"); return null; }
@@ -49,7 +49,7 @@ public abstract partial class Docker
         
         if(!_behaviors.Contains(behavior)) { Debug.LogError("Body does not have a component of this type"); return; }
         
-        behavior.End();
+        behavior.Destroy();
         _behaviors.Remove(behavior);
     }
     
@@ -58,7 +58,7 @@ public abstract partial class Docker
         {
             Behavior foundBehavior = Get<Generic>();
 
-            foundBehavior.End();
+            foundBehavior.Destroy();
             _behaviors.Remove(foundBehavior);
         }catch { Debug.LogError("Removal failed"); }
     }
@@ -66,7 +66,7 @@ public abstract partial class Docker
     public void DestroyAll<Generic>() where Generic : Behavior {
         try {
             foreach (Behavior component in GetAll<Generic>()) {
-                component.End();
+                component.Destroy();
                 _behaviors.Remove(component);
             }
         }catch { Debug.LogError("Removal failed"); }
@@ -79,5 +79,20 @@ public abstract partial class Docker
         _behaviors.Remove(behavior);
     }
     
-    public void Remove<
+    public void Remove<Generic>() where Generic : Behavior {
+        try
+        {
+            Behavior foundBehavior = Get<Generic>();
+
+            _behaviors.Remove(foundBehavior);
+        }catch { Debug.LogError("Removal failed"); }
+    }
+    
+    public void RemoveAll<Generic>() where Generic : Behavior {
+        try {
+            foreach (Behavior component in GetAll<Generic>()) {
+                _behaviors.Remove(component);
+            }
+        }catch { Debug.LogError("Removal failed"); }
+    }
 }

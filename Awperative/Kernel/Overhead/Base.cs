@@ -58,7 +58,7 @@ public sealed class Base : Game
     /// </summary>
     /// <remarks> Hooks are unable to receive both Update() and Draw()</remarks>
     protected override void Update(GameTime __gameTime) {
-        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainUpdate(__gameTime);
+        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainUpdate();
         base.Update(__gameTime);
     }
 
@@ -71,7 +71,7 @@ public sealed class Base : Game
     /// </summary>
     /// <remarks> Hooks are unable to receive both Update() and Draw()</remarks>
     protected override void Draw(GameTime __gameTime) {
-        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainDraw(__gameTime);
+        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainDraw();
         base.Draw(__gameTime);
     }
     
