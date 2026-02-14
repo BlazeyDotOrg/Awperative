@@ -12,7 +12,7 @@ namespace Awperative;
 /// Anything that inherits Component is built to work in any DockerEntity, which leads to generic
 /// Assumptions. If you want to make a body specific or scene specific component both classes are available.
 /// </summary>
-public abstract partial class Behavior : Docker
+public abstract partial class Component : Container
 {
     
     
@@ -20,7 +20,7 @@ public abstract partial class Behavior : Docker
     /// <summary>
     /// Current parent of the Behavior. Can be either Scene or another Behavior.
     /// </summary>
-    internal Docker Docker;
+    internal Container Container;
     
     
     
@@ -44,8 +44,8 @@ public abstract partial class Behavior : Docker
     /// To be called when the Behavior is created.
     /// </summary>
     /// <param name="__parent"> Docker that this spawned in this Behavior</param>
-    internal void Initiate(Docker __parent) {
-        Docker = __parent;
+    internal void Initiate(Container __parent) {
+        Container = __parent;
         Create();
     }
     

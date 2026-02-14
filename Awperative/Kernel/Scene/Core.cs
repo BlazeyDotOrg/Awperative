@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Awperative;
 
-public sealed partial class Scene : Docker
+public sealed partial class Scene : Container
 {
     //todo: make useful lolol
 }
