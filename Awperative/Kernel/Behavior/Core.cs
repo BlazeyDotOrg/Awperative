@@ -27,7 +27,7 @@ public abstract partial class Behavior : Docker
     /// <summary>
     /// Identifiers for Behaviors.
     /// </summary>
-    public List<string> Tags;
+    public HashSet<string> Tags;
     
     
     

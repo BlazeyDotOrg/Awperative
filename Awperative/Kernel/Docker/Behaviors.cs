@@ -9,6 +9,7 @@ public abstract partial class Docker
     
     internal HashSet<Behavior> _behaviors = [];
     
+    internal void Add(Behavior behavior) => _behaviors.Add(behavior);
     public Behavior Add<Generic>() where Generic : Behavior => Add<Generic>([]);
     public Behavior Add<Generic>(object[] __args) where Generic : Behavior {
         if(typeof(Generic).GetConstructor((Type[]) __args) == null) { Debug.LogError("Component does not contain a valid constructor"); return null; };
@@ -24,8 +25,16 @@ public abstract partial class Docker
             
         }catch { Debug.LogError("Failed to create component"); return null; }
     }
-    
-    
+
+
+    public void Transfer(Behavior __behavior, Docker __docker) {
+        if (!_behaviors.Contains(__behavior)) { Debug.LogError("Docker does not have ownership of Behavior"); return; }
+        
+        __docker.Add(__behavior);
+        _behaviors.Remove(__behavior);
+        
+        __behavior.Docker = __docker;
+    }
     
     
     
