@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace Awperative;
 /// Base class for all Awperative Entities. Responsible for Managing hierarchy between Components and Scenes, has Extensive Component Manipulation Available.
 /// Also transfers Time and Carries most of the responsibilities akin to the Component.
 /// </summary>
-/// <remarks> Please don't inherit this I don't know why you would</remarks>
+/// <remarks> Please don't inherit this. I don't know why you would</remarks>
 /// <author> Avery Norris </author>
 public abstract partial class ComponentDocker
 {
@@ -31,16 +30,19 @@ public abstract partial class ComponentDocker
 
 
 
+    private readonly static Comparer<Component> _componentSorter = Comparer<Component>.Create((a, b) => {
+        int result = b.Priority.CompareTo(a.Priority);
+        return (result != 0) ? result : a.GetHashCode().CompareTo(b.GetHashCode());
+    });
+
+
 
 
     /// <summary>
     /// Core of Docker, contains all of our precious Components. Sorts them by their priorities with highest going first.
     /// If they are equal it defaults to hash codes to ensure consistent Behavior
     /// </summary>
-    internal SortedSet<Component> _Components = new(Comparer<Component>.Create((a, b) => {
-        int result = b.Priority.CompareTo(a.Priority);
-        return (result != 0) ? result : a.GetHashCode().CompareTo(b.GetHashCode());
-    }));
+    internal SortedSet<Component> _Components = new(_componentSorter);
 
 
 
@@ -126,10 +128,6 @@ public abstract partial class ComponentDocker
     /// <returns></returns>
     public __Type Add<__Type>(object[] __args) where __Type : Component  {
         
-        //Log Action
-        Debug.LogAction("Adding Component to Docker", ["Type", "Args", "Docker"], 
-            [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]);
-        
         
         
         //Component does not have a constructor that matches the given args
@@ -163,11 +161,6 @@ public abstract partial class ComponentDocker
         newComponent.Initiate(this);
         
         
-        //Logs successful action! 
-        Debug.LogState("Successfully Created Component and Attached it to Docker", ["Type", "Args", "Docker", "Component"], 
-            [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString(), newComponent.GetHashCode().ToString()]);
-        
-        
         return (__Type) newComponent;
     }
     
@@ -197,21 +190,16 @@ public abstract partial class ComponentDocker
     /// <remarks> Components cannot transfer themselves with this Method!</remarks>
     public void Move(Component __component, ComponentDocker __componentDocker) {
 
-
-
+        
+        
         //This allows self transfer behavior while preserving Docker's actual job, Before all other statements to prevent Double-Debugging.
         if (__component == this) { __component.ComponentDocker.Move(__component, __componentDocker); return; }
-
-
-        
-        Debug.LogAction("Transferring Component to Different Docker", ["Component", "Type", "CurrentDocker", "NewDocker"],
-            [__component.GetHashCode().ToString(), __component.GetType().ToString(), GetHashCode().ToString(), __componentDocker.GetHashCode().ToString()]);
         
         
         
         if (__component == null) {
-            Debug.LogError("Component is null!",  ["Component", "Type", "CurrentDocker", "NewDocker"], 
-                [__component.GetHashCode().ToString(), __component.GetType().ToString(), GetHashCode().ToString(), __componentDocker.GetHashCode().ToString()]); return; }
+            Debug.LogError("Component is null!",  ["CurrentDocker", "NewDocker"], 
+                [GetHashCode().ToString(), __componentDocker.GetHashCode().ToString()]); return; }
         
         
         
@@ -229,11 +217,6 @@ public abstract partial class ComponentDocker
         
         //Update components parent
         __component.ComponentDocker = __componentDocker;
-        
-        
-        
-        Debug.LogState("Successfully Transferred Component to a new Docker" , ["Component", "Type", "CurrentDocker", "NewDocker"], 
-            [__component.GetHashCode().ToString(), __component.GetType().ToString(), GetHashCode().ToString(), __componentDocker.GetHashCode().ToString()]);
     }
     
     
@@ -252,7 +235,7 @@ public abstract partial class ComponentDocker
     /// </summary>
     /// <param name="__Components"> List of Components to transfer</param>
     /// <param name="__componentDocker"> Docker to move Component to</param>
-    public void MoveAll(IEnumerable<Component> __Components, ComponentDocker __componentDocker) { foreach (Component Component in (Component[])[.._Components]) Move(Component, __componentDocker); }
+    public void MoveAll(IEnumerable<Component> __Components, ComponentDocker __componentDocker) { foreach (Component Component in (Component[])[..__Components]) Move(Component, __componentDocker); }
     
     
     
@@ -288,17 +271,15 @@ public abstract partial class ComponentDocker
     /// <param name="__tag"> Value to try and hash</param>
     internal void HashTaggedComponent(Component __component, string __tag) {
 
-        if (!__component._tags.Add(__tag))
-            //already has tag
-            return;
+        if (!__component._tags.Add(__tag)) {
+            Debug.LogError("Component already has tag!", ["Component", "Type", "Tag", "Docker"],
+                [__component.GetHashCode().ToString(), __component.GetType().ToString(), __tag, GetHashCode().ToString()]); return;
+        }
 
         if (_taggedComponents.TryGetValue(__tag, out SortedSet<Component> components)) {
             components.Add(__component);
             
-        } else _taggedComponents.Add(__tag, new SortedSet<Component>(Comparer<Component>.Create((a, b) => { 
-            int result = b.Priority.CompareTo(a.Priority);
-            return (result != 0) ? result : a.GetHashCode().CompareTo(b.GetHashCode());
-        })));
+        } else { _taggedComponents.Add(__tag, new SortedSet<Component>(_componentSorter)); _taggedComponents[__tag].Add(__component); }
     }
 
 
@@ -310,9 +291,10 @@ public abstract partial class ComponentDocker
     /// <param name="__tag"></param>
     internal void UnhashTaggedComponent(Component __component, string __tag) {
 
-        if (!__component._tags.Remove(__tag))
-                //doesnt have tag
-            return;
+        if (!__component._tags.Remove(__tag)) {
+            Debug.LogError("Component already doesn't have that tag!", ["Component", "Type", "Tag", "Docker"],
+                [__component.GetHashCode().ToString(), __component.GetType().ToString(), __tag, GetHashCode().ToString()]); return;
+        }
         
         
         if (_taggedComponents.TryGetValue(__tag, out SortedSet<Component> components)) {
@@ -360,7 +342,7 @@ public abstract partial class ComponentDocker
     /// </summary>
     /// <param name="__tags"></param>
     /// <returns></returns>
-    internal Component Get(List<string> __tags) => GetAll(__tags)[0];
+    internal Component Get(List<string> __tags) { ImmutableArray<Component> returnValue = GetAll(__tags); return returnValue.Length > 0 ? returnValue[0] : null; }
 
 
 
@@ -370,6 +352,10 @@ public abstract partial class ComponentDocker
     /// <param name="__tags"></param>
     /// <returns></returns>
     internal ImmutableArray<Component> GetAll(List<string> __tags) {
+
+        if (__tags.Count == 0)
+            return [];
+        
         SortedSet<Component> foundComponents = _taggedComponents[__tags[0]];
 
         for (int i = 1; i < __tags.Count; i++) {
@@ -392,20 +378,13 @@ public abstract partial class ComponentDocker
     /// <returns></returns>
     public __Type Get<__Type>() where __Type : Component {
         
-        Debug.LogAction("Searching for Component", ["Type", "Docker"], 
-            [typeof(__Type).ToString(), GetHashCode().ToString()]);
-
-
+        
         
         //Iterates through the loop and returns if a match is found
-        foreach (Component component in (Component[])[.._Components]) {
-            if (component is __Type foundComponent) {
-                Debug.LogState("Found Component", ["Type", "Component", "Docker"],
-                    [typeof(__Type).ToString(), foundComponent.GetHashCode().ToString(), GetHashCode().ToString()]);
-                return foundComponent;
-            }
-        }
+        foreach (Component component in (Component[])[.._Components])
+            if (component is __Type foundComponent) return foundComponent;
 
+        
         
         //Throws error if there is no Component found
         Debug.LogError("Docker does not have target Component", ["Type", "Docker"], 
@@ -422,11 +401,9 @@ public abstract partial class ComponentDocker
     /// <typeparam name="__Type"> The Type of Components to search for</typeparam>
     /// <returns></returns>
     public ImmutableArray<__Type> GetAll<__Type>() where __Type : Component {
+
+
         
-        Debug.LogAction("Searching for all Components on Docker", ["Type", "Docker"], 
-            [typeof(__Type).ToString(), GetHashCode().ToString()]);
-
-
         List<__Type> foundComponents = [];
 
         
@@ -445,15 +422,19 @@ public abstract partial class ComponentDocker
             return [];
         }
 
-
-
-        Debug.LogState("Found Components on Docker", ["Components", "Type", "Docker"],
-            [(foundComponents.Select(x => x.GetHashCode().ToString()) + "]").ToString(), typeof(__Type).ToString(),  GetHashCode().ToString()]);
+        
         
         return [..foundComponents];
     }
     
     
+    
+    /// <summary>
+    /// Returns a bool based on if the Docker contains a Component with the given tag or not
+    /// </summary>
+    /// <param name="__tag"></param>
+    /// <returns></returns>
+    public bool Contains(string __tag) => _taggedComponents.ContainsKey(__tag);
     
     
     
@@ -463,8 +444,6 @@ public abstract partial class ComponentDocker
     /// <typeparam name="__Type">Type of the Component</typeparam>
     /// <returns></returns>
     public bool Contains<__Type>() where __Type : Component => _Components.Any(x => x is __Type);
-    
-    
     
     
     
@@ -498,17 +477,13 @@ public abstract partial class ComponentDocker
             Debug.LogError("Docker does not have ownership of Component", ["Component", "Type", "CurrentDocker"],
                 [__component.GetHashCode().ToString(), __component.GetType().ToString(), GetHashCode().ToString()]); return;
         }
-        
-        
-
 
         __component.Destroy();
+        __component.ChainDestroy();
+        foreach (string tag in __component._tags) UnhashTaggedComponent(__component, tag);
+        __component.ComponentDocker = null;
+        
         _Components.Remove(__component);
-        
-        
-         
-        Debug.LogState("Successfully Destroyed Component", ["Component", "Type", "CurrentDocker"],
-            [__component.GetHashCode().ToString(), __component.GetType().ToString(), GetHashCode().ToString()]);
     }
     
     
@@ -525,7 +500,7 @@ public abstract partial class ComponentDocker
     /// Destroys all Components from a given collection.
     /// </summary>
     /// <param name="__Components"></param>
-    public void RemoveAll(IEnumerable<Component> __Components) { foreach (Component component in (Component[])[.._Components]) { Remove(component); } }
+    public void RemoveAll(IEnumerable<Component> __Components) { foreach (Component component in (Component[])[..__Components]) { Remove(component); } }
 
     
     
@@ -540,7 +515,7 @@ public abstract partial class ComponentDocker
     /// <summary>
     /// Destroys all Components attached to Docker
     /// </summary>
-    public void Clear() { foreach (Component component in (Component[])[.._Components]) { Remove(component); } }
+    public void RemoveAll() { foreach (Component component in (Component[])[.._Components]) { Remove(component); } }
     
     
     

@@ -7,12 +7,7 @@ namespace Awperative;
 
 
 
-/// <summary>
-/// The lowest level scripting class in Awperative. Components are scene level and provide access to all scene level methods, can be applied to any docker and inherited
-/// Sadly component does not have excessive access to specific types.
-/// Anything that inherits Component is built to work in any DockerEntity, which leads to generic
-/// Assumptions. If you want to make a body specific or scene specific component both classes are available.
-/// </summary>
+
 public abstract partial class Component : ComponentDocker
 {
     
@@ -109,7 +104,7 @@ public abstract partial class Component : ComponentDocker
     /// Identifiers for Components.
     /// </summary>
     public ImmutableArray<string> Tags => [.._tags];
-    internal HashSet<string> _tags;
+    internal HashSet<string> _tags = [];
 
 
 
@@ -148,6 +143,9 @@ public abstract partial class Component : ComponentDocker
             if (currentComponentDocker is Component Component) {
                 returnValue.Add(currentComponentDocker);
                 currentComponentDocker = Component.ComponentDocker;
+            } else {
+                Debug.LogError("Component has a Parent that is not a Scene or Component, Please do not use the Docker class unless you know what you are doing!", ["Component", "Type", "Docker"],
+                    [GetHashCode().ToString(), GetType().ToString(), ComponentDocker.GetHashCode().ToString()]);
             }
         }
 
