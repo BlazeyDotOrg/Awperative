@@ -21,7 +21,7 @@ public abstract partial class Component : ComponentDocker
     /// <summary>
     /// Current parent of the Component. Can be either Scene or another Component.
     /// </summary>
-    public ComponentDocker ComponentDocker;
+    public ComponentDocker ComponentDocker { get; internal set; }
     
     
     
@@ -29,13 +29,15 @@ public abstract partial class Component : ComponentDocker
     /// Identifiers for Components.
     /// </summary>
     public HashSet<string> Tags;
-    
-    
-    
+
+
+
     /// <summary>
     /// Order for when Components are called on. Only applies between Components on the same Docker.
     /// </summary>
-    public int Priority;
+    public int Priority {
+        get => _priority; set => ComponentDocker.UpdatePriority(this, value);
+    } internal int _priority;
     
     
     

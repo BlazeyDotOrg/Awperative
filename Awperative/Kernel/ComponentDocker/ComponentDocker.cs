@@ -27,15 +27,30 @@ public abstract partial class ComponentDocker
     /// Amount of all Components in the Docker
     /// </summary>
     public int Count => _Components.Count;
-    
-    
-    
-    
-    
+
+
+
+
+
     /// <summary>
-    /// Core of Docker, contains all of our precious Components.
+    /// Core of Docker, contains all of our precious Components. Sorts them by their priorities with highest going first.
+    /// If they are equal it defaults to hash codes to ensure consistent Behavior
     /// </summary>
-    internal HashSet<Component> _Components = [];
+    internal SortedSet<Component> _Components = new(Comparer<Component>.Create((a, b) => {
+        int result = b.Priority.CompareTo(a.Priority);
+        return (result != 0) ? result : a.GetHashCode().CompareTo(b.GetHashCode());
+    }));
+
+
+    
+
+
+    /// <summary>
+    /// Resorts member of Component list to match the Priority.
+    /// </summary>
+    /// <param name="__component"> Component to modify</param>
+    /// <param name="__priority"> New priority for Component</param>
+    internal void UpdatePriority(Component __component, int __priority) { _Components.Remove(__component); __component._priority = __priority; _Components.Add(__component); }
     
     
     
@@ -102,7 +117,7 @@ public abstract partial class ComponentDocker
         
         //Log Action
         Debug.LogAction("Adding Component to Docker", ["Type", "Args", "Docker"], 
-            [typeof(__Type).ToString(), "[" + string.Join(", ", __args.SelectMany(x => x.ToString())) + "]", GetHashCode().ToString()]);
+            [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]);
         
         
         
@@ -110,7 +125,7 @@ public abstract partial class ComponentDocker
         if (typeof(__Type).GetConstructor(__args.Select(x => x.GetType()).ToArray()) == null) {
             Debug.LogError("Component cannot be constructed with the given arguments",
                 ["Type", "Args"],
-                [typeof(__Type).ToString(), "[" + string.Join(", ", __args.SelectMany(x => x.ToString())) + "]"]); return null;
+                [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]"]); return null;
         };
         
 
@@ -121,14 +136,14 @@ public abstract partial class ComponentDocker
         try { newComponent = (__Type)Activator.CreateInstance(typeof(__Type), __args); }
         catch {
             Debug.LogError("Component creation failed!", ["Type", "Args", "Docker"], 
-                [typeof(__Type).ToString(), "[" + string.Join(", ", __args.SelectMany(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
+                [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
         }
 
         
         //If Component is null do not add
         if(newComponent == null) { 
             Debug.LogError("Activator created Null Component", ["Type", "Args", "Docker"], 
-                [typeof(__Type).ToString(), "[" + string.Join(", ", __args.SelectMany(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
+                [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
         }
         
         
@@ -139,7 +154,7 @@ public abstract partial class ComponentDocker
         
         //Logs successful action! 
         Debug.LogState("Successfully Created Component and Attached it to Docker", ["Type", "Args", "Docker", "Component"], 
-            [typeof(__Type).ToString(), "[" + string.Join(", ", __args.SelectMany(x => x.ToString())) + "]", GetHashCode().ToString(), newComponent.GetHashCode().ToString()]);
+            [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString(), newComponent.GetHashCode().ToString()]);
         
         
         return (__Type) newComponent;
@@ -245,6 +260,62 @@ public abstract partial class ComponentDocker
     
     
     
+    
+    /// /// <summary>
+    /// Holds Components at Keys of their tags.
+    /// </summary>
+    internal Dictionary<string, List<Component>> _taggedComponents = [];
+
+
+
+
+    /// <summary>
+    /// Finds the first instance of a component with a given tag
+    /// </summary>
+    /// <param name="__tag"></param>
+    /// <returns></returns>
+    internal Component Get(string __tag) => _taggedComponents[__tag].OrderByDescending(x => x._priority).First();
+
+
+
+    /// <summary>
+    /// Finds all Components with a given tag
+    /// </summary>
+    /// <param name="__tag"></param>
+    /// <returns></returns>
+    internal ImmutableArray<Component> GetAll(string __tag) => [.._taggedComponents[__tag]];
+
+
+
+    /// <summary>
+    /// Finds the first Component that has all the given tags
+    /// </summary>
+    /// <param name="__tags"></param>
+    /// <returns></returns>
+    internal Component Get(List<string> __tags) => GetAll(__tags)[0];
+
+
+
+    /// <summary>
+    /// Finds all Components that have all the given tags
+    /// </summary>
+    /// <param name="__tags"></param>
+    /// <returns></returns>
+    internal ImmutableArray<Component> GetAll(List<string> __tags) {
+        List<Component> foundComponents = _taggedComponents[__tags[0]];
+
+        for (int i = 1; i < __tags.Count; i++) {
+            foreach (Component component in (Component[])[..foundComponents]) {
+                if (!_taggedComponents[__tags[i]].Contains(component)) foundComponents.Remove(component);
+            }
+        }
+
+        return [..foundComponents];
+    }
+    
+    
+    
+    
 
     /// <summary>
     /// Searches and returns the first Component of a type found on the Docker.
@@ -309,7 +380,7 @@ public abstract partial class ComponentDocker
 
 
         Debug.LogState("Found Components on Docker", ["Components", "Type", "Docker"],
-            [(foundComponents.SelectMany(x => x.GetHashCode().ToString()) + "]").ToString(), typeof(__Type).ToString(),  GetHashCode().ToString()]);
+            [(foundComponents.Select(x => x.GetHashCode().ToString()) + "]").ToString(), typeof(__Type).ToString(),  GetHashCode().ToString()]);
         
         return [..foundComponents];
     }
