@@ -6,9 +6,9 @@ cool lossless compressor to make my files look more complex
 
 name save files something like ansf
 
-    //todo: spinny loady wheel, error graphic and make it so multiple scenes can be loaded and modularized, make it so behaviors can be enabled and disabled and merging scenes loading
+    //todo: spinny loady wheel, error graphic and make it so multiple scenes can be loaded and modularized, make it so Components can be enabled and disabled and merging scenes loading
 
-body tags, behavior and component tags search methods add a way to enforce one component between all scenes, behaviors and components upgrade base script
+body tags, Component and component tags search methods add a way to enforce one component between all scenes, Components and components upgrade base script
 
 show colliders option
 
