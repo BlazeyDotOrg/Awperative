@@ -22,13 +22,6 @@ public abstract partial class Component : ComponentDocker
     /// Current parent of the Component. Can be either Scene or another Component.
     /// </summary>
     public ComponentDocker ComponentDocker { get; internal set; }
-    
-    
-    
-    /// <summary>
-    /// Identifiers for Components.
-    /// </summary>
-    public HashSet<string> Tags;
 
 
 
@@ -112,9 +105,31 @@ public abstract partial class Component : ComponentDocker
     
     
     
-    
-    
-    
+    /// <summary>
+    /// Identifiers for Components.
+    /// </summary>
+    public ImmutableArray<string> Tags => [.._tags];
+    internal HashSet<string> _tags;
+
+
+
+
+
+    /// <summary>
+    /// Adds a new tag to the Component
+    /// </summary>
+    /// <param name="__tag"> The tag to add</param>
+    public void AddTag(string __tag) => ComponentDocker.HashTaggedComponent(this, __tag);
+
+
+
+
+
+    /// <summary>
+    /// Removes a tag from the Component
+    /// </summary>
+    /// <param name="__tag"> The tag to remove</param>
+    public void RemoveTag(string __tag) => ComponentDocker.UnhashTaggedComponent(this, __tag);
     
     
     

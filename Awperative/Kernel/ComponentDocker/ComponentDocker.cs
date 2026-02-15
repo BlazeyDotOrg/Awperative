@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -42,7 +43,7 @@ public abstract partial class ComponentDocker
     }));
 
 
-    
+
 
 
     /// <summary>
@@ -50,7 +51,17 @@ public abstract partial class ComponentDocker
     /// </summary>
     /// <param name="__component"> Component to modify</param>
     /// <param name="__priority"> New priority for Component</param>
-    internal void UpdatePriority(Component __component, int __priority) { _Components.Remove(__component); __component._priority = __priority; _Components.Add(__component); }
+    internal void UpdatePriority(Component __component, int __priority) {
+        foreach (String tag in __component._tags) {
+            _taggedComponents[tag].Remove(__component);
+        }  _Components.Remove(__component); 
+        
+        __component._priority = __priority;
+        
+        foreach (String tag in __component._tags) {
+            _taggedComponents[tag].Add(__component);
+        } _Components.Add(__component);
+    }
     
     
     
@@ -264,17 +275,69 @@ public abstract partial class ComponentDocker
     /// /// <summary>
     /// Holds Components at Keys of their tags.
     /// </summary>
-    internal Dictionary<string, List<Component>> _taggedComponents = [];
+    internal Dictionary<string, SortedSet<Component>> _taggedComponents = [];
 
 
 
+
+    
+    /// <summary>
+    /// Add component to its proper place in the dictionary and resort values to match priorities.
+    /// </summary>
+    /// <param name="__component"> Component to hash</param>
+    /// <param name="__tag"> Value to try and hash</param>
+    internal void HashTaggedComponent(Component __component, string __tag) {
+
+        if (!__component._tags.Add(__tag))
+            //already has tag
+            return;
+
+        if (_taggedComponents.TryGetValue(__tag, out SortedSet<Component> components)) {
+            components.Add(__component);
+            
+        } else _taggedComponents.Add(__tag, new SortedSet<Component>(Comparer<Component>.Create((a, b) => { 
+            int result = b.Priority.CompareTo(a.Priority);
+            return (result != 0) ? result : a.GetHashCode().CompareTo(b.GetHashCode());
+        })));
+    }
+
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="__component"></param>
+    /// <param name="__tag"></param>
+    internal void UnhashTaggedComponent(Component __component, string __tag) {
+
+        if (!__component._tags.Remove(__tag))
+                //doesnt have tag
+            return;
+        
+        
+        if (_taggedComponents.TryGetValue(__tag, out SortedSet<Component> components)) {
+            components.Remove(__component);
+            
+            if(components.Count == 0)
+                _taggedComponents.Remove(__tag);
+        }
+    }
+
+
+
+    
 
     /// <summary>
     /// Finds the first instance of a component with a given tag
     /// </summary>
     /// <param name="__tag"></param>
     /// <returns></returns>
-    internal Component Get(string __tag) => _taggedComponents[__tag].OrderByDescending(x => x._priority).First();
+    internal Component Get(string __tag) {
+        if (_taggedComponents.TryGetValue(__tag, out SortedSet<Component> components))
+            return ((Component[])[..components])[0];
+
+        return null;
+    }
 
 
 
@@ -283,7 +346,12 @@ public abstract partial class ComponentDocker
     /// </summary>
     /// <param name="__tag"></param>
     /// <returns></returns>
-    internal ImmutableArray<Component> GetAll(string __tag) => [.._taggedComponents[__tag]];
+    internal ImmutableArray<Component> GetAll(string __tag) {
+        if (_taggedComponents.TryGetValue(__tag, out SortedSet<Component> components))
+            return [..components];
+
+        return [];
+    }
 
 
 
@@ -302,7 +370,7 @@ public abstract partial class ComponentDocker
     /// <param name="__tags"></param>
     /// <returns></returns>
     internal ImmutableArray<Component> GetAll(List<string> __tags) {
-        List<Component> foundComponents = _taggedComponents[__tags[0]];
+        SortedSet<Component> foundComponents = _taggedComponents[__tags[0]];
 
         for (int i = 1; i < __tags.Count; i++) {
             foreach (Component component in (Component[])[..foundComponents]) {
