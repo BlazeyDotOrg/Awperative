@@ -1,5 +1,7 @@
 # Awperative Components
 
+### Code and Documentation by Avery Norris
+
 ---
 
 
@@ -15,7 +17,7 @@ an Entity Component system involves 2/3 types of data.
 
  - **Components** are what we actually care about, shockingly, they are the
 "Component" in Entity Component System, and you can think about them as the actual
-scripts or program in your Game, but a little more object oriented.
+scripts or program in your Game, but a little more object-oriented.
 
    
  - **GameObjects** are the parents components are glued to, in most Game Libraries and Engines
@@ -45,7 +47,7 @@ As of this current version, Awperative's **ECS** has taken on a different form t
 One of the main **Awperative Principles** is **Generalization**; and during development it became clear
 GameObjects are unnecessary, which caused them to be replaced by: the **Component**.
 
-**Components** are a combination of the **GameObjects** and **Components** we discussed earlier. Awperative 
+While they are still called **Components**, Awperative's Components are actually a combination of the **GameObjects** and **Components** we discussed earlier. Awperative 
 does not implement many fancy features out of the box; because of that the traditionally useful GameObjects became
 obsolete. Objects are also not built to be flexible like Components, leaving empty, nearly static objects floating in
 our Scenes.
@@ -93,7 +95,7 @@ For any further documentation, please refer to the API section of our glorious w
 
 ## Examples and Good Practice
 
-First let's see how we can recreate typical GameObject Component. I would most recommend using **Nested Components** to acheive this.
+First let's see how we can recreate typical GameObject Component. I would most recommend using **Nested Components** to achieve this.
 If we pretend we have implemented a few modules for basic transform profiles and sprite management, then we can easily make a basic movable sprite object.
 Like so :
 
@@ -232,4 +234,4 @@ will cause logged errors, and possibly a runtime error/halt.
 
 ---
 # End Of Documentation
-### Written By Avery Norris
+### Code and Documentation by Avery Norris

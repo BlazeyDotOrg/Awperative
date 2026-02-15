@@ -11,7 +11,7 @@ namespace Awperative;
 /// </summary>
 /// <remarks> Please don't inherit this. I don't know why you would</remarks>
 /// <author> Avery Norris </author>
-public abstract partial class ComponentDocker
+public abstract class ComponentDocker
 {
     
     
@@ -27,15 +27,7 @@ public abstract partial class ComponentDocker
     /// Amount of all Components in the Docker
     /// </summary>
     public int Count => _Components.Count;
-
-
-
-    private readonly static Comparer<Component> _componentSorter = Comparer<Component>.Create((a, b) => {
-        int result = b.Priority.CompareTo(a.Priority);
-        return (result != 0) ? result : a.GetHashCode().CompareTo(b.GetHashCode());
-    });
-
-
+    
 
 
     /// <summary>
@@ -43,6 +35,16 @@ public abstract partial class ComponentDocker
     /// If they are equal it defaults to hash codes to ensure consistent Behavior
     /// </summary>
     internal SortedSet<Component> _Components = new(_componentSorter);
+    
+    
+    
+    /// <summary>
+    /// How Priority is sorted.
+    /// </summary>
+    private readonly static Comparer<Component> _componentSorter = Comparer<Component>.Create((a, b) => {
+        int result = b.Priority.CompareTo(a.Priority);
+        return (result != 0) ? result : a.GetHashCode().CompareTo(b.GetHashCode());
+    });
 
 
 
@@ -78,38 +80,38 @@ public abstract partial class ComponentDocker
     /// Called by Awperative when the game is Closed, sends the event to all children; and they send it to their children.
     /// </summary>
     /// <remarks> Will not always trigger if the program is force closed </remarks>
-    internal virtual void ChainUnload() { foreach (Component component in (Component[])[.._Components]) { component.Unload(); component.ChainUnload(); } }
+    internal virtual void ChainUnload() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Unload(); component.ChainUnload(); } } }
     
     /// <summary>
     /// Called by Awperative when the game is Opened, sends the event to all children; and they send it to their children.
     /// </summary>
-    internal virtual void ChainLoad() { foreach (Component component in (Component[])[.._Components]) { component.Load(); component.ChainLoad(); } }
+    internal virtual void ChainLoad() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Load(); component.ChainLoad(); } } }
 
     
     
     /// <summary>
     /// Called by Awperative when the game is Updated sends the event to all children; and they send it to their children.
     /// </summary>
-    internal virtual void ChainUpdate() { foreach (Component component in (Component[])[.._Components]) { component.Update(); component.ChainUpdate(); } }
+    internal virtual void ChainUpdate() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Update(); component.ChainUpdate(); } } }
     
     /// <summary>
     /// Called by Awperative when the game is Drawn, sends the event to all children; and they send it to their children.
     /// </summary>
     /// <remarks> Only use this method for drawing methods</remarks>
-    internal virtual void ChainDraw() { foreach (Component component in (Component[])[.._Components]) { component.Draw(); component.ChainDraw(); } }
+    internal virtual void ChainDraw() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Draw(); component.ChainDraw(); } } }
     
     
+    
+    /// <summary>
+    /// Called by Awperative when this is Created, sends the event to all children; and they send it to their children.
+    /// </summary>
+    internal virtual void ChainCreate() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Create(); component.ChainCreate(); } } }
     
     /// <summary>
     /// Called by Awperative when this Component is destroyed, sends the event to all children; since they will be Destroyed too. And they send it to their children.
     /// </summary>
     /// <remarks> Not called when the game is closed</remarks>
-    internal virtual void ChainDestroy() { foreach(Component component in (Component[])[.._Components]) { component.Destroy(); component.ChainDestroy(); } }
-    
-    /// <summary>
-    /// Called by Awperative when this is Created, sends the event to all children; and they send it to their children.
-    /// </summary>
-    internal virtual void ChainCreate() { foreach (Component component in (Component[])[.._Components]) { component.Create(); component.ChainCreate(); } }
+    internal virtual void ChainDestroy() { foreach(Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Destroy(); component.ChainDestroy(); } } }
     
     
     

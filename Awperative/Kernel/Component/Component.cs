@@ -21,6 +21,13 @@ public abstract partial class Component : ComponentDocker
 
 
     /// <summary>
+    /// If the component receives time events or not.
+    /// </summary>
+    public bool Enabled;
+
+
+
+    /// <summary>
     /// Order for when Components are called on. Only applies between Components on the same Docker.
     /// </summary>
     public int Priority {
