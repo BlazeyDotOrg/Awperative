@@ -1,3 +1,0 @@
-ESSENTIAL TO THE FUNCTION OF THE GAME, 
-
-Component entity system!
