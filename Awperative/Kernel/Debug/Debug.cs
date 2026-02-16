@@ -1,12 +1,44 @@
+using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 
 
 namespace Awperative;
 
 
-public static partial class Debug
+public static class Debug
 {
+    
+    
+    
+    /// <summary>
+    /// True path of the log file Awperative dumps to.
+    /// </summary>
+    public static string LogFilePath { get; private set; }
+    
+    
+    
+    public static string LogFileName { get; private set; } = "Log";
+
+    
+    
+    
+    
+    /// <summary>
+    /// Sets up the Awperative debugger and finds the log file.
+    /// </summary>
+    internal static void Initiate() {
+        string directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        if(directoryPath == null) throw new Exception("Failed to get directory path!");
+        
+        if(!Directory.GetFiles(directoryPath).Contains(LogFileName + ".awlf")) throw new Exception("Failed to find log file!");
+        LogFilePath = Path.Join(directoryPath, LogFileName + ".awlf");
+    }
+    
+    
+    
     /// <summary>
     /// Writes the current message to the log file.
     /// </summary>

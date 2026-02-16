@@ -1,1 +1,0 @@
-todo: make a yaml file for the kernel config and this can find it outside of the kernel

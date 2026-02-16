@@ -44,10 +44,7 @@ public sealed class Base : Game
     /// LoadContent() is called when the program starts; right after Initialize(). Override Load() in scripting tools or use hooks to call from this event.
     /// </summary>
     /// <remarks> It is recommended to load content during LoadContent()</remarks>
-    protected override void LoadContent() {
-        foreach (AwperativeHook hook in Awperative.EventHooks.ToList()) hook.Load();
-        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainLoad();
-    }
+    protected override void LoadContent() { foreach(Scene scene in Awperative.Scenes.ToList()) if(scene.Enabled) scene.ChainLoad(); }
     
     
     
@@ -57,10 +54,7 @@ public sealed class Base : Game
     /// Update() is called every frame; before Draw(). Override Update() in scripting tools to call from this event.
     /// </summary>
     /// <remarks> Hooks are unable to receive both Update() and Draw()</remarks>
-    protected override void Update(GameTime __gameTime) {
-        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainUpdate();
-        base.Update(__gameTime);
-    }
+    protected override void Update(GameTime __gameTime) { foreach(Scene scene in Awperative.Scenes.ToList()) if(scene.Enabled) scene.ChainUpdate(); base.Update(__gameTime); }
 
     
     
@@ -70,10 +64,7 @@ public sealed class Base : Game
     /// Draw() is called every frame; after Update(). Override Draw() in scripting tools to call from this event.
     /// </summary>
     /// <remarks> Hooks are unable to receive both Update() and Draw()</remarks>
-    protected override void Draw(GameTime __gameTime) {
-        foreach(Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainDraw();
-        base.Draw(__gameTime);
-    }
+    protected override void Draw(GameTime __gameTime) { foreach(Scene scene in Awperative.Scenes.ToList()) if(scene.Enabled) scene.ChainDraw(); base.Draw(__gameTime); }
     
     
     
@@ -83,10 +74,7 @@ public sealed class Base : Game
     /// EndRun() is called if the program closes. Override Terminate() in scripting tools or use hooks to call from this event.
     /// </summary>
     /// <remarks> This event may not trigger if the program is force closed.</remarks>
-    protected override void EndRun() {
-        foreach (AwperativeHook hook in Awperative.EventHooks.ToList()) hook.Unload();
-        foreach (Scene scene in Awperative.LoadedScenes.ToList()) scene.ChainUnload();
-    }
+    protected override void EndRun() { foreach (Scene scene in Awperative.Scenes.ToList()) if(scene.Enabled) scene.ChainUnload(); }
     
     
     

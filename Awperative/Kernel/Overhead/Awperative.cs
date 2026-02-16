@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -53,16 +54,43 @@ public static class Awperative
     /// <summary>
     /// List of all scenes currently loaded in the kernel. 
     /// </summary>
-    public static List<Scene> LoadedScenes => _loadedScenes.ToList();
-    internal static HashSet<Scene> _loadedScenes { get; private set; }= [];
+    public static ImmutableArray<Scene> Scenes => [.._scenes];
+    internal static HashSet<Scene> _scenes { get; private set; } = [];
+
+    
+    
+    
+
+    /// <summary>
+    /// Creates a new Scene
+    /// </summary>
+    public static void Create(string __name) { if (Contains(__name)) _scenes.Add(new Scene(__name)); else Debug.LogError("Awperative already has a Scene with that name!", ["Scene", "Name"], [Get(__name).GetHashCode().ToString(), __name]); }
+    
+    
+
+    /// <summary>
+    /// Finds a Scene from a given name
+    /// </summary>
+    /// <param name="__name"> Name to search for</param>
+    /// <returns></returns>
+    public static Scene Get(string __name) => _scenes.FirstOrDefault(scene => scene.Name == __name, null);
     
     
     
     /// <summary>
-    /// List of all event hooks currently loaded in the kernel.
+    /// Returns bool based on whether there a scene with the given name or not.
     /// </summary>
-    public static List<AwperativeHook> EventHooks => _eventHooks.ToList();
-    internal static HashSet<AwperativeHook> _eventHooks { get; private set; } = [];
+    /// <param name="__name"></param>
+    /// <returns></returns>
+    public static bool Contains(string __name) => _scenes.Any(scene => scene.Name == __name);
+
+
+
+    /// <summary>
+    /// Closes a Scene
+    /// </summary>
+    /// <param name="__scene"></param>
+    public static void Close(Scene __scene) => Scenes.Remove(Get(__scene.Name));
     
 
     
@@ -73,10 +101,7 @@ public static class Awperative
     /// </summary>
     /// <param name="__hooks"> List of all event hooks you wish to use. </param>
     /// <remarks> You cannot add new hooks later; so make sure to register all of them in the Start() method.</remarks>
-    public static void Start(List<AwperativeHook> __hooks) {
-        
-        _eventHooks = new HashSet<AwperativeHook>(__hooks);
-        
+    public static void Start() {
         Base = new Base();
         Base.Run();
     }
