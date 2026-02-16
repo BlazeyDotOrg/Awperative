@@ -1,0 +1,5 @@
+Awperative debugger writes errors to file while staying within runtime.
+
+Searches for a file with any specifiable name in config. that must end in .awlf
+
+stands for awperative logging format.
