@@ -1,14 +1,10 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 
 
-namespace Awperative;
+
+namespace AwperativeKernel;
 
 /// <summary>
 /// Initiating class of Awperative. Call Start() to start the kernel.
@@ -24,33 +20,8 @@ public static class Awperative
     /// </summary>
     public static Base Base { get; internal set; }
     
-    
-    
-    
-    
-    /// <summary>
-    /// Handles graphics settings through MonoGame.
-    /// </summary>
-    public static GraphicsDeviceManager GraphicsDeviceManager { get; internal set; }
-    
-    
-    
-    /// <summary>
-    /// Handles drawing sprites to the screen through MonoGame.
-    /// </summary>
-    public static SpriteBatch SpriteBatch { get; internal set; }
-    
-    
-    
-    /// <summary>
-    /// Handles loading content through MonoGame.
-    /// </summary>
-    public static ContentManager ContentManager { get; internal set; }
 
-
-
-
-
+    
     /// <summary>
     /// List of all scenes currently loaded in the kernel. 
     /// </summary>
@@ -86,7 +57,7 @@ public static class Awperative
     /// <summary>
     /// Returns bool based on whether there a scene with the given name or not.
     /// </summary>
-    /// <param name="__name"></param>
+    /// <param name="__name"> Name of the Scene</param>
     /// <returns></returns>
     public static bool ContainsScene(string __name) => _scenes.Any(scene => scene.Name == __name);
 
@@ -95,8 +66,16 @@ public static class Awperative
     /// <summary>
     /// Closes a Scene
     /// </summary>
-    /// <param name="__scene"></param>
-    public static void CloseScene(Scene __scene) => Scenes.Remove(GetScene(__scene.Name));
+    /// <param name="__scene"> Scene to close</param>
+    public static void CloseScene(Scene __scene) => Scenes.Remove(__scene);
+    
+    
+    
+    /// <summary>
+    /// Closes a Scene
+    /// </summary>
+    /// <param name="__name"> Name of the scene</param>
+    public static void CloseScene(string __name) => Scenes.Remove(GetScene(__name));
     
 
     

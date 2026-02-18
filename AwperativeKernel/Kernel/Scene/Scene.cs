@@ -1,10 +1,4 @@
-
-
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
-
-namespace Awperative;
+namespace AwperativeKernel;
 
 public sealed partial class Scene : ComponentDocker
 {

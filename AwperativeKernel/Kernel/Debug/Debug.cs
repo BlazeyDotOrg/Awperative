@@ -5,7 +5,8 @@ using System.Linq;
 using System.Reflection;
 
 
-namespace Awperative;
+
+namespace AwperativeKernel;
 
 
 public static class Debug

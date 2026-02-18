@@ -44,10 +44,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "MonoGame.Framework.DesktopGL": {
-              "suppressParent": "All",
+            "OpenTK": {
               "target": "Package",
-              "version": "[3.8.*, )"
+              "version": "[5.0.0-pre.15, )"
             }
           },
           "imports": [

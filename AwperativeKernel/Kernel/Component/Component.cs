@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using Microsoft.Xna.Framework;
 
 
-namespace Awperative;
+
+namespace AwperativeKernel;
 
 
 
@@ -134,9 +134,9 @@ public abstract partial class Component : ComponentDocker
     public void RemoveTag(string __tag) => ComponentDocker.UnhashTaggedComponent(this, __tag);
     
     
-    
-    
 
+    
+    
     /// <summary>
     /// All parent Dockers and the parents of the parents up until the Scene. Will only list parents of parents, not uncle dockers.
     /// </summary>
@@ -194,4 +194,37 @@ public abstract partial class Component : ComponentDocker
             }
         return [..returnValue];
     }
+    
+    
+    
+    /// <summary>
+    /// Creates a new Scene
+    /// </summary>
+    /// <param name="__name">Name of the Scene</param>
+    public Scene CreateScene(string __name) => Awperative.CreateScene(__name);
+
+
+
+    /// <summary>
+    /// Finds a scene.
+    /// </summary>
+    /// <param name="__name">Name of the Scene</param>
+    /// <returns></returns>
+    public Scene GetScene(string __name) => Awperative.GetScene(__name);
+
+
+
+    /// <summary>
+    /// Destroys a Scene forever
+    /// </summary>
+    /// <param name="__scene"> Target scene</param>
+    public void RemoveScene(Scene __scene) => Awperative.CloseScene(__scene);
+
+
+
+    /// <summary>
+    /// Destroys a Scene forever
+    /// </summary>
+    /// <param name="__name">Name of the Scene</param>
+    public void RemoveScene(string __name) => Awperative.CloseScene(__name);
 }
