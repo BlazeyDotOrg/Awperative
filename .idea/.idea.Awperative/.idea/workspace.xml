@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a0780d2b-c545-4e94-9f04-a86ef3682e61" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/AwperativeKernel/bin/Debug/net8.0/AwperativeKernel.dll" beforeDir="false" afterPath="$PROJECT_DIR$/AwperativeKernel/bin/Debug/net8.0/AwperativeKernel.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AwperativeKernel/bin/Debug/net8.0/AwperativeKernel.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/AwperativeKernel/bin/Debug/net8.0/AwperativeKernel.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.AssemblyInfoInputs.cache" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;BlazeyDotOrg&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/BlazeyDotOrg/Awperative.git&quot;,
+    &quot;accountId&quot;: &quot;344e2461-798d-4d88-a9cb-8af344064ac4&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/AwperativeKernel/.config/dotnet-tools.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AwperativeKernel/Kernel/Component/Component.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AwperativeKernel/Kernel/ComponentDocker/ComponentDocker.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AwperativeKernel/Kernel/Debug/Debug.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AwperativeKernel/Kernel/Overhead/Awperative/Awperative.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AwperativeKernel/Kernel/Overhead/Base/Base.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AwperativeKernel/Kernel/Scene/Scene.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="38ULMW7J55snE1NrOYpCSyseES9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a0780d2b-c545-4e94-9f04-a86ef3682e61" name="Changes" comment="" />
+      <created>1768849154932</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1768849154932</updated>
+      <workItem from="1768849155978" duration="441000" />
+      <workItem from="1768849620634" duration="6151000" />
+      <workItem from="1768861303093" duration="3811000" />
+      <workItem from="1768872615185" duration="711000" />
+      <workItem from="1768886562898" duration="7000" />
+      <workItem from="1768886596003" duration="316000" />
+      <workItem from="1768927033736" duration="244000" />
+      <workItem from="1768934765323" duration="2244000" />
+      <workItem from="1769097334164" duration="30000" />
+      <workItem from="1769098276943" duration="14000" />
+      <workItem from="1769098781841" duration="1162000" />
+      <workItem from="1769795388086" duration="489000" />
+      <workItem from="1769821910140" duration="55000" />
+      <workItem from="1769821972103" duration="3036000" />
+      <workItem from="1769883377911" duration="132000" />
+      <workItem from="1769962701776" duration="4162000" />
+      <workItem from="1769997445805" duration="5322000" />
+      <workItem from="1770004954148" duration="524000" />
+      <workItem from="1770065212824" duration="1444000" />
+      <workItem from="1770164825511" duration="1170000" />
+      <workItem from="1770326257383" duration="2548000" />
+      <workItem from="1770508284646" duration="1792000" />
+      <workItem from="1770573413396" duration="12078000" />
+      <workItem from="1771107787272" duration="423000" />
+      <workItem from="1771108231868" duration="10705000" />
+      <workItem from="1771178686137" duration="6030000" />
+      <workItem from="1771184740961" duration="118000" />
+      <workItem from="1771184893794" duration="11065000" />
+      <workItem from="1771210274167" duration="133000" />
+      <workItem from="1771263045596" duration="650000" />
+      <workItem from="1771265712703" duration="2201000" />
+      <workItem from="1771268603392" duration="4948000" />
+    </task>
+    <task id="LOCAL-00001" summary="Pre initialize removal">
+      <option name="closed" value="true" />
+      <created>1769822570538</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1769822570538</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Removed Initialize()">
+      <option name="closed" value="true" />
+      <created>1769823457825</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1769823457825</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Changed terminate into unload">
+      <option name="closed" value="true" />
+      <created>1769823754859</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1769823754859</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Going to bed but i wanna show off my cool debugging system">
+      <option name="closed" value="true" />
+      <created>1770004973461</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1770004973461</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Near V1.0">
+      <option name="closed" value="true" />
+      <created>1770573442920</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1770573442920</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Merging Components And Behaviors">
+      <option name="closed" value="true" />
+      <created>1770584193348</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1770584193348</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Testing gittea">
+      <option name="closed" value="true" />
+      <created>1770585216828</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1770585216828</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Messing with stuff idk if i like">
+      <option name="closed" value="true" />
+      <created>1770593582353</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1770593582354</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Messing with stuff idk if i like">
+      <option name="closed" value="true" />
+      <created>1770593737356</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1770593737356</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Big work">
+      <option name="closed" value="true" />
+      <created>1771167742821</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1771167742821</updated>
+    </task>
+    <task id="LOCAL-00011" summary="COOKING">
+      <option name="closed" value="true" />
+      <created>1771181234503</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1771181234503</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Finished component docker mostly!">
+      <option name="closed" value="true" />
+      <created>1771184252214</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1771184252214</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Closing in on beta">
+      <option name="closed" value="true" />
+      <created>1771188148264</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1771188148264</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Awperative Beta 1.0 Complete!">
+      <option name="closed" value="true" />
+      <created>1771189947056</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1771189947056</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Awperative Beta!">
+      <option name="closed" value="true" />
+      <created>1771205670552</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1771205670552</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Awperative Beta Complete! V1.0">
+      <option name="closed" value="true" />
+      <created>1771205931449</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1771205931449</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Renamed To Kernel">
+      <option name="closed" value="true" />
+      <created>1771282809574</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1771282809574</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Pre initialize removal" />
+    <MESSAGE value="Removed Initialize()" />
+    <MESSAGE value="Changed terminate into unload" />
+    <MESSAGE value="Going to bed but i wanna show off my cool debugging system" />
+    <MESSAGE value="Near V1.0" />
+    <MESSAGE value="Merging Components And Behaviors" />
+    <MESSAGE value="Testing gittea" />
+    <MESSAGE value="Not happy with changes" />
+    <MESSAGE value="Messing with stuff idk if i like" />
+    <MESSAGE value="Big work" />
+    <MESSAGE value="COOKING" />
+    <MESSAGE value="Finished component docker mostly!" />
+    <MESSAGE value="Closing in on beta" />
+    <MESSAGE value="Awperative Beta 1.0 Complete!" />
+    <MESSAGE value="Awperative Beta!" />
+    <MESSAGE value="Awperative Beta Complete! V1.0" />
+    <MESSAGE value="Renamed To Kernel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed To Kernel" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

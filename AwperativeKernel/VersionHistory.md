@@ -4,7 +4,7 @@
 
 ---
 
-This is the very **first official** version of Awperative! Out of the box Awperative has come with the following :
+This is the very **first official** development version of Awperative! Out of the box Awperative has come with the following :
 
 * Entity Component System using Components, Scenes and Dockers!
 
@@ -20,3 +20,11 @@ syntax, and bugs and begin building a Game Engine on top of it.
 A few modules have been given documentation and the website is currently underway.
 
 ---
+
+# Awperative V1.1
+
+### Feb 17th 2026
+
+---
+
+Awperative is officially moved to Open TK!
