@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8wMApkegGBo=",
+  "dgSpecHash": "nvLY3cNblzg=",
   "success": true,
-  "projectFilePath": "/home/avery/Programming/Awperative/AwperativeKernel/AwperativeKernel.csproj",
+  "projectFilePath": "/home/avery/Projects/Awperative/AwperativeKernel/AwperativeKernel/AwperativeKernel.csproj",
   "expectedPackageFiles": [
     "/home/avery/.nuget/packages/opentk/5.0.0-pre.15/opentk.5.0.0-pre.15.nupkg.sha512",
     "/home/avery/.nuget/packages/opentk.audio/5.0.0-pre.15/opentk.audio.5.0.0-pre.15.nupkg.sha512",
