@@ -26,6 +26,13 @@ public abstract partial class Component : ComponentDocker
     public bool Enabled = true;
 
 
+    
+    /// <summary>
+    /// Component name
+    /// </summary>
+    public string Name;
+
+
 
     /// <summary>
     /// Order for when Components are called on. Only applies between Components on the same Docker.
@@ -42,8 +49,11 @@ public abstract partial class Component : ComponentDocker
     /// To be called when the Component is created.
     /// </summary>
     /// <param name="__parent"> Docker that this spawned in this Component</param>
-    internal void Initiate(ComponentDocker __parent) {
+    /// <param name="__name"> Name of the component</param>
+    internal void Initiate(ComponentDocker __parent, string __name, string[] __tags) {
         ComponentDocker = __parent;
+        Name = __name;
+        _tags = [..__tags];
         Create();
     }
     

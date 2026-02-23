@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-
+using System.Reflection;
 
 
 namespace AwperativeKernel;
@@ -130,7 +130,11 @@ public abstract class ComponentDocker
     /// <param name="__args"> Arguments to construct the Component with</param>
     /// <typeparam name="__Type"> Type of Component to instantiate</typeparam>
     /// <returns></returns>
-    public __Type Add<__Type>(object[] __args) where __Type : Component  {
+    public __Type Add<__Type>(object[] __args, string name = "", string[] tags = null) where __Type : Component  {
+        
+        if(name == "") { name = typeof(__Type).Name; }
+        if (tags == null) tags = [];
+        
         
         
         
@@ -162,7 +166,7 @@ public abstract class ComponentDocker
         
         //Add to docker and initialize the new Component
         _Components.Add(newComponent);
-        newComponent.Initiate(this);
+        newComponent.Initiate(this, name, tags);
         
         
         return (__Type) newComponent;
@@ -175,7 +179,7 @@ public abstract class ComponentDocker
     /// </summary>
     /// <typeparam name="__Type"></typeparam>
     /// <returns></returns>
-    public __Type Add<__Type>() where __Type : Component => Add<__Type>([]);
+    public __Type Add<__Type>(string name = "", string[] tags = null) where __Type : Component => Add<__Type>([], name: name, tags: tags);
 
 
 
@@ -316,7 +320,7 @@ public abstract class ComponentDocker
     /// <summary>
     /// Finds the first instance of a component with a given tag
     /// </summary>
-    /// <param name="__tag"></param>
+    /// <param name="__tag"> Tag to search for</param>
     /// <returns></returns>
     internal Component Get(string __tag) {
         if (_taggedComponents.TryGetValue(__tag, out SortedSet<Component> components))
@@ -325,7 +329,17 @@ public abstract class ComponentDocker
         return null;
     }
 
+    
+    
+    /// <summary>
+    /// Finds the first instance of a component with a given tag
+    /// </summary>
+    /// <param name="__tag"> Tag to search for</param>
+    /// <param name="__component">Component that has been found</param>
+    /// <returns></returns>
+    internal bool TryGet(string __tag, out Component __component) { __component = Get(__tag); return __component != null; }
 
+    
 
     /// <summary>
     /// Finds all Components with a given tag
@@ -340,6 +354,16 @@ public abstract class ComponentDocker
     }
 
 
+    
+    /// <summary>
+    /// Searches for all Components with a given tag
+    /// </summary>
+    /// <param name="__tag"></param>
+    /// <param name="__components"></param>
+    /// <returns></returns>
+    internal bool TryGetAll(string __tag, out ImmutableArray<Component> __components) { __components = GetAll(__tag); return __components.Length > 0; }
+
+
 
     /// <summary>
     /// Finds the first Component that has all the given tags
@@ -347,6 +371,15 @@ public abstract class ComponentDocker
     /// <param name="__tags"></param>
     /// <returns></returns>
     internal Component Get(List<string> __tags) { ImmutableArray<Component> returnValue = GetAll(__tags); return returnValue.Length > 0 ? returnValue[0] : null; }
+
+
+
+    /// <summary>
+    /// Finds the first Component that has all the given tags
+    /// </summary>
+    /// <param name="__tags"></param>
+    /// <returns></returns>
+    internal bool TryGet(List<string> __tags, out Component __component) { __component = Get(__tags); return __component != null; }
 
 
 
@@ -370,6 +403,16 @@ public abstract class ComponentDocker
 
         return [..foundComponents];
     }
+
+
+
+    /// <summary>
+    /// Tries to get all components with the given tags
+    /// </summary>
+    /// <param name="__tags"></param>
+    /// <param name="__components"></param>
+    /// <returns></returns>
+    internal bool TryGetAll(List<string> __tags, out ImmutableArray<Component> __components) { __components = GetAll(__tags); return __components.Length > 0; }
     
     
     
@@ -394,6 +437,16 @@ public abstract class ComponentDocker
         Debug.LogError("Docker does not have target Component", ["Type", "Docker"], 
             [typeof(__Type).ToString(), GetHashCode().ToString()]); return null;
     }
+
+
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="__component"></param>
+    /// <typeparam name="__Type"></typeparam>
+    /// <returns></returns>
+    public bool TryGet<__Type>(out __Type __component) where __Type : Component { __component = Get<__Type>(); return __component != null; }
     
     
     
@@ -430,6 +483,18 @@ public abstract class ComponentDocker
         
         return [..foundComponents];
     }
+
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="__components"></param>
+    /// <typeparam name="__Type"></typeparam>
+    /// <returns></returns>
+    public bool TryGetAll<__Type>(out ImmutableArray<__Type> __components) where __Type : Component { __components = GetAll<__Type>(); return __components.Length > 0; }
+    
+    
     
     
     
