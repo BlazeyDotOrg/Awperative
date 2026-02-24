@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AwperativeKernel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31304e9361e9cb2c8a96c5b71df5898a3a6da2a5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c40a76cc10915d9844dfa62ddb575c0d970a66d3")]
 [assembly: System.Reflection.AssemblyProductAttribute("AwperativeKernel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AwperativeKernel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

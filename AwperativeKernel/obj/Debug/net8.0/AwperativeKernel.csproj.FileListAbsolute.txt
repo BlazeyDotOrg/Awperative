@@ -25,4 +25,3 @@
 /home/avery/Projects/Awperative/Build/Kernel/net8.0/AwperativeKernel.deps.json
 /home/avery/Projects/Awperative/Build/Kernel/net8.0/AwperativeKernel.dll
 /home/avery/Projects/Awperative/Build/Kernel/net8.0/AwperativeKernel.pdb
-/home/avery/Projects/Awperative/AwperativeKernel/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.sourcelink.json

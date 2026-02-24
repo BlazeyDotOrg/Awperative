@@ -12,6 +12,12 @@ namespace AwperativeKernel;
 /// <author> Avery Norris </author>
 public static class Awperative
 {
+
+    
+    /// <summary>
+    /// Current Version of Awperative
+    /// </summary>
+    public static double Version = 1.10d;
     
     
     
