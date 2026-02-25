@@ -39,6 +39,13 @@ public abstract partial class Component : ComponentDocker
     ///
     internal List<Action> EventDelegates;
 
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    internal Type _type;
+
     
     
  
@@ -62,10 +69,11 @@ public abstract partial class Component : ComponentDocker
     /// </summary>
     /// <param name="__parent"> Docker that this spawned in this Component</param>
     /// <param name="__name"> Name of the component</param>
-    internal void Initiate(ComponentDocker __parent, string __name, string[] __tags) {
+    internal void Initiate(ComponentDocker __parent, string __name, ICollection<string> __tags) {
         ComponentDocker = __parent;
         Name = __name;
         _tags = [..__tags];
+        _type = GetType();
         
         EventDelegates = new List<Action>(); for(int i = 0; i < Awperative.allEvents.Count; i++) EventDelegates.Add(null);
         

@@ -111,7 +111,7 @@ public abstract class ComponentDocker
     /// <param name="__args"> Arguments to construct the Component with</param>
     /// <typeparam name="__Type"> Type of Component to instantiate</typeparam>
     /// <returns></returns>
-    public __Type Add<__Type>(object[] __args, string name = "", string[] tags = null) where __Type : Component  {
+    public __Type Add<__Type>(IEnumerable<Object> __args, string name = "", ICollection<string> tags = null) where __Type : Component  {
         
         if(name == "") { name = typeof(__Type).Name; }
         if (tags == null) tags = [];
@@ -261,6 +261,7 @@ public abstract class ComponentDocker
     /// <param name="__component"> Component to hash</param>
     /// <param name="__tag"> Value to try and hash</param>
     internal void HashTaggedComponent(Component __component, string __tag) {
+        
 
         if (!__component._tags.Add(__tag)) {
             Debug.LogError("Component already has tag!", ["Component", "Type", "Tag", "Docker"],

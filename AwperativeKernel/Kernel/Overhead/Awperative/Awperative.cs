@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 
@@ -18,7 +19,7 @@ public static class Awperative
     /// <summary>
     /// Current Version of Awperative
     /// </summary>
-    public static double Version = 1.10d;
+    public static string Version = "1.2B";
     
     
     
@@ -34,6 +35,15 @@ public static class Awperative
     /// </summary>
     public static ImmutableArray<Scene> Scenes => [.._scenes];
     internal static HashSet<Scene> _scenes { get; private set; } = [];
+
+
+
+    public static bool IsRunning { get; private set; } = false;
+    public static bool IsStarted { get; private set; } = false;
+
+
+
+    public static bool DebugMode = false;
     
     
             
