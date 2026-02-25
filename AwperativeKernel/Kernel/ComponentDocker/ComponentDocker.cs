@@ -58,66 +58,47 @@ public abstract class ComponentDocker
     /// <param name="__component"> Component to modify</param>
     /// <param name="__priority"> New priority for Component</param>
     internal void UpdatePriority(Component __component, int __priority) {
-        foreach (String tag in __component._tags) {
-            _taggedComponents[tag].Remove(__component);
-        }  _Components.Remove(__component); 
+        //add ownership enforcement/method
+        
+        foreach (String tag in __component._tags) _taggedComponents[tag].Remove(__component);
+        foreach (Awperative.TimeEvent timeEvent in __component.GetAllEvents()) { Awperative._TimeBasedComponents[timeEvent].Remove(__component);}
+        _Components.Remove(__component); 
         
         __component._priority = __priority;
         
-        foreach (String tag in __component._tags) {
-            _taggedComponents[tag].Add(__component);
-        } _Components.Add(__component);
+        foreach (String tag in __component._tags) _taggedComponents[tag].Add(__component);
+        foreach (Awperative.TimeEvent timeEvent in __component.GetAllEvents()) { Awperative._TimeBasedComponents[timeEvent].Add(__component);}
+        _Components.Add(__component);
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     /// <summary>
-    /// Called by Awperative when the game is Closed, sends the event to all children; and they send it to their children.
+    /// Chains an event to all children, NOT MEANT FOR UPDATE OR DRAW ETC, JUST CREATE AND DESTROY
     /// </summary>
-    /// <remarks> Will not always trigger if the program is force closed </remarks>
-    internal virtual void ChainUnload() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Unload(); component.ChainUnload(); } } }
-    
-    /// <summary>
-    /// Called by Awperative when the game is Opened, sends the event to all children; and they send it to their children.
-    /// </summary>
-    internal virtual void ChainLoad() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Load(); component.ChainLoad(); } } }
+    /// <param name="__timeEvent"></param>
+    internal void TryEvent(Component __component, Awperative.TimeEvent __timeEvent) {
+        __component.EventDelegates[(int)__timeEvent]?.Invoke();
+    }
 
     
-    
+    //internal void TryEvent(Component __component, Awperative.TimeEvent __timeEvent) => __component.TryEvent(__timeEvent);
+
+
     /// <summary>
-    /// Called by Awperative when the game is Updated sends the event to all children; and they send it to their children.
+    /// Chains an event to all children, NOT MEANT FOR UPDATE OR DRAW ETC, JUST CREATE AND DESTROY
     /// </summary>
-    internal virtual void ChainUpdate() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Update(); component.ChainUpdate(); } } }
-    
-    /// <summary>
-    /// Called by Awperative when the game is Drawn, sends the event to all children; and they send it to their children.
-    /// </summary>
-    /// <remarks> Only use this method for drawing methods</remarks>
-    internal virtual void ChainDraw() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Draw(); component.ChainDraw(); } } }
-    
-    
-    
-    /// <summary>
-    /// Called by Awperative when this is Created, sends the event to all children; and they send it to their children.
-    /// </summary>
-    internal virtual void ChainCreate() { foreach (Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Create(); component.ChainCreate(); } } }
-    
-    /// <summary>
-    /// Called by Awperative when this Component is destroyed, sends the event to all children; since they will be Destroyed too. And they send it to their children.
-    /// </summary>
-    /// <remarks> Not called when the game is closed</remarks>
-    internal virtual void ChainDestroy() { foreach(Component component in (Component[])[.._Components]) { if(component.Enabled) { component.Destroy(); component.ChainDestroy(); } } }
-    
-    
-    
-    
+    /// <param name="__timeEvent"></param>
+    internal void ChainEvent(Awperative.TimeEvent __timeEvent) {
+
+        if (this is Component dockerComponent) {
+
+            TryEvent(dockerComponent, __timeEvent);
+            foreach (Component component in _Components.ToList()) {
+                component.EventDelegates[(int)__timeEvent]?.Invoke();
+                component.ChainEvent(__timeEvent);
+            }
+        } else Debug.LogError("Please do not call chain event on anything besides a Component! It is meant for Create() and Destroy()");
+    }
     
     
     
@@ -167,7 +148,9 @@ public abstract class ComponentDocker
         //Add to docker and initialize the new Component
         _Components.Add(newComponent);
         newComponent.Initiate(this, name, tags);
+        foreach (Awperative.TimeEvent timeEvent in newComponent.GetAllGlobalEvents()) { Awperative._TimeBasedComponents[timeEvent].Add(newComponent); }
         
+        newComponent.ChainEvent(Awperative.TimeEvent.Create);
         
         return (__Type) newComponent;
     }
@@ -547,12 +530,13 @@ public abstract class ComponentDocker
                 [__component.GetHashCode().ToString(), __component.GetType().ToString(), GetHashCode().ToString()]); return;
         }
 
-        __component.Destroy();
-        __component.ChainDestroy();
+        __component.ChainEvent(Awperative.TimeEvent.Destroy);
+        
         foreach (string tag in __component._tags) UnhashTaggedComponent(__component, tag);
         __component.ComponentDocker = null;
         
         _Components.Remove(__component);
+        foreach (Awperative.TimeEvent timeEvent in __component.GetAllEvents()) Awperative._TimeBasedComponents[timeEvent].Remove(__component);
     }
     
     

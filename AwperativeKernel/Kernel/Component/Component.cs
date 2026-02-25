@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-
+using System.Linq;
+using System.Reflection;
 
 
 namespace AwperativeKernel;
@@ -34,6 +36,16 @@ public abstract partial class Component : ComponentDocker
 
 
 
+    ///
+    internal List<Action> EventDelegates;
+
+    
+    
+ 
+
+
+
+
     /// <summary>
     /// Order for when Components are called on. Only applies between Components on the same Docker.
     /// </summary>
@@ -54,46 +66,20 @@ public abstract partial class Component : ComponentDocker
         ComponentDocker = __parent;
         Name = __name;
         _tags = [..__tags];
-        Create();
+        
+        EventDelegates = new List<Action>(); for(int i = 0; i < Awperative.allEvents.Count; i++) EventDelegates.Add(null);
+        
+        
+        if (Awperative._TypeAssociatedTimeEvents.TryGetValue(GetType(), out HashSet<Awperative.TimeEvent> presentEvents)) {
+            foreach (Awperative.TimeEvent presentEvent in presentEvents) {
+                MethodInfo info = GetType().GetMethod(presentEvent.ToString());
+                Action newAction = (Action)Delegate.CreateDelegate(typeof(Action), this, info);
+                EventDelegates[(int)presentEvent] = newAction;
+            }
+        } else {
+            Debug.LogError("Awperative does not recognize the given type! Perhaps it was created after Start() was called?", ["Type"], [GetType().ToString()]);
+        }
     }
-    
-    
-    
-    
-    
-    /// <summary>
-    /// Called when the Game is Closing; does not always happen depending on if it is Force Closed.
-    /// </summary>
-    protected internal virtual void Unload() {}
-    
-    /// <summary>
-    /// Called when the Game is Loading.
-    /// </summary>
-    protected internal virtual void Load() {}
-    
-    
-    
-    /// <summary>
-    /// Called every frame before Draw, it is recommended to do any Non-Drawing update logic here.
-    /// </summary>
-    protected internal virtual void Update() {}
-    
-    /// <summary>
-    /// Called after Update when the screen is being drawn. Please only put Drawing related logic here.
-    /// </summary>
-    protected internal virtual void Draw() {}
-    
-    
-
-    /// <summary>
-    /// Called when the Component is created.
-    /// </summary>
-    protected internal virtual void Create() {}
-    
-    /// <summary>
-    /// Called when the Component is destroyed. Not called when the Game is closed.
-    /// </summary>
-    protected internal virtual void Destroy() {}
     
     
     
@@ -237,4 +223,34 @@ public abstract partial class Component : ComponentDocker
     /// </summary>
     /// <param name="__name">Name of the Scene</param>
     public void RemoveScene(string __name) => Awperative.CloseScene(__name);
+
+
+
+    public ImmutableArray<Component> GetAllChildren() {
+        List<Component> targets = [.._Components];
+        for (int i = 0; i < targets.Count; i++) targets.InsertRange(i + 1, targets[i]._Components);
+        return [..targets];
+    }
+
+
+
+    internal ImmutableArray<Awperative.TimeEvent> GetAllEvents() {
+        if (Awperative._TypeAssociatedTimeEvents.TryGetValue(this.GetType(), out HashSet<Awperative.TimeEvent> timeEvents)) {
+            return [..timeEvents];
+        } else {
+            Debug.LogError("Awperative doesn't recognize this type. Perhaps it was created after Start() was called?", ["Type"], [this.GetType().Name]);
+            return [];
+        }
+    }
+    
+    
+    internal ImmutableArray<Awperative.TimeEvent> GetAllGlobalEvents() {
+        if (Awperative._TypeAssociatedTimeEvents.TryGetValue(this.GetType(), out HashSet<Awperative.TimeEvent> timeEvents)) {
+            foreach (Awperative.TimeEvent timeEvent in timeEvents) if (!Awperative.globalEvents.Contains(timeEvent)) timeEvents.Remove(timeEvent);
+            return [..timeEvents];
+        } else {
+            Debug.LogError("Awperative doesn't recognize this type. Perhaps it was created after Start() was called?", ["Type"], [this.GetType().Name]);
+            return [];
+        }
+    }
 }
