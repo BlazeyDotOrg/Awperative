@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+
+
 namespace AwperativeKernel;
 
 public sealed partial class Scene : ComponentDocker

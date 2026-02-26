@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 
@@ -60,45 +61,22 @@ public abstract class ComponentDocker
     internal void UpdatePriority(Component __component, int __priority) {
         //add ownership enforcement/method
         
-        foreach (String tag in __component._tags) _taggedComponents[tag].Remove(__component);
-        foreach (Awperative.TimeEvent timeEvent in __component.GetAllEvents()) { Awperative._TimeBasedComponents[timeEvent].Remove(__component);}
-        _Components.Remove(__component); 
+        foreach (String tag in __component._tags) _taggedComponents[tag].Remove(__component); _Components.Remove(__component); 
         
         __component._priority = __priority;
         
-        foreach (String tag in __component._tags) _taggedComponents[tag].Add(__component);
-        foreach (Awperative.TimeEvent timeEvent in __component.GetAllEvents()) { Awperative._TimeBasedComponents[timeEvent].Add(__component);}
-        _Components.Add(__component);
-    }
-    
-    
-    /// <summary>
-    /// Chains an event to all children, NOT MEANT FOR UPDATE OR DRAW ETC, JUST CREATE AND DESTROY
-    /// </summary>
-    /// <param name="__timeEvent"></param>
-    internal void TryEvent(Component __component, Awperative.TimeEvent __timeEvent) {
-        __component.EventDelegates[(int)__timeEvent]?.Invoke();
+        foreach (String tag in __component._tags) _taggedComponents[tag].Add(__component); _Components.Add(__component);
     }
 
     
     //internal void TryEvent(Component __component, Awperative.TimeEvent __timeEvent) => __component.TryEvent(__timeEvent);
+    
 
-
-    /// <summary>
-    /// Chains an event to all children, NOT MEANT FOR UPDATE OR DRAW ETC, JUST CREATE AND DESTROY
-    /// </summary>
-    /// <param name="__timeEvent"></param>
-    internal void ChainEvent(Awperative.TimeEvent __timeEvent) {
-
-        if (this is Component dockerComponent) {
-
-            TryEvent(dockerComponent, __timeEvent);
-            foreach (Component component in _Components.ToList()) {
-                component.EventDelegates[(int)__timeEvent]?.Invoke();
-                component.ChainEvent(__timeEvent);
-            }
-        } else Debug.LogError("Please do not call chain event on anything besides a Component! It is meant for Create() and Destroy()");
-    }
+    internal void ChainEvent(int __timeEvent) { foreach (Component component in _Components) { component.TryEvent(__timeEvent); component.ChainEvent(__timeEvent); }}
+    
+    
+    
+    
     
     
     
@@ -110,47 +88,50 @@ public abstract class ComponentDocker
     /// </summary>
     /// <param name="__args"> Arguments to construct the Component with</param>
     /// <typeparam name="__Type"> Type of Component to instantiate</typeparam>
-    /// <returns></returns>
-    public __Type Add<__Type>(IEnumerable<Object> __args, string name = "", ICollection<string> tags = null) where __Type : Component  {
+    /// <returns></returns>s
+    public __Type Add<__Type>(object[] __args, string name = "", ICollection<string> tags = null) where __Type : Component  {
         
-        if(name == "") { name = typeof(__Type).Name; }
+        Type newComponentType = typeof(__Type);
+        
+        if(name == "") { name = newComponentType.Name; }
         if (tags == null) tags = [];
         
         
         
         
         //Component does not have a constructor that matches the given args
-        if (typeof(__Type).GetConstructor(__args.Select(x => x.GetType()).ToArray()) == null) {
+        if (newComponentType.GetConstructor(__args.Select(x => x.GetType()).ToArray()) == null) {
             Debug.LogError("Component cannot be constructed with the given arguments",
                 ["Type", "Args"],
-                [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]"]); return null;
+                [newComponentType.ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]"]); return null;
         };
         
 
         Component newComponent;
         
         
+        
         //Tries to instantiate Component, and sends a fail call if an issue occurs.
-        try { newComponent = (__Type)Activator.CreateInstance(typeof(__Type), __args); }
+        try { newComponent = (__Type)Activator.CreateInstance(newComponentType, __args); }
         catch {
             Debug.LogError("Component creation failed!", ["Type", "Args", "Docker"], 
-                [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
+                [newComponentType.ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
         }
 
         
         //If Component is null do not add
         if(newComponent == null) { 
             Debug.LogError("Activator created Null Component", ["Type", "Args", "Docker"], 
-                [typeof(__Type).ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
+                [newComponentType.ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
         }
         
         
         //Add to docker and initialize the new Component
         _Components.Add(newComponent);
-        newComponent.Initiate(this, name, tags);
-        foreach (Awperative.TimeEvent timeEvent in newComponent.GetAllGlobalEvents()) { Awperative._TimeBasedComponents[timeEvent].Add(newComponent); }
+        newComponent.Initiate(this, name, tags, newComponentType);
         
-        newComponent.ChainEvent(Awperative.TimeEvent.Create);
+        newComponent.TryEvent(4);
+        newComponent.ChainEvent(4);
         
         return (__Type) newComponent;
     }
@@ -531,13 +512,13 @@ public abstract class ComponentDocker
                 [__component.GetHashCode().ToString(), __component.GetType().ToString(), GetHashCode().ToString()]); return;
         }
 
-        __component.ChainEvent(Awperative.TimeEvent.Destroy);
+        __component.TryEvent(5);
+        __component.ChainEvent(5);  
         
         foreach (string tag in __component._tags) UnhashTaggedComponent(__component, tag);
         __component.ComponentDocker = null;
         
         _Components.Remove(__component);
-        foreach (Awperative.TimeEvent timeEvent in __component.GetAllEvents()) Awperative._TimeBasedComponents[timeEvent].Remove(__component);
     }
     
     
