@@ -30,3 +30,17 @@ A few modules have been given documentation and the website is currently underwa
 Awperative is officially moved to Open TK!
 
 # Awperative V1.2B
+
+### Feb 21 2026
+
+---
+
+Beta Reflection And Speed Increasment
+
+# Awperative V1.2C
+
+### Feb 28 2026
+
+---
+
+Finished Reflection, and Awperative is MUCH faster.

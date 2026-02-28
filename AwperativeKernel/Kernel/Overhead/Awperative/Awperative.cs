@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -14,44 +13,39 @@ namespace AwperativeKernel;
 /// Initiating class of Awperative. Call Start() to start the kernel.
 /// </summary>
 /// <author> Avery Norris </author>
-public static class Awperative
+public static partial class Awperative
 {
 
     
     /// <summary>
     /// Current Version of Awperative
     /// </summary>
-    public static string Version = "1.2B";
-    
-    
-    
-    /// <summary>
-    /// Bottom class of Awperative. Contains the MonoGame instance.
-    /// </summary>
-    public static Base Base { get; internal set; }
-    
+    public static string Version = "1.2C";
 
+
+
+    /// <summary>
+    /// Bottom class of Awperative. Contains the OpenTK Instance.
+    /// </summary>
+    [NotNull, UnsafeInternal] private static Base Base;
+
+    
     
     /// <summary>
     /// List of all scenes currently loaded in the kernel. 
     /// </summary>
-    public static ImmutableArray<Scene> Scenes => [.._scenes];
-    internal static HashSet<Scene> _scenes { get; private set; } = [];
+    [CalculatedProperty, CalculatedPropertyExpense("Very Low")]
+    public static IReadOnlyList<Scene> Scenes => [.._scenes];
+    [UnsafeInternal] internal static HashSet<Scene> _scenes { get; private set; } = [];
 
 
-
-    public static bool IsRunning { get; private set; } = false;
+    
+    /// <summary> Displays if Awperative has Started or not </summary>
     public static bool IsStarted { get; private set; } = false;
+    /// <summary> Displays if the update loop is active</summary>
+    public static bool IsRunning { get; private set; } = false;
 
 
-
-    public static bool DebugMode = false;
-
-    
-    
-            
-            
-            
     /// <summary>
     /// Creates a new Scene
     /// </summary>
@@ -87,7 +81,7 @@ public static class Awperative
     /// Closes a Scene
     /// </summary>
     /// <param name="__scene"> Scene to close</param>
-    public static void CloseScene(Scene __scene) => Scenes.Remove(__scene);
+    public static void CloseScene(Scene __scene) => _scenes.Remove(__scene);
     
     
     
@@ -95,18 +89,20 @@ public static class Awperative
     /// Closes a Scene
     /// </summary>
     /// <param name="__name"> Name of the scene</param>
-    public static void CloseScene(string __name) => Scenes.Remove(GetScene(__name));
+    public static void CloseScene(string __name) => _scenes.Remove(GetScene(__name));
     
 
     
     
     
     /// <summary>
-    /// Gets Awperative ready to roll!
+    /// Gets Awperative ready to begin! Compiles Component functions etc. Please call before doing anything Awperative
+    /// related!
     /// </summary>
-    /// <param name="__hooks"> List of all event hooks you wish to use. </param>
-    /// <remarks> You cannot add new hooks later; so make sure to register all of them in the Start() method.</remarks>
     public static void Start() {
+        if(IsStarted) return;
+        IsStarted = true;
+        
         Debug.Initiate();
         
         //Load in all Components nd find the associated types.
@@ -156,8 +152,9 @@ public static class Awperative
     /// <summary>
     /// Starts Awperative up! This method runs forever.
     /// </summary>
-    [DoesNotReturn]
     public static void Run() {
+        if(!IsStarted && IsRunning) return;
+        IsRunning = true;
         Base = new Base();
         Base.Run();
     }
@@ -184,27 +181,5 @@ public static class Awperative
     internal static Dictionary<Type, Action<Component>[]> _TypeAssociatedTimeEvents = [];
 
 
-
-    public static SafetyLevel safetyLevel {
-        get => _safetyLevel;
-        set {
-            ThrowExceptions = value is SafetyLevel.Extreme;
-            IgnoreErrors = value is SafetyLevel.Low or SafetyLevel.None;
-            DebugErrors = value is not SafetyLevel.None;
-            _safetyLevel = value;
-        }
-    } private static SafetyLevel _safetyLevel;
-
-    public static bool ThrowExceptions { get; private set; } = false;
-    public static bool IgnoreErrors { get; private set; } = false;
-    public static bool DebugErrors { get; private set; } = true;
-
-
     //What to do if there is an error, keep in mind low and none still can have errors, because you are turning off validation checking
-    public enum SafetyLevel {
-        Extreme, //Throw exceptions and stop the whole program
-        Normal, //Just debug it to the console, and halt current process
-        Low, //Push through tasks but debug error
-        None, //Ignore most/all errors and do not debug it,
-    }
 }

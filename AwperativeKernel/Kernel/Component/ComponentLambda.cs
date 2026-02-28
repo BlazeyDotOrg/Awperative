@@ -2,8 +2,6 @@ namespace AwperativeKernel;
 
 public abstract partial class Component
 {
-    #region Scenes
-    
     /// <inheritdoc cref="Awperative.CreateScene"/>
     public static Scene CreateScene(string __name) => Awperative.CreateScene(__name);
 
@@ -22,11 +20,9 @@ public abstract partial class Component
     /// <inheritdock cref="Awperative.CloseScene(string)" />
     public void RemoveScene(string __name) => Awperative.CloseScene(__name);
     
-    #endregion
     
-    #region Components
     
+    /// <inheritdoc cref="ComponentDocker.Move"/>
     public void Move(ComponentDocker __newDocker) => ComponentDocker.Move(this, __newDocker);
     
-    #endregion
 }

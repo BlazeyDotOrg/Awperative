@@ -31,7 +31,7 @@ public class DockerOwns : Attribute
             __docker.GetHashCode().ToString("N0")
         ]);
         
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -62,7 +62,7 @@ public class DockerDoesntOwn : Attribute
             __docker.GetHashCode().ToString("N0")
         ]);
         
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -94,7 +94,7 @@ public class OrphanComponent : Attribute
             __component.ComponentDocker.GetHashCode().ToString("N0")
         ]);
         
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -118,7 +118,7 @@ public class ComponentNotNull : Attribute
 
         Debug.LogError("Component is null!");
         
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -142,7 +142,7 @@ public class DockerNotNull : Attribute
 
         Debug.LogError("Docker is null!");
         
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -165,7 +165,7 @@ public class SceneNotNull : Attribute
 
         Debug.LogError("Scene is null!");
         
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -188,7 +188,7 @@ public class CollectionNotNull : Attribute
             if (__collection[i] == null)
                 Debug.LogError("A Given Collection has null members!", ["Type"], [__collection.GetType().Name]);
         
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -211,7 +211,7 @@ public class EnumeratorNotNull : Attribute
             if (obj == null)
                 Debug.LogError("A Given Enumerator has null members!", ["Type"], [__enumerator.GetType().Name]);
         
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -236,7 +236,7 @@ public class NotNull : Attribute
             [__object.GetType().Name
         ]);
         
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -263,7 +263,7 @@ public class DifferentDocker : Attribute
             __docker.GetHashCode().ToString("N0")
         ]);
 
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -287,7 +287,7 @@ public class ValueFitsRange : Attribute
 
         Debug.LogError("Value does not fit range!", ["Index"], [__index.ToString("N0")]);
 
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -312,7 +312,7 @@ public class CollectionContains : Attribute
         Debug.LogError("Collection does not contain object!", ["ObjectType"], 
             [__object.GetType().Name]);
 
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 
@@ -337,7 +337,7 @@ public class CollectionDoesntContain : Attribute
         Debug.LogError("Collection already contains object!", ["ObjectType"], 
             [__object.GetType().Name]);
 
-        return Awperative.IgnoreErrors;
+        return Debug.IgnoreErrors;
     }
 }
 

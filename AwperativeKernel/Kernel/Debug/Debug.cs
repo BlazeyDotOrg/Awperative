@@ -154,7 +154,7 @@ public static class Debug
     /// <param name="__parameters"> Names of values to debug</param>
     /// <param name="__values"> Values to debug</param>
     public static void LogError(string __message, string[] __parameters, string[] __values) {
-        if(Awperative.DebugErrors) LogGeneric(__message, "ERR", __parameters, __values, Awperative.ThrowExceptions);
+        if(DebugErrors) LogGeneric(__message, "ERR", __parameters, __values, ThrowExceptions);
     }
 
     /// <summary>
@@ -208,5 +208,29 @@ public static class Debug
             output += "\n         " + __parameters[i] + "- " + __values[i];
         
         File.AppendAllText(LogFilePath, output);
+    }
+    
+    
+
+    public static Debug.SafetyLevel safetyLevel {
+        get => _safetyLevel;
+        set {
+            ThrowExceptions = value is Debug.SafetyLevel.Extreme;
+            IgnoreErrors = value is Debug.SafetyLevel.Low or Debug.SafetyLevel.None;
+            DebugErrors = value is not Debug.SafetyLevel.None;
+            _safetyLevel = value;
+        }
+    }
+
+    private static Debug.SafetyLevel _safetyLevel;
+    public static bool ThrowExceptions { get; private set; } = false;
+    public static bool IgnoreErrors { get; private set; } = false;
+    public static bool DebugErrors { get; private set; } = true;
+
+    public enum SafetyLevel {
+        Extreme, //Throw exceptions and stop the whole program
+        Normal, //Just debug it to the console, and halt current process
+        Low, //Push through tasks but debug error
+        None, //Ignore most/all errors and do not debug it,
     }
 }
