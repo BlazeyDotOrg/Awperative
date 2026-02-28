@@ -48,11 +48,11 @@ public abstract partial class ComponentDocker
     /// <typeparam name="__Type"> Type of Component to instantiate</typeparam>
     /// <remarks>Component cannot have a Constructor</remarks>
     /// <author> Avery Norris</author>
-    public __Type Add<__Type>(string name = null, int priority = 0, Collection<string> tags = null) where __Type : Component, new() {
+    public __Type Add<__Type>(string name = null, [ValueFitsRange] int priority = 0, Collection<string> tags = null) where __Type : Component, new() {
         Component newComponent = new __Type(); 
         newComponent.Name = name ??= typeof(__Type).Name;
         newComponent._tags = [..tags ??= []];
-        newComponent._priority = priority;
+        newComponent.Priority = priority;
         
         InitiateComponent(newComponent); return (__Type)newComponent;
     }
@@ -170,7 +170,7 @@ public abstract partial class ComponentDocker
     /// Destroys all Components from a given collection.
     /// </summary>
     /// <param name="__Components"></param>
-    public void DestroyAll([ComponentNotNull, DockerOwns] Collection<Component> __Components) { for (var i = 0; i < __Components.Count; i++) Destroy(__Components[i]); }
+    public void DestroyAll([ComponentNotNull, DockerOwns] IReadOnlyList<Component> __Components) { for (var i = 0; i < __Components.Count; i++) Destroy(__Components[i]); }
 
     
     

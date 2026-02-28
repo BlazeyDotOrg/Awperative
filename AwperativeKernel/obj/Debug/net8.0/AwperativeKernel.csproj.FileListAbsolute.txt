@@ -25,3 +25,11 @@
 /home/avery/Projects/Awperative/Build/Kernel/net8.0/AwperativeKernel.deps.json
 /home/avery/Projects/Awperative/Build/Kernel/net8.0/AwperativeKernel.dll
 /home/avery/Projects/Awperative/Build/Kernel/net8.0/AwperativeKernel.pdb
+/Users/averynorris/RiderProjects/AwperativeKernel/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.csproj.AssemblyReference.cache
+/Users/averynorris/RiderProjects/AwperativeKernel/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.GeneratedMSBuildEditorConfig.editorconfig
+/Users/averynorris/RiderProjects/AwperativeKernel/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.AssemblyInfoInputs.cache
+/Users/averynorris/RiderProjects/AwperativeKernel/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.AssemblyInfo.cs
+/Users/averynorris/RiderProjects/AwperativeKernel/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.csproj.CoreCompileInputs.cache
+/Users/averynorris/RiderProjects/AwperativeKernel/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.dll
+/Users/averynorris/RiderProjects/AwperativeKernel/AwperativeKernel/obj/Debug/net8.0/refint/AwperativeKernel.dll
+/Users/averynorris/RiderProjects/AwperativeKernel/AwperativeKernel/obj/Debug/net8.0/AwperativeKernel.pdb

@@ -294,6 +294,56 @@ public class ValueFitsRange : Attribute
 
 
 /// <summary>
+/// Requires that the index fits a given collection
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public class CollectionContains : Attribute
+{
+
+
+    /// <summary>
+    /// Verifies if the value fits a range
+    /// </summary>
+    /// <param name="__componentDocker"></param>
+    /// <returns></returns>
+    public static bool VerifyOrThrow<__Type>(__Type __object, ICollection<__Type> __collection) {
+        if(__collection.Contains(__object)) return true;
+
+        Debug.LogError("Collection does not contain object!", ["ObjectType"], 
+            [__object.GetType().Name]);
+
+        return Awperative.IgnoreErrors;
+    }
+}
+
+
+
+/// <summary>
+/// Requires that the index fits a given collection
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public class CollectionDoesntContain : Attribute
+{
+
+
+    /// <summary>
+    /// Verifies if the value fits a range
+    /// </summary>
+    /// <param name="__componentDocker"></param>
+    /// <returns></returns>
+    public static bool VerifyOrThrow<__Type>(__Type __object, ICollection<__Type> __collection) {
+        if(!__collection.Contains(__object)) return true;
+
+        Debug.LogError("Collection already contains object!", ["ObjectType"], 
+            [__object.GetType().Name]);
+
+        return Awperative.IgnoreErrors;
+    }
+}
+
+
+
+/// <summary>
 /// Shows that the given object is unsafe (ex. it doesn't check for null values and such, or it doesn't have guardrails based on cases).
 /// This is just for internal/private methods to remind myself how to call it :) The reasoning is case by case, but most of the time,
 /// it is because all of the exposing public methods already check, and double checks would only slow me down
