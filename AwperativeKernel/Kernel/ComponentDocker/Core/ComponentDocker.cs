@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using AwperativeKernel.Attributes;
 
 
 namespace AwperativeKernel;
@@ -14,8 +16,32 @@ namespace AwperativeKernel;
 /// </summary>
 /// <remarks> Please don't inherit this. I don't know why you would</remarks>
 /// <author> Avery Norris </author>
-public abstract class ComponentDocker
+public abstract partial class ComponentDocker : IEnumerable, IEnumerable<Component>, IEquatable<Component>, IEquatable<ComponentDocker>
 {
+    
+    public bool Equals(Component __other) {
+        if (this is Component component) {
+            return component == __other;
+        } else return false;
+    }
+    
+    public bool Equals(ComponentDocker __other) {
+        return this == __other;
+    }
+    
+
+    //blocks external inheritance
+    internal ComponentDocker() {}
+    
+
+    IEnumerator IEnumerable.GetEnumerator() {
+        return  GetEnumerator();
+    }
+    
+    public IEnumerator<Component> GetEnumerator() {
+        Console.WriteLine("enumerator called" + _Components.Count);
+        return new ComponentDockEnum([.._Components]);
+    }
     
     
     
@@ -37,7 +63,9 @@ public abstract class ComponentDocker
     /// Core of Docker, contains all of our precious Components. Sorts them by their priorities with highest going first.
     /// If they are equal it defaults to hash codes to ensure consistent Behavior
     /// </summary>
-    internal SortedSet<Component> _Components = new(_componentSorter);
+    internal List<Component> _Components = new();
+    internal Dictionary<Type, HashSet<Component>> _ComponentDictionary = new();
+    internal Dictionary<string, HashSet<Component>> _taggedComponents = new();
     
     
     
@@ -60,163 +88,34 @@ public abstract class ComponentDocker
     /// <param name="__priority"> New priority for Component</param>
     internal void UpdatePriority(Component __component, int __priority) {
         //add ownership enforcement/method
-        
-        foreach (String tag in __component._tags) _taggedComponents[tag].Remove(__component); _Components.Remove(__component); 
-        
+        _Components.Sort(_componentSorter);
         __component._priority = __priority;
-        
-        foreach (String tag in __component._tags) _taggedComponents[tag].Add(__component); _Components.Add(__component);
     }
 
     
     //internal void TryEvent(Component __component, Awperative.TimeEvent __timeEvent) => __component.TryEvent(__timeEvent);
-    
 
-    internal void ChainEvent(int __timeEvent) { foreach (Component component in _Components) { component.TryEvent(__timeEvent); component.ChainEvent(__timeEvent); }}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /// <summary>
-    /// Add a new Component to the Docker; This is the only way they should be created. 
-    /// </summary>
-    /// <param name="__args"> Arguments to construct the Component with</param>
-    /// <typeparam name="__Type"> Type of Component to instantiate</typeparam>
-    /// <returns></returns>s
-    public __Type Add<__Type>(object[] __args, string name = "", ICollection<string> tags = null) where __Type : Component  {
-        
-        Type newComponentType = typeof(__Type);
-        
-        if(name == "") { name = newComponentType.Name; }
-        if (tags == null) tags = [];
-        
-        
-        
-        
-        //Component does not have a constructor that matches the given args
-        if (newComponentType.GetConstructor(__args.Select(x => x.GetType()).ToArray()) == null) {
-            Debug.LogError("Component cannot be constructed with the given arguments",
-                ["Type", "Args"],
-                [newComponentType.ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]"]); return null;
-        };
-        
 
-        Component newComponent;
-        
-        
-        
-        //Tries to instantiate Component, and sends a fail call if an issue occurs.
-        try { newComponent = (__Type)Activator.CreateInstance(newComponentType, __args); }
-        catch {
-            Debug.LogError("Component creation failed!", ["Type", "Args", "Docker"], 
-                [newComponentType.ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
+    internal void ChainEvent(int __timeEvent) {
+        for (int i = 0; i < _Components.Count; i++) {
+            _Components[i].TryEvent(__timeEvent);
+            _Components[i].ChainEvent(__timeEvent);
         }
-
-        
-        //If Component is null do not add
-        if(newComponent == null) { 
-            Debug.LogError("Activator created Null Component", ["Type", "Args", "Docker"], 
-                [newComponentType.ToString(), "[" + string.Join(", ", __args.Select(x => x.ToString())) + "]", GetHashCode().ToString()]); return null;
-        }
-        
-        
-        //Add to docker and initialize the new Component
-        _Components.Add(newComponent);
-        newComponent.Initiate(this, name, tags, newComponentType);
-        
-        newComponent.TryEvent(4);
-        newComponent.ChainEvent(4);
-        
-        return (__Type) newComponent;
     }
-    
-    
-    
-    /// <summary>
-    /// Adds a new Component to the Docker; This is the only way they should be created.
-    /// </summary>
-    /// <typeparam name="__Type"></typeparam>
-    /// <returns></returns>
-    public __Type Add<__Type>(string name = "", string[] tags = null) where __Type : Component => Add<__Type>([], name: name, tags: tags);
+
+
+
+
 
 
 
     
     
-    
-    
-    
-    
-    
-    /// <summary>
-    /// Transfers a child Component to another Docker
-    /// </summary>
-    /// <param name="__component"> Component to move</param>
-    /// <param name="__componentDocker"> Docker to move component to</param>
-    /// <remarks> Components cannot transfer themselves with this Method!</remarks>
-    public void Move(Component __component, ComponentDocker __componentDocker) {
 
-        
-        
-        //This allows self transfer behavior while preserving Docker's actual job, Before all other statements to prevent Double-Debugging.
-        if (__component == this) { __component.ComponentDocker.Move(__component, __componentDocker); return; }
-        
-        
-        
-        if (__component == null) {
-            Debug.LogError("Component is null!",  ["CurrentDocker", "NewDocker"], 
-                [GetHashCode().ToString(), __componentDocker.GetHashCode().ToString()]); return; }
-        
-        
-        
-        if (!_Components.Contains(__component)) { 
-            Debug.LogError("Docker does not have ownership of Component",  ["Component", "Type", "CurrentDocker", "NewDocker"], 
-                [__component.GetHashCode().ToString(), __component.GetType().ToString(), GetHashCode().ToString(), __componentDocker.GetHashCode().ToString()]); return; }
 
-        
 
-        //Update docker lists
-        __componentDocker._Components.Add(__component);
-        _Components.Remove(__component);
-        
-        
-        
-        //Update components parent
-        __component.ComponentDocker = __componentDocker;
-    }
-    
-    
-    
-    /// <summary>
-    /// Transfers the first found Component of a specific type to another Docker
-    /// </summary>
-    /// <param name="__componentDocker"> Docker to move component to</param>
-    /// <typeparam name="__Type"> Type of component</typeparam>
-    public void Move<__Type>(ComponentDocker __componentDocker) where __Type : Component => Move(Get<__Type>(), __componentDocker);
 
-    
-    
-    /// <summary>
-    /// Transfers all Components in a list to another Docker.
-    /// </summary>
-    /// <param name="__Components"> List of Components to transfer</param>
-    /// <param name="__componentDocker"> Docker to move Component to</param>
-    public void MoveAll(IEnumerable<Component> __Components, ComponentDocker __componentDocker) { foreach (Component Component in (Component[])[..__Components]) Move(Component, __componentDocker); }
-    
-    
-    
-    /// <summary>
-    /// Transfers all Components of a type to another Docker.
-    /// </summary>
-    /// <param name="__componentDocker"> Target Docker</param>
-    /// <typeparam name="__Type"> Type of Components to transfer</typeparam>
-    public void MoveAll<__Type>(ComponentDocker __componentDocker) where __Type : Component => MoveAll(GetAll<__Type>(), __componentDocker);
+
 
 
 
@@ -224,13 +123,9 @@ public abstract class ComponentDocker
     
     
     
+
+
     
-    
-    
-    /// /// <summary>
-    /// Holds Components at Keys of their tags.
-    /// </summary>
-    internal Dictionary<string, SortedSet<Component>> _taggedComponents = [];
 
 
 
@@ -463,97 +358,33 @@ public abstract class ComponentDocker
     
     
     
-    /// <summary>
-    /// Returns a bool based on if the Docker contains a Component with the given tag or not
-    /// </summary>
-    /// <param name="__tag"></param>
-    /// <returns></returns>
-    public bool Contains(string __tag) => _taggedComponents.ContainsKey(__tag);
     
-    
-    
-    /// <summary>
-    /// Returns a bool based on if the Docker contains a Component of that type or not
-    /// </summary>
-    /// <typeparam name="__Type">Type of the Component</typeparam>
-    /// <returns></returns>
-    public bool Contains<__Type>() where __Type : Component => _Components.Any(x => x is __Type);
-    
-    
-    
-    /// <summary>
-    /// Returns a bool based on if the current __Component is owned by this Docker
-    /// </summary>
-    /// <param name="__component"></param>
-    /// <returns></returns>
-    public bool Contains(Component __component) => _Components.Contains(__component);
-    
-    
-    
-    
-    
-    /// <summary>
-    /// Destroys a Component attached to docker
-    /// </summary>
-    /// <param name="__component"></param>
-    public void Remove(Component __component) {
 
-        //Component is null
-        if (__component == null) {
-            Debug.LogError("Component is null", ["CurrentDocker"],
-                [GetHashCode().ToString()]); return;
-        }
 
+    private void AddComponentToLists(Component __component) {
+        var Type = __component.GetType();
+        _Components.Add(__component); 
+        if (!_ComponentDictionary.TryAdd(Type, [__component])) _ComponentDictionary[Type].Add(__component);
         
-        
-        //Docker doesn't have Component
-        if (!_Components.Contains(__component)) {
-            Debug.LogError("Docker does not have ownership of Component", ["Component", "Type", "CurrentDocker"],
-                [__component.GetHashCode().ToString(), __component.GetType().ToString(), GetHashCode().ToString()]); return;
-        }
-
-        __component.TryEvent(5);
-        __component.ChainEvent(5);  
-        
-        foreach (string tag in __component._tags) UnhashTaggedComponent(__component, tag);
-        __component.ComponentDocker = null;
-        
-        _Components.Remove(__component);
+        for(var i = 0; i < __component.Tags.Length; i++) { HashTaggedComponent(__component.Tags[i], __component); }
     }
-    
-    
-    
-    /// <summary>
-    /// Destroys the first found Component of a given type
-    /// </summary>
-    /// <typeparam name="__Type"> Type of Component to destroy</typeparam>
-    public void Remove<__Type>() where __Type : Component => Remove(Get<__Type>());
 
+    private void RemoveComponentFromLists(Component __component) {
+        var Type = __component.GetType();
+        _Components.Remove(__component); 
+        
+        if(!_ComponentDictionary.ContainsKey(Type)) _ComponentDictionary[Type].Remove(__component);
+        
+        for(var i = 0; i < __component.Tags.Length; i++) { UnhashTaggedComponent(__component.Tags[i], __component); }
+    }
 
+    private void HashTaggedComponent(string __tag, Component __component) {
+        if (!_taggedComponents.TryAdd(__component.Tags[i], [__component])) 
+            _taggedComponents[__component.Tags[i]].Add(__component);
+    }
 
-    /// <summary>
-    /// Destroys all Components from a given collection.
-    /// </summary>
-    /// <param name="__Components"></param>
-    public void RemoveAll(IEnumerable<Component> __Components) { foreach (Component component in (Component[])[..__Components]) { Remove(component); } }
+    private void UnhashTaggedComponent(string __tag, Component __component) {
+        if(!_taggedComponents.ContainsKey(__tag)) _taggedComponents[__tag].Remove(__component);
+    }
 
-    
-    
-    /// <summary>
-    /// Destroys all Components of a given type
-    /// </summary>
-    /// <typeparam name="__Type"></typeparam>
-    public void RemoveAll<__Type>() where __Type : Component => RemoveAll(GetAll<__Type>());
-
-
-
-    /// <summary>
-    /// Destroys all Components attached to Docker
-    /// </summary>
-    public void RemoveAll() { foreach (Component component in (Component[])[.._Components]) { Remove(component); } }
-    
-    
-    
-    
-    
 }

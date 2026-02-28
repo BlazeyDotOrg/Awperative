@@ -146,15 +146,17 @@ public static class Debug
     /// </summary>
     /// <param name="__message"> Message to debug</param>
     public static void LogError(string __message) => LogGeneric(__message, "ERR", [], []);
-    
+
     /// <summary>
     /// Writes the current message to the log file. With any given call sign.
     /// </summary>
     /// <param name="__message"> Message to debug</param>
     /// <param name="__parameters"> Names of values to debug</param>
     /// <param name="__values"> Values to debug</param>
-    public static void LogError(string __message, string[] __parameters, string[] __values) => LogGeneric(__message, "ERR", __parameters, __values);
-    
+    public static void LogError(string __message, string[] __parameters, string[] __values) {
+        if(Awperative.DebugErrors) LogGeneric(__message, "ERR", __parameters, __values, Awperative.ThrowExceptions);
+    }
+
     /// <summary>
     /// Writes the current message to the log file if the condition is true.
     /// </summary>
@@ -173,11 +175,14 @@ public static class Debug
     /// <param name="__callSign"> Message identifier</param>
     /// <param name="__parameters"> Names of values to debug</param>
     /// <param name="__values"> Values to debug</param>
-    public static void LogGeneric(string __message, string __callSign, string[] __parameters, string[] __values) {
+    /// <param name="__exception"> Should this throw an exception instead</param>
+    public static void LogGeneric(string __message, string __callSign, string[] __parameters, string[] __values, bool __exception = false) {
         string output = "\n\n" + __callSign + "- \"" + __message + "\"\n         STK-" + new StackTrace();
 
         for (int i = 0; i < __parameters.Length || i < __values.Length; i++)
             output += "\n         " + __parameters[i] + "- " + __values[i];
+
+        if (__exception) throw new Exception(output);
         
         File.AppendAllText(LogFilePath, output);
     }

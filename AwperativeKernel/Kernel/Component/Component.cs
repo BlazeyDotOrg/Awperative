@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Microsoft.VisualBasic;
@@ -12,15 +13,15 @@ namespace AwperativeKernel;
 
 
 
-public abstract partial class Component : ComponentDocker
+public abstract partial class Component : ComponentDocker, IDisposable
 {
-    
-    
-    
+
+
+
     /// <summary>
     /// Current parent of the Component. Can be either Scene or another Component.
     /// </summary>
-    public ComponentDocker ComponentDocker { get; internal set; }
+    public ComponentDocker ComponentDocker { get; internal set; } = null;
 
 
 
@@ -38,12 +39,8 @@ public abstract partial class Component : ComponentDocker
 
 
 
-    ///
-    internal Collection<Action> EventDelegates = [];
     
     
- 
-
 
 
 
@@ -55,30 +52,6 @@ public abstract partial class Component : ComponentDocker
     } internal int _priority;
     
     
-    
-    
-    
-    /// <summary>
-    /// To be called when the Component is created.
-    /// </summary>
-    /// <param name="__parent"> Docker that this spawned in this Component</param>
-    /// <param name="__name"> Name of the component</param>
-    internal void Initiate(ComponentDocker __parent, string __name, ICollection<string> __tags, Type __type) {
-        ComponentDocker = __parent;
-        Name = __name;
-        _tags = [..__tags];
-        
-        if (Awperative._TypeAssociatedTimeEvents.TryGetValue(__type, out byte eventProfile)) {
-
-            for (int i = 0; i < Awperative.ComponentEvents.Count; i++) {
-                if ((eventProfile & (1 << i)) > 0) 
-                    EventDelegates.Add((Action)Delegate.CreateDelegate(typeof(Action), this, __type.GetMethod(Awperative.ComponentEvents[i])!));
-                else EventDelegates.Add(null);
-            }
-        } else {
-            Debug.LogError("Awperative does not recognize the given type! Perhaps it was created after Start() was called?", ["Type"], [__type.Name]);
-        }
-    }
     
     
     
@@ -98,7 +71,8 @@ public abstract partial class Component : ComponentDocker
 
 
     public void TryEvent(int __timeEvent) {
-        EventDelegates[__timeEvent]?.Invoke();
+        Action<Component> eventDelegates = Awperative._TypeAssociatedTimeEvents[GetType()][__timeEvent];
+        eventDelegates?.Invoke(this);
     }
 
     
@@ -233,5 +207,9 @@ public abstract partial class Component : ComponentDocker
         List<Component> targets = [.._Components];
         for (int i = 0; i < targets.Count; i++) targets.InsertRange(i + 1, targets[i]._Components);
         return [..targets];
+    }
+
+    public virtual void Dispose() {
+        GC.SuppressFinalize(this);
     }
 }

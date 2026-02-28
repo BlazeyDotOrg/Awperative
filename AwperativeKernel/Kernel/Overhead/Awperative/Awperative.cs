@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 
 
@@ -44,6 +46,7 @@ public static class Awperative
 
 
     public static bool DebugMode = false;
+
     
     
             
@@ -111,22 +114,37 @@ public static class Awperative
         foreach (Type type in Assembly.GetCallingAssembly().GetTypes()) {
             if (type.IsSubclassOf(typeof(Component))) {
 
+
+                Action<Component>[] timeEvents = new Action<Component>[ComponentEvents.Count];
+
                 byte eventProfile = 0;
                 List<string> debugProfile = [];
 
                 for(int i = 0; i < ComponentEvents.Count; i++) {
-                    if (type.GetMethod(ComponentEvents[i]) != null) {
-                        eventProfile |= (byte)(1 << i);
+                    MethodInfo eventMethod = type.GetMethod(ComponentEvents[i]);
+
+                    if (eventMethod != null) {
+                        
                         debugProfile.Add(ComponentEvents[i]);
-                    }
+                        
+                        var ComponentInstanceParameter = Expression.Parameter(typeof(Component), "__component");
+                        var Casting = Expression.Convert(ComponentInstanceParameter, type);
+                        var Call = Expression.Call(Casting, eventMethod);
+                        var Lambda = Expression.Lambda<Action<Component>>(Call, ComponentInstanceParameter);
+                        timeEvents[i] = Lambda.Compile();
+                        
+                    } else timeEvents[i] = null;
                 }
                 
                 
 
                 Debug.LogAction("Evaluated Component! ", ["Type", "Time Events", "Profile"], [type.Name, "[" + string.Join(", ", debugProfile.Select(x => x.ToString())) + "]", eventProfile.ToString()]);
-                _TypeAssociatedTimeEvents.Add(type, eventProfile);
+                _TypeAssociatedTimeEvents.Add(type, timeEvents);
             }
         }
+        
+        
+        
     }
 
 
@@ -134,6 +152,7 @@ public static class Awperative
     /// <summary>
     /// Starts Awperative up! This method runs forever.
     /// </summary>
+    [DoesNotReturn]
     public static void Run() {
         Base = new Base();
         Base.Run();
@@ -158,5 +177,30 @@ public static class Awperative
     /// List of all type of components and the associated time events
     /// Each event is a 0 or 1 based on true or false, stored at their index in the byte
     /// </summary>
-    internal static Dictionary<Type, byte> _TypeAssociatedTimeEvents = [];
+    internal static Dictionary<Type, Action<Component>[]> _TypeAssociatedTimeEvents = [];
+
+
+
+    public static SafetyLevel safetyLevel {
+        get => _safetyLevel;
+        set {
+            ThrowExceptions = value is SafetyLevel.Extreme;
+            IgnoreErrors = value is SafetyLevel.Low or SafetyLevel.None;
+            DebugErrors = value is not SafetyLevel.None;
+            _safetyLevel = value;
+        }
+    } private static SafetyLevel _safetyLevel;
+
+    public static bool ThrowExceptions { get; private set; } = false;
+    public static bool IgnoreErrors { get; private set; } = false;
+    public static bool DebugErrors { get; private set; } = true;
+
+
+    //What to do if there is an error, keep in mind low and none still can have errors, because you are turning off validation checking
+    public enum SafetyLevel {
+        Extreme, //Throw exceptions and stop the whole program
+        Normal, //Just debug it to the console, and halt current process
+        Low, //Push through tasks but debug error
+        None, //Ignore most/all errors and do not debug it,
+    }
 }
