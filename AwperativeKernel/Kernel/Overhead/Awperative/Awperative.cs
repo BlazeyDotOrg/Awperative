@@ -144,8 +144,12 @@ public static class Awperative
         }
         
         
-        
     }
+    
+    internal static Comparer<Component> _prioritySorter = Comparer<Component>.Create((a, b) => {
+        int result = b.Priority.CompareTo(a.Priority); 
+        return (result != 0) ? result : a.GetHashCode().CompareTo(b.GetHashCode());
+    });
 
 
     

@@ -18,38 +18,42 @@ public abstract partial class Component : ComponentDocker, IDisposable
 
 
 
-    /// <summary>
-    /// Current parent of the Component. Can be either Scene or another Component.
-    /// </summary>
+    /// <summary> Current parent of the Component. Can be either Scene or another Component.</summary>
     public ComponentDocker ComponentDocker { get; internal set; } = null;
 
 
-
-    /// <summary>
-    /// If the component receives time events or not.
-    /// </summary>
-    public bool Enabled = true;
-
-
-    
     /// <summary>
     /// Component name
     /// </summary>
-    public string Name;
-
-
+    [NotNull]
+    public string Name {
+        get => _name;
+        set { if (!NotNull.VerifyOrThrow(value)) return; _name = value; }
+    } private string _name;
 
     
+    /// <summary> Represents the state of this Component, The largest bit represents if the Component is enabled or not, while the
+    /// next 7 represent its priority </summary>
+    [UnsafeInternal]
+    private byte OrderProfile;
+
+    /// <summary> If the component receives time events or not. </summary>
+    [CalculatedProperty] [CalculatedPropertyExpense("Very Low")]
+    public bool Enabled {
+        get => (OrderProfile & 128) > 0;
+        set => OrderProfile = (byte)((OrderProfile & 127) | (value ? 128 : 0));
+    }
     
-
-
-
-    /// <summary>
-    /// Order for when Components are called on. Only applies between Components on the same Docker.
-    /// </summary>
+    /// <summary> Represents the Component's Update priority, can be set to any value ranging from -64 to 63; otherwise an error will throw! </summary>
+    [CalculatedProperty] [CalculatedPropertyExpense("Very Low")]
     public int Priority {
-        get => _priority; set => ComponentDocker.UpdatePriority(this, value);
-    } internal int _priority;
+        get => (sbyte)(OrderProfile << 1) >> 1;
+        set {
+            if(!ValueFitsRange.VerifyOrThrow(value, -64, 63)) return;
+            OrderProfile = (byte)((OrderProfile & 0x80) | (value & 0x7F));
+            ComponentDocker.UpdatePriority(this, value);
+        }
+    }
     
     
     
@@ -204,12 +208,16 @@ public abstract partial class Component : ComponentDocker, IDisposable
 
 
     public ImmutableArray<Component> GetAllChildren() {
-        List<Component> targets = [.._Components];
-        for (int i = 0; i < targets.Count; i++) targets.InsertRange(i + 1, targets[i]._Components);
+        List<Component> targets = [.._components];
+        for (int i = 0; i < targets.Count; i++) targets.InsertRange(i + 1, targets[i]._components);
         return [..targets];
     }
 
     public virtual void Dispose() {
         GC.SuppressFinalize(this);
+    }
+
+    public override string ToString() {
+        return this.Name;
     }
 }

@@ -185,5 +185,5 @@ public abstract partial class ComponentDocker
     /// <summary>
     /// Destroys all Components attached to Docker
     /// </summary>
-    public void DestroyAll() { for(var i = 0; i < _Components.Count; i++) Destroy(_Components[i]); }
+    public void DestroyAll() { for(var i = 0; i < _components.Count; i++) Destroy(_components[i]); }
 }

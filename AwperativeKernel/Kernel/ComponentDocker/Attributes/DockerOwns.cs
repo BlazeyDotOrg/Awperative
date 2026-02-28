@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 
 namespace AwperativeKernel;
@@ -7,7 +9,7 @@ namespace AwperativeKernel;
 /// <summary>
 /// Requires that the Docker owns the parameter
 /// </summary>
-[AttributeUsage(AttributeTargets.Parameter)]
+[AttributeUsage(AttributeTargets.All)]
 public class DockerOwns : Attribute
 {
     
@@ -38,7 +40,7 @@ public class DockerOwns : Attribute
 /// <summary>
 /// Requires that the Docker does not own the parameter
 /// </summary>
-[AttributeUsage(AttributeTargets.Parameter)]
+[AttributeUsage(AttributeTargets.All)]
 public class DockerDoesntOwn : Attribute
 {
     
@@ -69,7 +71,7 @@ public class DockerDoesntOwn : Attribute
 /// <summary>
 /// Requires that the component is not attached to any Docker
 /// </summary>
-[AttributeUsage(AttributeTargets.Parameter)]
+[AttributeUsage(AttributeTargets.All)]
 public class OrphanComponent : Attribute
 {
 
@@ -101,7 +103,7 @@ public class OrphanComponent : Attribute
 /// <summary>
 /// Requires that the Component is not null
 /// </summary>
-[AttributeUsage(AttributeTargets.Parameter)]
+[AttributeUsage(AttributeTargets.All)]
 public class ComponentNotNull : Attribute
 {
 
@@ -125,7 +127,7 @@ public class ComponentNotNull : Attribute
 /// <summary>
 /// Requires that the Docker is not null
 /// </summary>
-[AttributeUsage(AttributeTargets.Parameter)]
+[AttributeUsage(AttributeTargets.All)]
 public class DockerNotNull : Attribute
 {
 
@@ -149,7 +151,7 @@ public class DockerNotNull : Attribute
 /// <summary>
 /// Requires that the Scene is not null
 /// </summary>
-[AttributeUsage(AttributeTargets.Parameter)]
+[AttributeUsage(AttributeTargets.All)]
 public class SceneNotNull : Attribute
 {
 
@@ -157,7 +159,6 @@ public class SceneNotNull : Attribute
     /// <summary>
     /// Verifies if the Scene is not null! Throws an error otherwise.
     /// </summary>
-    /// <param name="__componentDocker"></param>
     /// <returns></returns>
     public static bool VerifyOrThrow(Scene __scene) {
         if (__scene != null) return true;
@@ -171,9 +172,55 @@ public class SceneNotNull : Attribute
 
 
 /// <summary>
+/// Requires that everything in the collection is not null
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public class CollectionNotNull : Attribute
+{
+
+
+    /// <summary>
+    /// Verifies if the Scene is not null! Throws an error otherwise.
+    /// </summary>
+    /// <returns></returns>
+    public static bool VerifyOrThrow(Collection<object> __collection) {
+        for (var i = 0; i < __collection.Count; i++)
+            if (__collection[i] == null)
+                Debug.LogError("A Given Collection has null members!", ["Type"], [__collection.GetType().Name]);
+        
+        return Awperative.IgnoreErrors;
+    }
+}
+
+
+
+/// <summary>
+/// Requires that everything in the collection is not null
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public class EnumeratorNotNull : Attribute
+{
+
+
+    /// <summary>
+    /// Verifies if the Scene is not null! Throws an error otherwise.
+    /// </summary>
+    /// <returns></returns>
+    public static bool VerifyOrThrow(IEnumerable<object> __enumerator) {
+        foreach (object obj in __enumerator)
+            if (obj == null)
+                Debug.LogError("A Given Enumerator has null members!", ["Type"], [__enumerator.GetType().Name]);
+        
+        return Awperative.IgnoreErrors;
+    }
+}
+
+
+
+/// <summary>
 /// Requires that the object is not null
 /// </summary>
-[AttributeUsage(AttributeTargets.Parameter)]
+[AttributeUsage(AttributeTargets.All)]
 public class NotNull : Attribute
 {
 
@@ -181,7 +228,6 @@ public class NotNull : Attribute
     /// <summary>
     /// Verifies if the Scene is not null! Throws an error otherwise.
     /// </summary>
-    /// <param name="__componentDocker"></param>
     /// <returns></returns>
     public static bool VerifyOrThrow(Object __object) {
         if (__object != null) return true;
@@ -199,7 +245,7 @@ public class NotNull : Attribute
 /// <summary>
 /// Requires that the Docker is a different docker than the one given
 /// </summary>
-[AttributeUsage(AttributeTargets.Parameter)]
+[AttributeUsage(AttributeTargets.All)]
 public class DifferentDocker : Attribute
 {
 
@@ -207,7 +253,6 @@ public class DifferentDocker : Attribute
     /// <summary>
     /// Verifies if the Dockers are different!
     /// </summary>
-    /// <param name="__componentDocker"></param>
     /// <returns></returns>
     public static bool VerifyOrThrow(ComponentDocker __docker, ComponentDocker __other) {
         if (__docker != __other) return true;
@@ -221,3 +266,53 @@ public class DifferentDocker : Attribute
         return Awperative.IgnoreErrors;
     }
 }
+
+
+
+/// <summary>
+/// Requires that the index fits a given collection
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public class ValueFitsRange : Attribute
+{
+
+
+    /// <summary>
+    /// Verifies if the value fits a range
+    /// </summary>
+    /// <param name="__componentDocker"></param>
+    /// <returns></returns>
+    public static bool VerifyOrThrow(int __index, int __min, int __max) {
+        if (__index >= __min && __index <= __max) return true;
+
+        Debug.LogError("Value does not fit range!", ["Index"], [__index.ToString("N0")]);
+
+        return Awperative.IgnoreErrors;
+    }
+}
+
+
+
+/// <summary>
+/// Shows that the given object is unsafe (ex. it doesn't check for null values and such, or it doesn't have guardrails based on cases).
+/// This is just for internal/private methods to remind myself how to call it :) The reasoning is case by case, but most of the time,
+/// it is because all of the exposing public methods already check, and double checks would only slow me down
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public class UnsafeInternal : Attribute { }
+
+
+
+/// <summary>
+/// Shows that the given object (meant for external use) is calculated every time it is called! Good to know for performance heavy systems.
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public class CalculatedProperty() : Attribute { }
+
+
+
+/// <summary>
+/// Just a way to write how expensive a calculated property can be.
+/// </summary>
+[AttributeUsage(AttributeTargets.All)]
+public class CalculatedPropertyExpense(string Expense) : Attribute { }
