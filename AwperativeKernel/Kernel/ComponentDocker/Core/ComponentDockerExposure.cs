@@ -1,5 +1,6 @@
 
 
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
@@ -37,17 +38,16 @@ public abstract partial class ComponentDocker
     /// </summary>
     /// <param name="__component"></param>
     /// <returns></returns>
-    public bool Contains([ComponentNotNull,DockerOwns] Component __component) 
-        => NotNull.VerifyOrThrow(__component) && DockerOwns.VerifyOrThrow(this, __component) && _components.Contains(__component);
+    public bool Contains([ComponentNotNull] Component __component) 
+        => NotNull.VerifyOrThrow(__component) && _componentTypeDictionary.TryGetValue(__component.GetType(), out var components) && components.Contains(__component);
     
     /// <summary>
     /// Finds all Components that have all the given tags
     /// </summary>
     /// <param name="__tags"></param>
     /// <returns></returns>
-    public bool Contains<__Type>(string __tag) {
-        return GetAll<__Type>(__tag).Any();
-    }
+    public bool Contains<__Type>([NotNull] string __tag) 
+        => NotNull.VerifyOrThrow(__tag) && GetAll<__Type>(__tag).Any();
     
     /// <summary>
     /// Finds all Components that have all the given tags
@@ -116,7 +116,7 @@ public abstract partial class ComponentDocker
     /// <typeparam name="__Type"> The Type of Components to search for</typeparam>
     /// <returns></returns>
     public IReadOnlyList<__Type> GetAll<__Type>() where __Type : Component {
-        return (IReadOnlyList<__Type>)_componentTypeDictionary.GetValueOrDefault(typeof(__Type)).ToList();
+        return _componentTypeDictionary.TryGetValue(typeof(__Type), out var components) ? components.OfType<__Type>().ToList() : [];
     }
 
     /// <summary>

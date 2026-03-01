@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 
@@ -134,16 +135,17 @@ public abstract partial class ComponentDocker
     /// <param name="__componentDocker"> Target Docker</param>
     /// <typeparam name="__Type"> Type of Components to transfer</typeparam>
     public void MoveAll<__Type>([DockerNotNull, DifferentDocker] ComponentDocker __componentDocker) where __Type : Component => MoveAll(GetAll<__Type>(), __componentDocker);
-    
-    
-    
-    
-        
+
+
+
+
+    public TimeSpan total;
     /// <summary>
     /// Destroys a Component attached to the Docker
     /// </summary>
     /// <param name="__component"></param>
     public void Destroy([ComponentNotNull,DockerOwns] Component __component) {
+        Stopwatch timer = Stopwatch.StartNew();
         if(!ComponentNotNull.VerifyOrThrow(__component)) return;
         if(!DockerOwns.VerifyOrThrow(this, __component)) return;
 
@@ -152,8 +154,8 @@ public abstract partial class ComponentDocker
         
         RemoveComponentFromLists(__component);
         __component.ComponentDocker = null;
-        
-        __component.Dispose();
+        timer.Stop();
+        total += timer.Elapsed;
     }
     
     
@@ -162,7 +164,7 @@ public abstract partial class ComponentDocker
     /// Destroys the first found Component of a given type
     /// </summary>
     /// <typeparam name="__Type"> Type of Component to destroy</typeparam>
-    public void Destroy<__Type>() where __Type : Component => Destroy(Get<__Type>());
+    public void Destroy<__Type>() where __Type : Component => DestroyAll(GetAll<__Type>());
 
 
 

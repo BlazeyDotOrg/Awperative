@@ -4,7 +4,7 @@ namespace AwperativeKernel;
 
 public abstract partial class Component
 {
-    /// <summary>
+    /// <summary>   
     /// Scene the Component resides in.
     /// </summary>
     [CalculatedProperty, CalculatedPropertyExpense("Medium: O(Parents)")]

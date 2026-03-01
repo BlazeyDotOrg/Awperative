@@ -145,7 +145,7 @@ public static class Debug
     /// Writes the current message to the log file.
     /// </summary>
     /// <param name="__message"> Message to debug</param>
-    public static void LogError(string __message) => LogGeneric(__message, "ERR", [], []);
+    public static void LogError(string __message) => LogGeneric(__message, "ERR", [], [], ThrowExceptions);
 
     /// <summary>
     /// Writes the current message to the log file. With any given call sign.

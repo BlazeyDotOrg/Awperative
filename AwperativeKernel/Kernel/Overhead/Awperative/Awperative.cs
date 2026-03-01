@@ -44,6 +44,12 @@ public static partial class Awperative
     public static bool IsStarted { get; private set; } = false;
     /// <summary> Displays if the update loop is active</summary>
     public static bool IsRunning { get; private set; } = false;
+    
+    
+    
+    /// <summary> Awperative's debugger of choice</summary>
+    public static IDebugger Debug { get; set; }
+    public static IModuleManager ModuleManager { get; set; }
 
 
     /// <summary>
@@ -55,6 +61,14 @@ public static partial class Awperative
             _scenes.Add(newScene);
             return newScene;
         } else Debug.LogError("Awperative already has a Scene with that name!", ["Scene", "Name"], [GetScene(__name).GetHashCode().ToString(), __name]); return null;
+    }
+    
+    
+    
+    public static void AddScene(Scene __scene) {
+        if (!ContainsScene(__scene.Name)) {
+            _scenes.Add(__scene);
+        } else Debug.LogError("Awperative already has a Scene with that name!", ["Scene", "Name"], [GetScene(__scene.Name).GetHashCode().ToString(), __scene.Name]); return null;
     }
     
     
@@ -90,58 +104,81 @@ public static partial class Awperative
     /// </summary>
     /// <param name="__name"> Name of the scene</param>
     public static void CloseScene(string __name) => _scenes.Remove(GetScene(__name));
-    
 
-    
-    
-    
+
+
+
+
     /// <summary>
     /// Gets Awperative ready to begin! Compiles Component functions etc. Please call before doing anything Awperative
     /// related!
     /// </summary>
-    public static void Start() {
-        if(IsStarted) return;
+    public static void Start(string moduleManagerPath) {
+        if (IsStarted) return;
         IsStarted = true;
-        
-        Debug.Initiate();
-        
+
+        //SPAGHETTI CODE FIX LATER! maybe move to static method in IModuleManager
+        foreach (Type type in Assembly.LoadFrom(moduleManagerPath).GetTypes()) {
+            Console.WriteLine(type.Name);
+            if (type.GetInterfaces().Contains(typeof(IModuleManager))) {
+                ModuleManager = (IModuleManager)Activator.CreateInstance(type);
+            }
+        }
+
+        List<Assembly> targets = [Assembly.GetCallingAssembly()];
+        foreach (Assembly module in ModuleManager.GetDependencies()) {
+            targets.Add(module);
+        }
+                
         //Load in all Components nd find the associated types.
-        Debug.LogAction("Evaluating Components!");
-        foreach (Type type in Assembly.GetCallingAssembly().GetTypes()) {
-            if (type.IsSubclassOf(typeof(Component))) {
+        foreach (var t in targets) {
+            Console.WriteLine(t.FullName);
+            foreach (Type type in t.GetTypes()) {
+                if (type.IsSubclassOf(typeof(Component))) {
 
 
-                Action<Component>[] timeEvents = new Action<Component>[ComponentEvents.Count];
+                    Action<Component>[] timeEvents = new Action<Component>[ComponentEvents.Count];
 
-                byte eventProfile = 0;
-                List<string> debugProfile = [];
+                    byte eventProfile = 0;
+                    List<string> debugProfile = [];
 
-                for(int i = 0; i < ComponentEvents.Count; i++) {
-                    MethodInfo eventMethod = type.GetMethod(ComponentEvents[i]);
+                    for (int i = 0; i < ComponentEvents.Count; i++) {
+                        MethodInfo eventMethod = type.GetMethod(ComponentEvents[i]);
 
-                    if (eventMethod != null) {
-                        
-                        debugProfile.Add(ComponentEvents[i]);
-                        
-                        var ComponentInstanceParameter = Expression.Parameter(typeof(Component), "__component");
-                        var Casting = Expression.Convert(ComponentInstanceParameter, type);
-                        var Call = Expression.Call(Casting, eventMethod);
-                        var Lambda = Expression.Lambda<Action<Component>>(Call, ComponentInstanceParameter);
-                        timeEvents[i] = Lambda.Compile();
-                        
-                    } else timeEvents[i] = null;
+                        if (eventMethod != null) {
+
+                            var ComponentInstanceParameter = Expression.Parameter(typeof(Component), "__component");
+                            var Casting = Expression.Convert(ComponentInstanceParameter, type);
+                            var Call = Expression.Call(Casting, eventMethod);
+                            var Lambda = Expression.Lambda<Action<Component>>(Call, ComponentInstanceParameter);
+                            timeEvents[i] = Lambda.Compile();
+
+                        } else timeEvents[i] = null;
+                    }
+
+                    _TypeAssociatedTimeEvents.Add(type, timeEvents);
                 }
-                
-                
 
-                Debug.LogAction("Evaluated Component! ", ["Type", "Time Events", "Profile"], [type.Name, "[" + string.Join(", ", debugProfile.Select(x => x.ToString())) + "]", eventProfile.ToString()]);
-                _TypeAssociatedTimeEvents.Add(type, timeEvents);
+                if (type.GetInterfaces().Contains(typeof(IDebugger))) {
+                    if (Debug == null) {
+                        if (type.GetConstructor(Type.EmptyTypes) != null)
+                            Debug = (IDebugger)Activator.CreateInstance(type);
+                        else throw new Exception("Awperative doesn't support IDebugger constructor!");
+                    } else {
+                        throw new Exception("Awperative found multiple debuggers! There can only be one.");
+                    }
+                }
             }
         }
         
-        
+        if (Debug == null)
+            throw new Exception("Awperative doesn't have a Debugger!");
+
+        Debug.Start();
+
+        Debug.LogAction("Successfully Compiled Classes!");
     }
-    
+
     internal static Comparer<Component> _prioritySorter = Comparer<Component>.Create((a, b) => {
         int result = b.Priority.CompareTo(a.Priority); 
         return (result != 0) ? result : a.GetHashCode().CompareTo(b.GetHashCode());
@@ -164,13 +201,25 @@ public static partial class Awperative
     //Update, 2
     //Draw 3
     //Create, 4
-    //Destroy, 5
+    //Remove, 5
     
     // 0000 0000
     //
 
+    public static void TestUpdate() {
+        foreach (Scene scene in Scenes) {
+            scene.ChainEvent(2);
+        }
+    }
+    
+    public static void TestDraw() {
+        foreach (Scene scene in Scenes) {
+            scene.ChainEvent(3);
+        }
+    }
 
-    internal static ReadOnlyCollection<string> ComponentEvents = new(["Load", "Unload", "Update", "Draw", "Create", "Destroy"]);
+
+    internal static ReadOnlyCollection<string> ComponentEvents = new(["Load", "Unload", "Update", "Draw", "Create", "Remove"]);
 
 
 

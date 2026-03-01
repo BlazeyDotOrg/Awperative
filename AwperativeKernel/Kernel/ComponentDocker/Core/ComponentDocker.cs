@@ -9,7 +9,7 @@ using System.Reflection;
 namespace AwperativeKernel;
 
 /// <summary>
-/// Base class for all Awperative Entities. Responsible for Managing hierarchy between Components and Scenes, has Extensive Component Manipulation Available.
+/// Base class for all Awperative objects. Responsible for Managing hierarchy between Components and Scenes, has Extensive Component Manipulation Available.
 /// Also transfers Time and Carries most of the responsibilities akin to the Component.
 /// </summary>
 /// <remarks> Please don't inherit this. I don't know why you would</remarks>
@@ -107,7 +107,7 @@ public abstract partial class ComponentDocker : IEnumerable, IEnumerable<Compone
         _components.Add(__component); 
         if (!_componentTypeDictionary.TryAdd(Type, [__component])) _componentTypeDictionary[Type].Add(__component);
 
-        foreach (var tag in __component._tags) RemoveTagFromComponent(tag, __component);
+        foreach (var tag in __component._tags) AddTagToComponent(tag, __component);
     }
 
     /// <summary>
@@ -119,9 +119,9 @@ public abstract partial class ComponentDocker : IEnumerable, IEnumerable<Compone
         var Type = __component.GetType();
         _components.Remove(__component); 
         
-        if(!_componentTypeDictionary.ContainsKey(Type)) _componentTypeDictionary[Type].Remove(__component);
+        if(_componentTypeDictionary.TryGetValue(Type, out var value)) value.Remove(__component);
         
-        foreach (var tag in __component._tags) AddTagToComponent(tag, __component);
+        foreach (var tag in __component._tags) RemoveTagFromComponent(tag, __component);
     }
 
     /// <summary>
@@ -165,5 +165,4 @@ public abstract partial class ComponentDocker : IEnumerable, IEnumerable<Compone
         for (int i = 0; i < targets.Count; i++) targets.InsertRange(i + 1, targets[i]._components);
         return [..targets];
     }
-
 }

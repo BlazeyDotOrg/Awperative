@@ -24,5 +24,10 @@ public abstract partial class Component
     
     /// <inheritdoc cref="ComponentDocker.Move"/>
     public void Move(ComponentDocker __newDocker) => ComponentDocker.Move(this, __newDocker);
-    
+
+
+
+    /// <summary> Makes the Component destroy itself </summary>
+    public void Destroy() => ComponentDocker.Destroy(this);
+
 }
