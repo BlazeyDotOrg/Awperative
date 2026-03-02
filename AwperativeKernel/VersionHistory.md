@@ -44,3 +44,11 @@ Beta Reflection And Speed Increasment
 ---
 
 Finished Reflection, and Awperative is MUCH faster.
+
+# Awperative V1.3A
+
+### March 02 2026
+
+---
+
+Awperative is nearly in a ready to deploy state! Aside from documentation and on the side support.

@@ -11,10 +11,10 @@ using Awperative.Kernel.Overhead.Reflection;
 namespace AwperativeKernel;
 
 /// <summary>
-/// Initiating class of Awperative. Call Start() to start the kernel.
+/// Main class of Awperative, allows you to Create() scenes and Start() the game
 /// </summary>
 /// <author> Avery Norris </author>
-public static partial class Awperative
+public static class Awperative
 {
 
     
@@ -39,12 +39,6 @@ public static partial class Awperative
     public static bool IsStarted { get; private set; } = false;
     /// <summary> Displays if the update loop is active</summary>
     public static bool IsRunning { get; private set; } = false;
-    
-    
-    
-    /// <summary> Awperative's debugger of choice, found from the module manager.</summary>
-    [MarkerAttributes.UnsafeInternal, DependencyAttributes.RequiredModule]
-    public static IDebugger Debug { get; internal set; }
 
     
 
@@ -54,13 +48,14 @@ public static partial class Awperative
         if (!DebugAttributes.NotNull.VerifyOrThrow(__name)) return null;
         if (!DebugAttributes.SceneDoesNotExist.VerifyOrThrow(GetScene(__name))) return null;
         
-        Scene newScene = new Scene(__name);
+        Scene newScene = new (__name);
         _scenes.Add(newScene);
         return newScene;
     }
     
     
-    
+    /// <summary>Adds a new scene that you construct. </summary>
+    /// <param name="__scene"></param>
     [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Low), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.O1)]
     public static void AddScene([DebugAttributes.SceneNotNull, DebugAttributes.SceneDoesNotExist] Scene __scene) {
         if (!DebugAttributes.SceneNotNull.VerifyOrThrow(__scene)) return;
@@ -103,7 +98,8 @@ public static partial class Awperative
         IsStarted = true;
 
         ReflectionManager.ResolveModules(AppDomain.CurrentDomain.GetAssemblies());
-        
+
+        Debug.Start();
         Debug.LogAction("Successfully Compiled Classes!");
     }
 
@@ -114,9 +110,7 @@ public static partial class Awperative
 
 
     
-    /// <summary>
-    /// Starts Awperative up! This method runs forever.
-    /// </summary>
+    /// <summary> Starts Awperative up! This method runs until the game is closed. </summary>
     public static void Run() {
         if(!IsStarted && IsRunning) return;
         IsRunning = true;
@@ -124,35 +118,24 @@ public static partial class Awperative
         Base.Run();
     }
     
-    //Load, 0
-    //Unload, 1
-    //Update, 2
-    //Draw 3
-    //Create, 4
-    //Remove, 5
-    
-    // 0000 0000
-    //
+    /// <summary> Closes Awperative! </summary>
+    public static void Close() {
+        Base.Close();
+    }
 
+    /// <summary> Performs a mock update. </summary>
+    [MarkerAttributes.UnsafeInternal]
     public static void TestUpdate() {
         foreach (Scene scene in Scenes) {
             scene.ChainEvent(2);
         }
     }
     
+    /// <summary> Performs a mock draw call. </summary>
+    [MarkerAttributes.UnsafeInternal]
     public static void TestDraw() {
         foreach (Scene scene in Scenes) {
             scene.ChainEvent(3);
         }
     }
-    
-
-
-    /// <summary>
-    /// List of all type of components and the associated time events
-    /// Each event is a 0 or 1 based on true or false, stored at their index in the byte
-    /// </summary>
-
-
-    //What to do if there is an error, keep in mind low and none still can have errors, because you are turning off validation checking
 }

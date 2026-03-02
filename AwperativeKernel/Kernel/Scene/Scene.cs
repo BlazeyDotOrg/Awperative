@@ -1,25 +1,24 @@
-using System.Collections.Generic;
 
 
 namespace AwperativeKernel;
 
-public sealed partial class Scene : ComponentDocker
+/// <summary>
+/// One of the main Awperative entities. Acts like a master folder for components to be stored in.
+/// </summary>
+/// <author> Avery Norris </author>
+public class Scene : ComponentDocker
 {
     
-    /// <summary>
-    /// Whether the scene is enabled or not.
-    /// </summary>
+    /// <summary> Whether the scene should receive updates or not</summary>
     public bool Enabled = true;
 
 
 
-    /// <summary>
-    /// Unique Name of the Scene
-    /// </summary>
+    /// <summary> Unique identifier of the Scene</summary>
     public string Name;
 
 
-    
+    //Blocks external construction
     internal Scene() {}
     
     

@@ -10,6 +10,10 @@ using AwperativeKernel;
 namespace Awperative.Kernel.Overhead.Reflection;
 
 
+/// <summary>
+/// Registers events for component type objects.
+/// </summary>
+/// <author> Avery Norris </author>
 internal static class EventManager
 {
     /// <summary> Holds an associated action for each component and a time event. Is built with CompileType() during Start().</summary>
