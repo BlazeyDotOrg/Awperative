@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Awperative.Kernel.Overhead.Reflection;
 
 
 namespace AwperativeKernel;
@@ -59,16 +60,16 @@ public abstract partial class Component : ComponentDocker
     /// <summary> Attempts to send an event to the component, and quietly exits if not.</summary>
     [MarkerAttributes.UnsafeInternal]
     internal void TryEvent(int __timeEvent) {
-        Awperative._TypeAssociatedTimeEvents[GetType()][__timeEvent]?.Invoke(this);
+        EventManager._TypeAssociatedTimeEvents[GetType()][__timeEvent]?.Invoke(this);
     }
 
 
 
     /// <summary> Adds a new tag to the component</summary>
     [MarkerAttributes.CalculatedProperty, MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Low), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.ON)]
-    public void AddTag([DebugAttributes.NotNull, DebugAttributes.CollectionDoesntContain] string __tag) {
+    public void AddTag([DebugAttributes.NotNull, DebugAttributes.EnumerableDoesntContain] string __tag) {
         if(!DebugAttributes.NotNull.VerifyOrThrow(__tag)) return;
-        if(!DebugAttributes.CollectionDoesntContain.VerifyOrThrow(__tag, _tags)) return;
+        if(!DebugAttributes.EnumerableDoesntContain.VerifyOrThrow(_tags, __tag)) return;
 
         _tags.Add(__tag);
         ComponentDocker.HashTaggedComponent(__tag, this);
@@ -80,9 +81,9 @@ public abstract partial class Component : ComponentDocker
     
     /// <summary> Removes a tag from the component.</summary>
     [MarkerAttributes.CalculatedProperty, MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Low), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.ON)]
-    public void RemoveTag([DebugAttributes.NotNull,DebugAttributes.CollectionContains] string __tag) {
+    public void RemoveTag([DebugAttributes.NotNull,DebugAttributes.EnumerableContains] string __tag) {
         if (!DebugAttributes.NotNull.VerifyOrThrow(__tag)) return;
-        if(!DebugAttributes.CollectionContains.VerifyOrThrow(__tag, _tags)) return;
+        if(!DebugAttributes.EnumerableContains.VerifyOrThrow(_tags, __tag)) return;
 
         _tags.Remove(__tag);
         ComponentDocker.UnhashTaggedComponent(__tag, this);

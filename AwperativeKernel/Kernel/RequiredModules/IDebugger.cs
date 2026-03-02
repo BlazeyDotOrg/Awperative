@@ -1,20 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 
 
 
 namespace AwperativeKernel;
 
 
-public interface IDebugger
+
+[DependencyAttributes.RequiredModule(Source: "Debug")]
+public interface IDebugger : IModule
 {
-    
-    public void Start();
-    public void Stop();
 
     public void LogAction(string __message);
     public void LogAction(string __message, IEnumerable<string> __values, IEnumerable<string> __args);

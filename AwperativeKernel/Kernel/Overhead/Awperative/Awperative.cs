@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using Awperative.Kernel.Overhead.Reflection;
 
 
 namespace AwperativeKernel;
@@ -42,41 +43,40 @@ public static partial class Awperative
     
     
     /// <summary> Awperative's debugger of choice, found from the module manager.</summary>
-    [MarkerAttributes.UnsafeInternal]
-    public static IDebugger Debug { get; set; }
-    /// <summary> Awperative's module manager of choice, sent in through the Start() function</summary>
-    [MarkerAttributes.UnsafeInternal]
-    public static IModuleManager ModuleManager { get; private set; }
+    [MarkerAttributes.UnsafeInternal, DependencyAttributes.RequiredModule]
+    public static IDebugger Debug { get; internal set; }
 
     
 
     /// <summary> Creates a new Scene with the given name </summary>
     [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Low), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.O1)]
-    public static Scene CreateScene(string __name) {
-        if (!ContainsScene(__name)) {
-            Scene newScene = new Scene(__name);
-            _scenes.Add(newScene);
-            return newScene;
-        } else Debug.LogError("Awperative already has a Scene with that name!", ["Scene", "Name"], [GetScene(__name).GetHashCode().ToString(), __name]); return null;
+    public static Scene CreateScene([DebugAttributes.NotNull, DebugAttributes.SceneDoesNotExist] string __name) {
+        if (!DebugAttributes.NotNull.VerifyOrThrow(__name)) return null;
+        if (!DebugAttributes.SceneDoesNotExist.VerifyOrThrow(GetScene(__name))) return null;
+        
+        Scene newScene = new Scene(__name);
+        _scenes.Add(newScene);
+        return newScene;
     }
     
     
     
     [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Low), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.O1)]
-    public static void AddScene(Scene __scene) {
-        if (!ContainsScene(__scene.Name)) {
-            _scenes.Add(__scene);
-        } else Debug.LogError("Awperative already has a Scene with that name!", ["Scene", "Name"], [GetScene(__scene.Name).GetHashCode().ToString(), __scene.Name]); return;
+    public static void AddScene([DebugAttributes.SceneNotNull, DebugAttributes.SceneDoesNotExist] Scene __scene) {
+        if (!DebugAttributes.SceneNotNull.VerifyOrThrow(__scene)) return;
+        if (!DebugAttributes.SceneDoesNotExist.VerifyOrThrow(__scene)) return;
+        
+        _scenes.Add(__scene);
     }
-    
-    
+
+
 
     /// <summary> Finds a Scene from a given name </summary>
     [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Medium), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.ON)]
-    public static Scene GetScene(string __name) => _scenes.FirstOrDefault(scene => scene.Name == __name, null);
-    
-    
-    
+    public static Scene GetScene([DebugAttributes.NotNull] string __name) => !DebugAttributes.NotNull.VerifyOrThrow(__name) ? null : _scenes.FirstOrDefault(scene => scene.Name == __name, null);
+
+
+
     /// <summary> Returns bool based on whether there a scene with the given name or not. </summary>
     [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Medium), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.ON)]
     public static bool ContainsScene(string __name) => _scenes.Any(scene => scene.Name == __name);
@@ -102,65 +102,8 @@ public static partial class Awperative
         if (IsStarted) return;
         IsStarted = true;
 
-        //SPAGHETTI CODE FIX LATER! maybe move to static method in IModuleManager
-        foreach (Type type in Assembly.LoadFrom(moduleManagerPath).GetTypes()) {
-            Console.WriteLine(type.Name);
-            if (type.GetInterfaces().Contains(typeof(IModuleManager))) {
-                ModuleManager = (IModuleManager)Activator.CreateInstance(type);
-            }
-        }
-
-        List<Assembly> targets = [Assembly.GetCallingAssembly()];
-        foreach (Assembly module in ModuleManager.GetDependencies()) {
-            targets.Add(module);
-        }
-                
-        //Load in all Components nd find the associated types.
-        foreach (var t in targets) {
-            Console.WriteLine(t.FullName);
-            foreach (Type type in t.GetTypes()) {
-                if (type.IsSubclassOf(typeof(Component))) {
-
-
-                    Action<Component>[] timeEvents = new Action<Component>[ComponentEvents.Count];
-
-                    byte eventProfile = 0;
-                    List<string> debugProfile = [];
-
-                    for (int i = 0; i < ComponentEvents.Count; i++) {
-                        MethodInfo eventMethod = type.GetMethod(ComponentEvents[i]);
-
-                        if (eventMethod != null) {
-
-                            var ComponentInstanceParameter = Expression.Parameter(typeof(Component), "__component");
-                            var Casting = Expression.Convert(ComponentInstanceParameter, type);
-                            var Call = Expression.Call(Casting, eventMethod);
-                            var Lambda = Expression.Lambda<Action<Component>>(Call, ComponentInstanceParameter);
-                            timeEvents[i] = Lambda.Compile();
-
-                        } else timeEvents[i] = null;
-                    }
-
-                    _TypeAssociatedTimeEvents.Add(type, timeEvents);
-                }
-
-                if (type.GetInterfaces().Contains(typeof(IDebugger))) {
-                    if (Debug == null) {
-                        if (type.GetConstructor(Type.EmptyTypes) != null)
-                            Debug = (IDebugger)Activator.CreateInstance(type);
-                        else throw new Exception("Awperative doesn't support IDebugger constructor!");
-                    } else {
-                        throw new Exception("Awperative found multiple debuggers! There can only be one.");
-                    }
-                }
-            }
-        }
+        ReflectionManager.ResolveModules(AppDomain.CurrentDomain.GetAssemblies());
         
-        if (Debug == null)
-            throw new Exception("Awperative doesn't have a Debugger!");
-
-        Debug.Start();
-
         Debug.LogAction("Successfully Compiled Classes!");
     }
 
@@ -202,17 +145,13 @@ public static partial class Awperative
             scene.ChainEvent(3);
         }
     }
-
-
-    internal static ReadOnlyCollection<string> ComponentEvents = new(["Load", "Unload", "Update", "Draw", "Create", "Remove"]);
-
+    
 
 
     /// <summary>
     /// List of all type of components and the associated time events
     /// Each event is a 0 or 1 based on true or false, stored at their index in the byte
     /// </summary>
-    internal static Dictionary<Type, Action<Component>[]> _TypeAssociatedTimeEvents = [];
 
 
     //What to do if there is an error, keep in mind low and none still can have errors, because you are turning off validation checking

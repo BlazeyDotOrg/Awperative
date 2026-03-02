@@ -76,8 +76,14 @@ public abstract partial class ComponentDocker
 
 
     /// <summary> Destroys all the components in a given list </summary>
+    [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Medium), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.ON)] 
+    public void DestroyAll() => DestroyAll(GetAll());
+
+
+
+    /// <summary> Destroys all the components in a given list </summary>
     [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Medium), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.ON)]
-    public void DestroyAll([DebugAttributes.EnumeratorNotNull, DebugAttributes.DockerOwns] IEnumerable<Component> __Components) { foreach (Component component in __Components) Destroy(component); }
+    public void DestroyAll([DebugAttributes.EnumerableNotNull, DebugAttributes.DockerOwns] IEnumerable<Component> __Components) { foreach (Component component in __Components.ToArray()) Destroy(component); }
 
 
 
@@ -95,14 +101,14 @@ public abstract partial class ComponentDocker
 
     /// <summary> Destroys all components that have all the given tags</summary>
     [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Medium), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.ON)]
-    public void DestroyAll([DebugAttributes.EnumeratorNotNull] IEnumerable<string> __tags) => DestroyAll(GetAll(__tags));
+    public void DestroyAll([DebugAttributes.EnumerableNotNull] IEnumerable<string> __tags) => DestroyAll(GetAll(__tags));
 
 
 
 
     /// <summary> Destroys all Components that have the given type, and all the given tags</summary>
     [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.Medium), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.ON)]
-    public void DestroyAll<__Type>([DebugAttributes.EnumeratorNotNull] IEnumerable<string> __tags) where __Type : Component => DestroyAll(GetAll<__Type>(__tags));
+    public void DestroyAll<__Type>([DebugAttributes.EnumerableNotNull] IEnumerable<string> __tags) where __Type : Component => DestroyAll(GetAll<__Type>(__tags));
 
 
 

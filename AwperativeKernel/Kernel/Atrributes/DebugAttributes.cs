@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace AwperativeKernel;
@@ -181,39 +182,39 @@ public static class DebugAttributes
         }
     }
     
-    #endregion
-
-    #region Null/Collection
-
-    /// <summary> Requires all elements in a Collection are not null </summary>
+    /// <summary> Requires that a given Scene is not null</summary>
     [AttributeUsage(AttributeTargets.All)]
-    public class CollectionNotNull : Attribute
+    public class SceneDoesNotExist : Attribute
     {
 
 
         /// <inheritdoc cref="DockerOwns.VerifyOrThrow"/>
-        public static bool VerifyOrThrow(ICollection<object> __collection) {
-            foreach (object obj in __collection) {
-                if (obj == null) {
-                    Awperative.Debug.LogError("A given enumerator has null members!", ["Type"], [__collection.GetType().Name]);
-                    return Awperative.Debug.IgnoreErrors;
-                }
-            }
+        [MarkerAttributes.Expense(MarkerAttributes.Expense.ExpenseLevel.VeryLow), MarkerAttributes.Complexity(MarkerAttributes.Complexity.TimeComplexity.O1)]
+        public static bool VerifyOrThrow(Scene __scene) {
+            if (Awperative._scenes.Contains(__scene)) return true;
 
-            return true;
+            Awperative.Debug.LogError("Scene already exists!");
+
+            return Awperative.Debug.IgnoreErrors;
         }
     }
+    
+    #endregion
+
+    #region Null/Collection
 
 
 
     /// <summary> Requires all elements in an Enumerator are not null</summary>
     [AttributeUsage(AttributeTargets.All)]
-    public class EnumeratorNotNull : Attribute
+    public class EnumerableNotNull : Attribute
     {
 
 
         /// <inheritdoc cref="DockerOwns.VerifyOrThrow"/>
         public static bool VerifyOrThrow(IEnumerable<object> __enumerator) {
+            if (__enumerator == null) { Awperative.Debug.LogError("A given enumerator is null!"); return Awperative.Debug.IgnoreErrors; }
+            
             foreach (object obj in __enumerator) {
                 if (obj == null) {
                     Awperative.Debug.LogError("A given enumerator has null members!", ["Type"], [__enumerator.GetType().Name]);
@@ -222,6 +223,42 @@ public static class DebugAttributes
             }
 
             return true;
+        }
+    }
+    
+    
+    
+    /// <summary> Requires that the enumerator contains a certain element.</summary>
+    [AttributeUsage(AttributeTargets.All)]
+    public class EnumerableContains : Attribute
+    {
+
+
+        /// <inheritdoc cref="DockerOwns.VerifyOrThrow"/>
+        public static bool VerifyOrThrow(IEnumerable<object> __enumerator, object __object) {
+            if (__enumerator.Contains(__object)) return true;
+            
+            Awperative.Debug.LogError("A given enumerator does not contains an object!", ["EnumeratorType", "ObjectType", "Value"], [__enumerator.GetType().Name, __object.GetType().Name, __object.ToString()]);
+
+            return Awperative.Debug.IgnoreErrors;
+        }
+    }
+    
+    
+    
+    /// <summary> Requires that the enumerator does not contain a certain element.</summary>
+    [AttributeUsage(AttributeTargets.All)]
+    public class EnumerableDoesntContain : Attribute
+    {
+
+
+        /// <inheritdoc cref="DockerOwns.VerifyOrThrow"/>
+        public static bool VerifyOrThrow(IEnumerable<object> __enumerator, object __object) {
+            if (!__enumerator.Contains(__object)) return true;
+            
+            Awperative.Debug.LogError("A given enumerator already contains the object object!", ["EnumeratorType", "ObjectType", "Value"], [__enumerator.GetType().Name, __object.GetType().Name, __object.ToString()]);
+
+            return Awperative.Debug.IgnoreErrors;
         }
     }
 
@@ -256,42 +293,6 @@ public static class DebugAttributes
             if (__index >= __min && __index <= __max) return true;
 
             Awperative.Debug.LogError("Value does not fit range!", ["Index"], [__index.ToString("N0")]);
-
-            return Awperative.Debug.IgnoreErrors;
-        }
-    }
-
-
-
-    /// <summary> Requires that a collection contains the given item</summary>
-    [AttributeUsage(AttributeTargets.All)]
-    public class CollectionContains : Attribute
-    {
-
-
-        /// <inheritdoc cref="DockerOwns.VerifyOrThrow"/>
-        public static bool VerifyOrThrow<__Type>(__Type __object, ICollection<__Type> __collection) {
-            if (__collection.Contains(__object)) return true;
-
-            Awperative.Debug.LogError("Collection does not contain object!", ["ObjectType"], [__object.GetType().Name]);
-
-            return Awperative.Debug.IgnoreErrors;
-        }
-    }
-
-
-
-    /// <summary> Requires that a collection does not contain the given item</summary>
-    [AttributeUsage(AttributeTargets.All)]
-    public class CollectionDoesntContain : Attribute
-    {
-
-
-        /// <inheritdoc cref="DockerOwns.VerifyOrThrow"/>
-        public static bool VerifyOrThrow<__Type>(__Type __object, ICollection<__Type> __collection) {
-            if (!__collection.Contains(__object)) return true;
-
-            Awperative.Debug.LogError("Collection already contains object!", ["ObjectType"], [__object.GetType().Name]);
 
             return Awperative.Debug.IgnoreErrors;
         }
