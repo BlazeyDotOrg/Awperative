@@ -24,7 +24,7 @@ public static class Awperative
 
 
     /// <summary> Bottom class of Awperative. Contains the OpenTK Instance. </summary>
-    [DebugAttributes.NotNull, MarkerAttributes.UnsafeInternal] private static Base Base;
+    [DebugAttributes.NotNull, MarkerAttributes.UnsafeInternal] public static Base Base;
 
     
     
@@ -93,9 +93,11 @@ public static class Awperative
 
 
     /// <summary> Gets Awperative ready to begin! Compiles Component functions etc. Please call before doing anything Awperative related! </summary>
-    public static void Start(string moduleManagerPath) {
+    public static void Start() {
         if (IsStarted) return;
         IsStarted = true;
+        
+        Base = new Base();
 
         ReflectionManager.ResolveModules(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -114,7 +116,6 @@ public static class Awperative
     public static void Run() {
         if(!IsStarted && IsRunning) return;
         IsRunning = true;
-        Base = new Base();
         Base.Run();
     }
     
